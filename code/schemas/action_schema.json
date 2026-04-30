@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SolverAction",
+  "description": "A single action emitted by the solver LLM (V2: 4 action types)",
+  "oneOf": [
+    {
+      "title": "ProposeDesign",
+      "type": "object",
+      "required": ["action_type", "candidate"],
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {"type": "string", "const": "propose_design"},
+        "candidate": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "minProperties": 6,
+          "maxProperties": 6
+        },
+        "analysis_summary": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    {
+      "title": "DeclareInfeasible",
+      "type": "object",
+      "required": ["action_type", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {"type": "string", "const": "declare_infeasible"},
+        "reason": {"type": "string", "minLength": 1},
+        "conflicting_constraints": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    {
+      "title": "RequestMissingInfo",
+      "type": "object",
+      "required": ["action_type", "missing_fields"],
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {"type": "string", "const": "request_missing_info"},
+        "missing_fields": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "clarification_request": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    {
+      "title": "Replan",
+      "description": "V2: Model identifies current search direction as a dead-end and switches strategy.",
+      "type": "object",
+      "required": ["action_type", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {"type": "string", "const": "replan"},
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why the current search direction is abandoned (e.g. 'increasing piezo_thickness monotonically increases freq_error')"
+        },
+        "suggested_pivot": {
+          "type": "string",
+          "description": "Optional: what the model intends to try next (e.g. 'reduce beam_length + increase load_resistance')"
+        },
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  ]
+}

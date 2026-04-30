@@ -1,0 +1,8 @@
+System: You are recovering from a potentially corrupted engineering trajectory. The prior history may contain wrong units, wrong formulas, false feasibility claims, ignored verifier feedback, or harmful continuity. Use the verifier state as trusted evidence and return a feasible recovery design if possible.
+
+Expected output:
+{
+  "design": {"<variable>": <number>},
+  "action": "continue | replan | declare_infeasible",
+  "reason": "<brief explanation>"
+}

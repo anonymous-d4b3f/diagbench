@@ -1,0 +1,22 @@
+{
+  "probe": "P3",
+  "splits": {
+    "dev": {
+      "path": "data/veh/splits/p3_dev.jsonl",
+      "records": 64,
+      "sha256": "c475f64df0fe223b7fb4bf00ca3724507f02fd139b668800d9c4249aa085e825"
+    },
+    "test_id": {
+      "path": "data/veh/splits/p3_test_id.jsonl",
+      "records": 40,
+      "sha256": "94aa03faf6ae9922ccecad9d53c371fab44f8deb8f0f8f3c2e6d4fd5188547f4"
+    },
+    "test_ood": {
+      "path": "data/veh/splits/p3_test_ood.jsonl",
+      "records": 52,
+      "sha256": "2ac9fa67791e920f589c9e2d28f1912bc72cff4ebf4c2fe507a416272bb77f92"
+    }
+  },
+  "total_records": 156,
+  "version": "p3_v3r1"
+}

@@ -1,0 +1,584 @@
+{
+  "correlations": {
+    "action_prior": {
+      "p1_composite": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.961018,
+        "spearman_r": 0.97193
+      },
+      "p2_power_ratio": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.3008,
+        "spearman_r": 0.273205
+      },
+      "p3_success": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.33998,
+        "spearman_r": 0.395797
+      },
+      "p3_trap_escape": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.107529,
+        "spearman_r": -0.117751
+      },
+      "p4_bars": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.101965,
+        "spearman_r": -0.091068
+      },
+      "p4_full_tau": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.053875,
+        "spearman_r": -0.119089
+      }
+    },
+    "edit_style": {
+      "p1_composite": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.300782,
+        "spearman_r": 0.157618
+      },
+      "p2_power_ratio": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.863893,
+        "spearman_r": 0.839161
+      },
+      "p3_success": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.217345,
+        "spearman_r": -0.188811
+      },
+      "p3_trap_escape": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.278474,
+        "spearman_r": 0.607021
+      },
+      "p4_bars": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.60203,
+        "spearman_r": 0.454545
+      },
+      "p4_full_tau": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.001165,
+        "spearman_r": -0.076923
+      }
+    },
+    "feedback_obedience": {
+      "p1_composite": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.563533,
+        "spearman_r": 0.542908
+      },
+      "p2_power_ratio": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.807972,
+        "spearman_r": 0.741259
+      },
+      "p3_success": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.581545,
+        "spearman_r": 0.587413
+      },
+      "p3_trap_escape": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.500382,
+        "spearman_r": 0.473687
+      },
+      "p4_bars": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.59515,
+        "spearman_r": 0.447552
+      },
+      "p4_full_tau": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.453667,
+        "spearman_r": 0.216783
+      }
+    },
+    "preference_execution": {
+      "p1_composite": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.116961,
+        "spearman_r": -0.1331
+      },
+      "p2_power_ratio": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.456843,
+        "spearman_r": 0.552448
+      },
+      "p3_success": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.476227,
+        "spearman_r": 0.216783
+      },
+      "p3_trap_escape": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.759801,
+        "spearman_r": 0.736847
+      },
+      "p4_bars": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.807096,
+        "spearman_r": 0.769231
+      },
+      "p4_full_tau": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.86936,
+        "spearman_r": 0.762238
+      }
+    },
+    "state_trust": {
+      "p1_composite": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.142974,
+        "spearman_r": -0.073555
+      },
+      "p2_power_ratio": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.485564,
+        "spearman_r": -0.391608
+      },
+      "p3_success": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.243562,
+        "spearman_r": 0.216783
+      },
+      "p3_trap_escape": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.02826,
+        "spearman_r": -0.294739
+      },
+      "p4_bars": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": -0.567087,
+        "spearman_r": -0.545455
+      },
+      "p4_full_tau": {
+        "models": [
+          "model_E",
+          "model_D",
+          "model_H",
+          "model_K",
+          "model_B",
+          "model_C",
+          "model_M",
+          "llama_3_3_70b",
+          "o4_mini",
+          "qwen3_6_plus",
+          "model_A",
+          "model_L"
+        ],
+        "n_models": 12,
+        "pearson_r": 0.081908,
+        "spearman_r": 0.118881
+      }
+    }
+  }
+}

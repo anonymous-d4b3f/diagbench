@@ -1,0 +1,176 @@
+\section{Empirical Findings}
+\label{sec:experiments}
+
+\subsection{Setup}
+
+We evaluate 12 complete P1--P4 model runs on the VEH probes: model_C, \texttt{model_G}, model_H, model_E, model_A, model_D, model_B, \texttt{model_F}, \texttt{llama-3.3-70b}, model_K, model_L, and model_M. Here \(n=12\) denotes model-level observations with all four probes complete, not a development split. The headline metrics are P1-Composite, P2 final feasible power ratio, P3-Success, and P4 full-bank Kendall Tau. Calibration references, split-resolved tables, uncertainty intervals, full metric definitions, prompt templates, and the run-mode audit are in the appendix.
+
+\subsection{Stage Dissociation and Profile Fit}
+
+\begin{table*}[t]
+\caption{Twelve-model P1--P4 headline results on the 763-task VEH benchmark. Mode tags report how reasoning/thinking support is treated in this paper: \texttt{T}=public reasoning/thinking model or thinking API family; \texttt{T-off}=thinking-capable model run with explicit JSON/no-think control in the manifest; \texttt{D}=provider-default call with no explicit thinking flag in our run; ``--''=no public thinking label used for grouping. Core-roster uncertainty and split-resolved results are in Appendix Table~\ref{tab:appendix_ci_table}.}
+\label{tab:main_results}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{llcccc}
+\toprule
+Model & Mode & P1 Comp. & P2 Ratio & P3 Succ. & P4 Tau \\
+\midrule
+model_A & \texttt{D} & \textbf{0.574} & 0.1955 & 30.1 & 0.835 \\
+Gemini-3.1 & \texttt{T} & 0.549 & \textbf{0.3904} & 37.2 & 0.824 \\
+\texttt{model_F} & \texttt{T} & 0.518 & 0.1551 & 26.3 & 0.780 \\
+model_D & \texttt{T} & 0.504 & 0.2413 & 42.9 & 0.833 \\
+model_C & -- & 0.428 & 0.1329 & 42.3 & \textbf{0.887} \\
+Hunyuan-Hy3 & \texttt{T} & 0.425 & 0.1609 & \textbf{47.4} & 0.839 \\
+model_H & -- & 0.369 & 0.1565 & 35.3 & 0.860 \\
+\texttt{llama-3.3} & -- & 0.361 & 0.1197 & 3.2 & 0.714 \\
+Mimo-V2.5 & \texttt{T-off} & 0.317 & 0.1073 & 45.5 & 0.843 \\
+\texttt{model_G} & \texttt{D} & 0.306 & 0.2063 & 27.6 & 0.877 \\
+DeepSeek-V4 & \texttt{T-off} & 0.306 & 0.1294 & 28.8 & 0.794 \\
+model_E & -- & 0.207 & 0.2394 & 16.0 & 0.840 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:main_results} gives the core result. No model leads more than one headline stage: model_A leads P1, model_B leads P2, model_M leads P3, and model_C leads P4. The most revealing reversal is Gemini versus model_C: Gemini is the best feasible-set seeker in P2 but weak on P4 ranking, while model_C is the best policy-conditioned ranker but weak on P2 search. The 12-model view makes the same point more directly: model_L is near the P3/P4 frontier but weak on P1/P2, model_M moves only the P3 point-estimate frontier, and model_K remains below model_H on P2 and P4. Newer or more explicit thinking-capable models therefore shift specific boundaries rather than monotonically improving the whole workflow.
+
+The within-stage details support the same interpretation without needing four long subsections. \textbf{P1 finding:} credible triage is not raw accuracy; model_A wins the composite through balanced action discipline, while models with acceptable raw accuracy collapse once missing-information and infeasibility discipline are scored. \textbf{P2 finding:} start is not finish; Gemini is not the best first-step model, but wins through sustained feasibility-preserving closure, and it is the only frontier model to beat the anchor-fixed calibration baseline. \textbf{P3 finding:} escape is not recovery; Gemini and Claude escape traps frequently but have very different cascade and final-success behavior. \textbf{P4 finding:} ranking is not one skill; full-order structure, exact endpoint agreement, and policy-active ranking separate. The full per-probe tables are in Appendix Tables~\ref{tab:appendix_p1_full}--\ref{tab:appendix_p4_full}.
+
+We next quantify response-control profiles directly from logs. The extractor uses P1 action distributions and false-action rates; P2 edit deltas, feasibility preservation, directed repair, and objective traces; P2/P3 verifier-feedback reduction consistency; P3 escape, cascade, dead-budget, and recovery-quality signals; and P4 full-ranking, BARS, exact-match, policy-sensitive-pair, parse, and Pareto diagnostics. The complete 12-model profile table is in Appendix Table~\ref{tab:profile_quantification}. The intended diagonal relations are strong associations: action prior tracks P1-Composite (Spearman \(\rho=0.972\)), edit style tracks P2 ratio (\(\rho=0.839\)), and preference execution tracks P4 BARS (\(\rho=0.769\)) and full Tau (\(\rho=0.762\)). State trust is more structured: it does not monotonically track P3-Success because P3 splits into escape, cascade, and conversion to feasibility, but it is negatively correlated with P2 ratio (\(\rho=-0.39\)) and P4 BARS (\(\rho=-0.55\)). This is the key trade-off: a prior associated with strength at one boundary can be associated with weakness at another.
+
+\begin{table*}[t]
+\caption{Thinking-capable model tags versus response-control profile fit. Public reasoning/thinking capability helps P3 on average but does not explain P1, P2, or P4 leaders; profile indicators localize the boundary-specific mechanism.}
+\label{tab:reasoning_vs_profile}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lccp{72mm}}
+\toprule
+Stage & T/T-off & Other/D & Profile-based interpretation \\
+\midrule
+P1 Composite & 0.437 & 0.374 & thinking-capable rows are not sufficient for triage; model_A leads under a provider-default call because action discipline is the measured dimension \\
+P2 headline & 0.197 & 0.175 & Gemini drives the thinking-capable mean, but the operative boundary fit is bounded local edit style plus feedback obedience \\
+P3 Success (\%) & 38.0 & 25.8 & largest group gap; corrupted-state recovery is where state skepticism and explicit replanning are most useful \\
+P4 Full Tau & 0.819 & 0.836 & reversal; thinking-capable generation does not guarantee policy-conditioned evaluator discipline \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:reasoning_vs_profile} rules out the shallow reading that DiagBench is only a reasoning-model leaderboard. Thinking-capable rows help the corrupted-state boundary on average, but they do not determine the P1, P2, or P4 frontier. We also separate capability from runtime configuration: model_A is a hybrid-thinking commercial model whose API default is documented as thinking-off, \texttt{model_G} was run with the provider-default DashScope call rather than an explicit \texttt{enable\_thinking=True} override, and the model_K/Mimo manifests record schema-stabilizing no-think controls. A more diagnostic account is boundary fit: P2 rewards bounded repair, P3 rewards state skepticism, and P4 rewards evaluator-role discipline.
+
+\subsection{Mechanism Evidence}
+
+P3 directly tests whether corrupted-state recovery is separable from clean-start repair. model_E reaches 62.5\% feasible coverage in P2 but only 16.0\% P3-Success; model_C shows the reverse shape, with weak P2 feasible coverage (36.1\%) but strong P3 recovery (42.3\%). This asymmetry motivates the state-summary intervention.
+
+\begin{table*}[t]
+\caption{P3 intervention results. Delta columns report paired ta[REDACTED] 95\% intervals for \texttt{state\_summary} versus raw history.}
+\label{tab:p3_intervention}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lcccc}
+\toprule
+Model & Succ. raw/sum. & $\Delta$ succ. & Casc. raw/sum. & $\Delta$ casc. \\
+\midrule
+model_D & 55.6 / 58.3 & +2.8 [-11.1, +16.7] & 30.3 / 8.7 & -21.6 [-37.5, -7.2] \\
+model_C & 63.9 / 63.9 & +0.0 [-13.9, +13.9] & 29.4 / 0.0 & -29.4 [-45.5, -14.7] \\
+Gemini-3.1 & 50.0 / 66.7 & +16.7 [-2.8, +36.1] & 46.9 / 25.0 & -21.9 [-43.6, +0.5] \\
+model_E & 30.6 / 63.9 & +33.3 [+16.7, +50.0] & 5.7 / 4.3 & -1.4 [-8.6, +4.4] \\
+\midrule
+Model mean & 50.0 / 63.2 & +13.2 [+4.9, +21.5] & 28.1 / 9.5 & -18.6 [-26.6, -10.6] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:p3_intervention} shows that replacing raw trajectory continuity with verifier-authored \texttt{state\_summary} raises model-mean recovery success from 50.0\% to 63.2\% and lowers cascade from 28.1\% to 9.5\%. Claude gains the most in success (+33.3 points), consistent with its continuity-biased profile, while model_C and model_D show the clearest cascade reductions. Because the intervention changes prompt-facing state representation, we interpret it as evidence consistent with verifier-authored state isolation, not as a fully isolated causal proof against compression or formatting effects.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/main/selection_generation_gap.pdf}
+\caption{Mechanism evidence overview. The figure summarizes the P3 state-summary intervention and the matched selection-generation audit; the full numeric tables appear in Tables~\ref{tab:p3_intervention} and~\ref{tab:isomorphic_probe_main}.}
+\label{fig:mechanism_evidence}
+\end{figure*}
+
+\begin{table*}[t]
+\caption{Main-text isomorphic probe audit. Success rates are over 46 probe groups; SG-gap is A-selection minus B-generation.}
+\label{tab:isomorphic_probe_main}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lccccc}
+\toprule
+Model & A-selection & B-generation & C-completion & SG-gap & Parse-B \\
+\midrule
+model_E & 41.3\% & 4.3\% & 17.4\% & 37.0 pts & 100.0\% \\
+model_C & 32.6\% & 6.5\% & 21.7\% & 26.1 pts & 100.0\% \\
+Gemini-3.1 & 65.2\% & 4.3\% & 30.4\% & 60.9 pts & 41.3\% \\
+\texttt{model_G} & 52.2\% & 8.7\% & 15.2\% & 43.5 pts & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Figure~\ref{fig:mechanism_evidence} and Table~\ref{tab:isomorphic_probe_main} show a second mechanism: selection and generation are not interchangeable. Holding the underlying feasible design fixed, all four audited models perform best when selecting, worse when completing, and near floor when generating from a near-feasible seed. For model_C, Claude, and \texttt{model_G}, B-generation is parse-clean but wrong; for Gemini, the hardest generation form also induces syntax breakdown. This mirrors the P2-versus-P4 reversal: evaluative priors and generative search priors are distinct.
+
+\paragraph{Controlled prompt intervention.}
+The profile interpretation implies that behavioral deficits cause stage-specific underperformance, but Tier~1 correlation does not establish causation. We ran a pre-registered controlled-prompt experiment with four cells, each pairing a known deficit model with its weak stage. Every cell compares five prompt conditions---default, neutral (generic structured execution), targeted (boundary-specific diagnosis), wrong-boundary (mismatched diagnostic prompt), and a stacked variant for C2---under frozen seed-42 task sampling and 10,000 paired bootstrap resamples. All prompts are frozen; no iterative refinement occurred after pre-registration.
+
+\begin{table}[t]
+\caption{Pre-registered controlled-prompt audit. $\Delta$ is targeted minus neutral; 95\% CI from paired task-level bootstrap.}
+\label{tab:tier3_main}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lclcccc}
+\toprule
+Cell & Model-Stage & Metric & Targ. & Neut. & $\Delta$ & 95\% CI \\
+\midrule
+C1 & model_C P2  & Feas. rate       & 0.150 & 0.175 & $-$0.025 & [$-$0.150, 0.100] \\
+C2 & Claude P3   & Success           & 0.194 & 0.389 & $-$0.194 & [$-$0.361, $-$0.028] \\
+C3 & Gemini P4   & Kendall $\tau$    & 0.708 & 0.692 & +0.016  & [0.000, 0.048] \\
+C4 & model_C P1  & Accuracy          & 0.467 & 0.400 & +0.067  & [$-$0.050, 0.183] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No cell shows a significant targeted gain (Table~\ref{tab:tier3_main}). C2 is the strongest signal but reverses: targeted success is 19.4~points \emph{below} neutral, while the structured neutral prompt lifts success 22.2~points above default (CI [0.083, 0.361]; Appendix~\ref{sec:tier3_full}). C3 shows borderline top-1 improvement (94\%$\to$100\%, two tasks) with negligible full-ranking gain. C4 masks a model interaction: targeted helps model_C modestly while Claude degrades and its parse-error rate rises from 5.0\% to 18.3\%; excluding parse errors, Claude's classification accuracy under targeted (0.694) exceeds neutral (0.617), isolating a format-compliance rather than reasoning failure.
+
+The null pattern supports benchmark validity rather than weakening it. If the Tier~1 behavioral fingerprints were shallow prompt artifacts, targeted prompts should repair them. The absence of reliable targeted gains across four diverse model-stage pairs, together with C2's reversal, suggests that the fingerprints reflect structural prior-boundary compatibility, not superficial prompt sensitivity. A benchmark that disappears under prompt rewriting would not measure anything durable; that DiagBench resists prompt-level repair is evidence that its diagnostic signal is genuine.
+
+\subsection{Cross-Domain Construct Validity}
+
+We instantiate a hardened circuit-design audit to test whether the P1--P4 scaffold transfers beyond VEH. The updated audit replaces only P1 and P2 with 32 triage tasks and 32 repair tasks from circuit v3.1; P3 and P4 retain the original corrupted-state and policy-ranking banks. The task bank spans closed-form RC filters, loaded dividers, LED current limiters, op-amp amplifiers, and linear regulators. It is not a circuit benchmark; it is a construct-validity check with a different oracle, different constraints, and different trap geometry.
+
+\begin{table*}[t]
+\caption{Circuit audit headline results. P1/P2 use the hardened v3.1 banks, while P3/P4 retain the original corrupted-state and ranking banks. P1 is reported as P1-Composite; P2b is the final feasible objective score.}
+\label{tab:circuit_pilot_headline}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lccccccc}
+\toprule
+Model & P1 Comp. & P2 Feas. & P2b & P3 Succ. & P3 Casc. & P4 Tau & P4 BARS \\
+\midrule
+model_A       & 0.971 & 0.906 & 0.494 & 0.778 & 0.471 & 0.608 & 0.710 \\
+model_B  & \textbf{0.974} & \textbf{1.000} & \textbf{0.662} & \textbf{1.000} & \textbf{0.000} & 0.475 & 0.625 \\
+model_C         & 0.923 & 0.875 & 0.457 & 0.778 & 0.176 & \textbf{0.625} & \textbf{0.722} \\
+model_D     & \textbf{0.974} & 0.969 & 0.594 & 0.722 & \textbf{0.000} & 0.542 & 0.661 \\
+Hunyuan-Hy3     & 0.944 & 0.938 & 0.512 & 0.778 & 0.062 & 0.492 & 0.614 \\
+model_E      & 0.932 & 0.906 & 0.487 & \textbf{1.000} & \textbf{0.000} & 0.608 & 0.707 \\
+\midrule
+Stage spread & 0.051 & 0.125 & 0.205 & 0.278 & 0.471 & 0.150 & 0.108 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:circuit_pilot_headline} reproduces the main signature after replacing only P1/P2. No model dominates: Gemini and model_D tie the P1-Composite point estimate, Gemini leads P2b, Gemini and Claude retain the original P3 success lead, and model_C retains the original P4 lead. The model_C P4-over-P1/P2 reversal and Gemini P2-over-P4 reversal both remain. The trap geometry also matters: model_A stays strong at entry triage but has the largest retained circuit P3 cascade rate, while Gemini has zero retained circuit P3 cascade despite high VEH P3 cascade. The framework transfers; the rankings do not, and should not.
+
+\subsection{Summary}
+
+Taken together, the results support one claim: engineering-agent readiness is best diagnosed by prior-boundary compatibility. P1, P2, P3, and P4 are not four difficulty levels of one ability. They are four control boundaries that reward different response-control priors. No current frontier model matches all of them simultaneously. The controlled-prompt audit adds a further check: that these priors resist prompt-level repair reinforces their interpretation as structural boundary-compatibility signals rather than prompt-sensitivity artifacts.

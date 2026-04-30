@@ -1,0 +1,210 @@
+\section{Prompt Templates, Oracle Protocol, and Task Examples}
+\label{sec:prompts}
+
+\subsection{Evaluation Harness Protocol}
+
+All model runs use a shared evaluation harness. Each task instance specifies the design variables, variable bounds, task objective, and query budget. The harness parses the first valid JSON object in each model response, normalizes field aliases (e.g., \texttt{R\_ohm} vs.\ \texttt{R\_value}), and applies a fixed retry policy: up to two retries for transient malformed or length-truncated outputs before counting the row as a parse failure. Iterative probes (P2, P3) run under bounded query budgets. P2 can stop on feasible closure; P3 preserves the full recovery trace. All runs use temperature 0.0, and provider-level default max output tokens (typically 4096--8192 depending on the provider). Run dates, provider endpoints, and model version strings are recorded in per-model run manifests released with the benchmark artifact.
+
+\subsection{P1 Prompt Template (Triage)}
+
+The P1 prompt presents the task specification and asks the model to output exactly one action.
+
+\begin{quote}
+\footnotesize
+\textbf{System:} You are an engineering triage agent. Given a design specification, choose whether the task is feasible, infeasible, or underspecified. Do not output numeric design variables; output one action label as a single JSON object.
+
+\textbf{User:}
+\begin{verbatim}
+{
+  "task": "Evaluate whether the following VEH design specification
+           is feasible, infeasible, or missing critical information.",
+  "spec": {
+    "beam_length_mm": [20, 80],
+    "tip_mass_g": [0.5, 5.0],
+    "substrate_thickness_um": [100, 500],
+    "piezo_thickness_um": [50, 300],
+    "target_frequency_hz": 50,
+    "target_power_uw": 15,
+    "excitation_acceleration_g": 0.5,
+    "material": "PZT-5A",
+    "substrate": "stainless_steel"
+  },
+  "allowed_actions": ["propose_design", "declare_infeasible",
+                      "request_missing_info"]
+}
+\end{verbatim}
+
+\textbf{Expected output format:}
+\begin{verbatim}
+{
+  "action": "propose_design | declare_infeasible | request_missing_info",
+  "reason": "<brief justification>",
+  "missing_fields": ["spec.xxx", ...]
+}
+\end{verbatim}
+\end{quote}
+
+The \texttt{missing\_fields} array is only required for \texttt{request\_missing\_info}. P1 evaluator scoring is described in Appendix~\ref{sec:metric_formulas}.
+
+\subsection{P2 Prompt Template (Iterative Repair)}
+
+P2 runs as a multi-turn loop. Each turn presents the current design state and the oracle's constraint feedback.
+
+\begin{quote}
+\footnotesize
+\textbf{System:} You are an engineering design agent. You are given a design task with coupled physical constraints. At each step, propose an improved design. The verifier will return feasibility and violation information. Your goal is to reach a feasible design within the query budget while maximizing the objective.
+
+\textbf{User (turn 1):}
+\begin{verbatim}
+{
+  "task": "Design a piezoelectric cantilever VEH meeting the
+           following constraints.",
+  "design_variables": ["beam_length_mm", "tip_mass_g",
+       "substrate_thickness_um", "piezo_thickness_um",
+       "beam_width_mm", "load_resistance_ohm"],
+  "variable_bounds": {
+    "beam_length_mm": [20, 80],
+    "tip_mass_g": [0.5, 5.0],
+    "substrate_thickness_um": [100, 500],
+    "piezo_thickness_um": [50, 300],
+    "beam_width_mm": [5, 30],
+    "load_resistance_ohm": [1000, 100000]
+  },
+  "initial_design": {
+    "beam_length_mm": 50, "tip_mass_g": 2.0,
+    "substrate_thickness_um": 300, "piezo_thickness_um": 150,
+    "beam_width_mm": 15, "load_resistance_ohm": 10000
+  },
+  "objective": "maximize output power (uw)",
+  "query_budget": 6
+}
+\end{verbatim}
+
+\textbf{Oracle response (example, after turn 1):}
+\begin{verbatim}
+{
+  "feasible": false,
+  "metrics": {
+    "resonant_freq_hz": 72.3,
+    "load_power_uw": 3.2,
+    "tip_stress_mpa": 12.4,
+    "tip_disp_mm": 0.8
+  },
+  "violations": [
+    {"constraint": "frequency_target", "value": 72.3,
+     "target": 50.0, "tolerance": 0.05,
+     "message": "frequency too high; increase mass or length"}
+  ],
+  "total_violation": 8.47,
+  "oracle_feedback": "frequency=72.3 Hz exceeds [47.5, 52.5] Hz
+      target; tip stress=12.4 MPa within limit."
+}
+\end{verbatim}
+
+\textbf{Model output format (each turn):}
+\begin{verbatim}
+{
+  "design": {
+    "beam_length_mm": 55.0,
+    "tip_mass_g": 2.5,
+    "substrate_thickness_um": 280,
+    "piezo_thickness_um": 150,
+    "beam_width_mm": 15,
+    "load_resistance_ohm": 10000
+  },
+  "action": "continue",
+  "reason": "Increased beam length and tip mass to reduce
+             resonant frequency toward 50 Hz target."
+}
+\end{verbatim}
+\end{quote}
+
+\subsection{P3 Prompt Template (Post-Trap Recovery)}
+
+P3 is structurally identical to P2 but pre-loads a corrupted trajectory into the conversation context. The corruption varies by trap type: unit-flip, wrong-formula-direction, false-feasibility, topology-trap, verifier-ignored, or progressive-contamination. The model receives the full pseudo-history as if it were prior conversation turns.
+
+For the state-summary intervention, the raw trajectory is replaced with a deterministic verifier-authored summary containing only already-observed trusted fields: current step, latest proposal, latest verifier state, best-so-far feasible proposal (if any), short-horizon objective and violation trends, and whether new violations were introduced. The oracle evaluator is unchanged.
+
+\subsection{P4 Prompt Template (Policy-Conditioned Ranking)}
+
+\begin{quote}
+\footnotesize
+\textbf{System:} You are an engineering evaluator. Given a set of oracle-feasible design candidates and a stated ranking policy, rank the candidates according to the policy. Do not modify the designs or propose new ones.
+
+\textbf{User:}
+\begin{verbatim}
+{
+  "task": "Rank the following feasible VEH designs according to
+           the stated policy.",
+  "policy": "Prioritize output power, then tip-stress margin,
+             then component cost. All candidates are feasible.",
+  "candidates": [
+    {"id": "A", "design": {...}},
+    {"id": "B", "design": {...}},
+    {"id": "C", "design": {...}},
+    {"id": "D", "design": {...}},
+    {"id": "E", "design": {...}}
+  ]
+}
+\end{verbatim}
+
+\textbf{Expected output:}
+\begin{verbatim}
+{
+  "ranking": ["B", "A", "D", "E", "C"],
+  "reason": "B has highest power; A second on power with better
+             stress margin than D; E and C follow by power."
+}
+\end{verbatim}
+\end{quote}
+
+\subsection{Oracle Specification (VEH Domain)}
+
+The VEH oracle follows a single-mode analytical model for a piezoelectric cantilever beam with tip mass. For a design vector $\mathbf{x} = (L, m_t, h_s, h_p, w, R_L)$ and excitation acceleration $a$ at frequency $f_{\text{exc}}$, the oracle computes:
+
+\begin{align}
+f_r &= \frac{1}{2\pi}\sqrt{\frac{k_{\text{eff}}}{m_{\text{eff}}}} \quad\text{(resonant frequency)} \\
+P_{\text{out}} &= \frac{V_{\text{out}}^2}{R_L} \quad\text{(output power)} \\
+\sigma_{\max} &= \frac{M_{\max} \cdot y_{\max}}{I} \quad\text{(tip stress)} \\
+\delta_{\max} &= \frac{F_{\text{eff}} L^3}{3 E I} \quad\text{(tip displacement)}
+\end{align}
+
+where $k_{\text{eff}}$, $m_{\text{eff}}$, $V_{\text{out}}$, $M_{\max}$, $y_{\max}$, \(I\), and \(F_{\text{eff}}\) are derived from $\mathbf{x}$ using the released oracle implementation. The oracle returns feasible status, metrics, violations, and verifier feedback. A design is feasible iff $|f_r-f_{\text{exc}}|/f_{\text{exc}}\le\texttt{freq\_tol}$, $\sigma_{\max}\le\texttt{stress\_limit}$, and $\delta_{\max}\le\texttt{disp\_limit}$. The release includes the oracle code, task manifests, and validation artifacts needed to audit these computations.
+
+\subsection{Example Task Walkthrough (VEH P2)}
+
+We illustrate a complete P2 trajectory for a single task to make the evaluation protocol concrete.
+
+\textbf{Task.} Design a PZT-5A cantilever VEH with target frequency 50 Hz, target power $\ge 15\,\mu$W, excitation 0.5 g, stress limit 50 MPa, displacement limit 2 mm. Budget: 6 queries. Initial design: $L = 50$ mm, $m_t = 2.0$ g, $h_s = 300\,\mu$m, $h_p = 150\,\mu$m, $w = 15$ mm, $R_L = 10$ k$\Omega$.
+
+\textbf{Step 1.} Model proposes $\{L: 55, m_t: 2.5, h_s: 280, h_p: 150, w: 15, R_L: 10000\}$. Oracle returns: $f_r = 63.8$ Hz (violation: too high), $P_{\text{out}} = 4.1\,\mu$W, stress 11.2 MPa, displacement 0.7 mm. Feasible: false. Total violation: 5.24.
+
+\textbf{Step 2.} Model proposes $\{L: 65, m_t: 3.0, h_s: 250, h_p: 120, w: 15, R_L: 10000\}$. Oracle returns: $f_r = 48.7$ Hz (within $[47.5, 52.5]$), $P_{\text{out}} = 9.8\,\mu$W, stress 9.1 MPa, displacement 0.8 mm. Feasible: true. Violation: 0. Objective: $9.8/15 = 0.653$ (relative to BKF). End of trajectory (feasible closure).
+
+This task is considered a P2 success. The model used 2 queries, achieved feasible closure, and the final feasible power ratio is 0.653.
+
+\subsection{Example Task Walkthrough (Circuit P3 Dual-Trap)}
+
+\textbf{Task.} RC low-pass filter, target $f_c = 1$ kHz $\pm 2\%$, source current limit 0.5 mA, $R \in [1\text{k}\Omega, 100\text{k}\Omega]$, $C \in [1\text{nF}, 1\mu\text{F}]$, $V_{\text{in}} = 5$ V. Corrupted history (phase-1 trap): prior steps repeatedly increased $C$ under the false assumption that $f_c$ was too low; actual $f_c = 3.18$ kHz (too high). Current bad design: $R = 5\text{k}\Omega$, $C = 100$ nF. Budget: 5 queries.
+
+\textbf{Step 1.} Model recognizes the contradiction between oracle feedback (``$f_c$ too high'') and corrupted history (``$f_c$ too low''). Proposes $\{R: 20000, C: 7.96\text{nF}\}$. Oracle: $f_c = 1000$ Hz (feasible), $I_{\text{source}} = 0.25$ mA (feasible). Phase 1 escaped.
+
+\textbf{Step 2 (phase-2 trap).} With $R = 20\text{k}\Omega$, the model's edit has triggered the near-boundary margin: a second constraint on component tolerance (previously dormant) now requires $C \ge 1.5$ nF. Oracle returns a new violation. Model must adjust $R$ downward slightly and $C$ upward.
+
+\textbf{Step 3.} Model proposes $\{R: 15000, C: 10.6\text{nF}\}$. Oracle: $f_c = 1001$ Hz (feasible), $I_{\text{source}} = 0.33$ mA (feasible). All constraints satisfied. Recovery success: true. Cascade: false.
+
+This task demonstrates the progressive-dual-trap mechanism: the model must escape the primary corrupted state (phase 1) and then handle a secondary coupled constraint triggered by the escape move itself (phase 2).
+
+\subsection{Run Configuration}
+
+All model runs share the following configuration unless noted otherwise in per-model manifests:
+
+\begin{itemize}[leftmargin=5mm,itemsep=1mm,topsep=1mm]
+    \item Temperature: 0.0 (deterministic decoding).
+    \item Max output tokens: provider default (4096--8192).
+    \item Retry policy: up to 2 retries on parse failure; row counted as parse error after 3 consecutive failures.
+    \item P2 stop rule: trajectory terminates on feasible closure or budget exhaustion.
+    \item P3 stop rule: trajectory runs full budget; no early stop on feasibility.
+    \item Provider endpoints and model version strings are recorded in per-model run manifests.
+    \item Core roster run dates: April 2026. Thinking-model extension run dates: April 25--27, 2026. Circuit audit run dates: April 28--30, 2026.
+\end{itemize}

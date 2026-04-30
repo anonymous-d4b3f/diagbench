@@ -1,0 +1,22 @@
+\section{CMA-ES Classical Optimization Baseline}
+
+CMA-ES~\citep{hansen2023cma} is run on the full VEH P2 task bank under the same analytical oracle as the LLM agents, with population size 8 and initial sigma 0.15. The LLM budget (6 queries) and a relaxed budget (40 queries, 6.7$\times$ larger) are both tested for direct comparison with the model results in Table~\ref{tab:main_results} and the calibration baselines in Table~\ref{tab:appendix_calibration}.
+
+\begin{table}[t]
+\caption{CMA-ES P2 baseline results on the VEH 208-task bank. The 6-query budget matches the LLM agents; 40 queries tests the optimizer ceiling. The anchor-fixed heuristic (0 oracle queries) and Gemini (2.63 avg.\ queries) are shown for context.}
+\label{tab:appendix_cmaes_p2}
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & Budget (queries) & Final feasible rate & Mean power ratio & Mean queries \\
+\midrule
+CMA-ES & 6 & 0.269 & 0.099 & 6.0 \\
+CMA-ES & 40 & 0.578 & 0.305 & 40.0 \\
+Anchor-fixed heuristic & 0 & 1.000 & 0.306 & 0.0 \\
+model_B (LLM) & 6 & 0.962 & 0.390 & 2.63 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CMA-ES under 6 queries underperforms most frontier LLM agents on P2. With 40 queries it matches the anchor-fixed heuristic (0.305 vs.\ 0.306) but remains below Gemini (0.390). This supports two complementary interpretations: (1) LLM agents carry physical priors from pretraining that accelerate feasibility-preserving search beyond what a pure numerical optimizer achieves under the same oracle budget; and (2) P2 is not solvable by a generic optimizer within the benchmark's query constraints, so the observed inter-model differences reflect genuine behavioral variation rather than a ceiling effect.

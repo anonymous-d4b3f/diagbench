@@ -1,0 +1,9 @@
+{
+  "model_label": "model_J",
+  "split": "test_id",
+  "n_done": 80,
+  "n_total": 80,
+  "started_at": "2026-04-13T16:40:17.867027+00:00",
+  "updated_at": "2026-04-13T16:43:35.413055+00:00",
+  "complete": true
+}

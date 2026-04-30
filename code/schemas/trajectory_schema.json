@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiagBench Trajectory",
+  "description": "Schema for a full solver trajectory on a single task.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["task_id", "model_id", "run_id", "steps"],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "model_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["step_index", "action_type"],
+        "properties": {
+          "step_index": {"type": "integer", "minimum": 0},
+          "action_type": {"type": "string", "enum": ["propose_design", "declare_infeasible", "request_missing_info", "replan", "invalid_output"]},
+          "proposal": {"oneOf": [{"type": "object"}, {"type": "null"}]},
+          "verifier_response": {"oneOf": [{"type": "object"}, {"type": "null"}]},
+          "constraint_slack": {
+            "oneOf": [
+              {"type": "object", "additionalProperties": {"type": "number"}},
+              {"type": "null"}
+            ]
+          },
+          "objective_delta": {"oneOf": [{"type": "number"}, {"type": "null"}]},
+          "boundary_state": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": {"type": "string", "enum": ["saturated", "interior"]}
+              },
+              {"type": "null"}
+            ]
+          },
+          "reason": {"type": "string", "minLength": 1},
+          "confidence": {
+            "oneOf": [
+              {"type": "number", "minimum": 0, "maximum": 1},
+              {"type": "null"}
+            ]
+          },
+          "missing_fields": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1
+          },
+          "suggested_pivot": {"type": "string", "minLength": 1}
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {"action_type": {"const": "replan"}}
+            },
+            "then": {
+              "required": ["reason"],
+              "properties": {
+                "proposal": {"type": "null"},
+                "verifier_response": {"type": "null"},
+                "constraint_slack": {"type": "null"},
+                "objective_delta": {"type": "null"},
+                "boundary_state": {"type": "null"}
+              }
+            }
+          }
+        ,
+          {
+            "if": {
+              "properties": {"action_type": {"const": "propose_design"}}
+            },
+            "then": {
+              "required": ["proposal", "verifier_response", "constraint_slack", "objective_delta", "boundary_state"],
+              "properties": {
+                "proposal": {"type": "object"},
+                "verifier_response": {"type": "object"},
+                "constraint_slack": {"type": "object", "additionalProperties": {"type": "number"}},
+                "boundary_state": {
+                  "type": "object",
+                  "additionalProperties": {"type": "string", "enum": ["saturated", "interior"]}
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {"action_type": {"const": "declare_infeasible"}}
+            },
+            "then": {
+              "required": ["reason"],
+              "properties": {
+                "proposal": {"type": "null"},
+                "verifier_response": {"type": "null"},
+                "constraint_slack": {"type": "null"},
+                "objective_delta": {"type": "null"},
+                "boundary_state": {"type": "null"}
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {"action_type": {"const": "request_missing_info"}}
+            },
+            "then": {
+              "required": ["missing_fields"],
+              "properties": {
+                "proposal": {"type": "null"},
+                "verifier_response": {"type": "null"},
+                "constraint_slack": {"type": "null"},
+                "objective_delta": {"type": "null"},
+                "boundary_state": {"type": "null"}
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {"action_type": {"const": "invalid_output"}}
+            },
+            "then": {
+              "required": ["reason"],
+              "properties": {
+                "proposal": {"type": "null"},
+                "verifier_response": {"type": "null"},
+                "constraint_slack": {"type": "null"},
+                "objective_delta": {"type": "null"},
+                "boundary_state": {"type": "null"}
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

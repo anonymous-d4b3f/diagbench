@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiagBench P1 Task",
+  "description": "Schema for a single P1 problem-recognition task.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "task_id",
+    "task_type",
+    "p1_subtype",
+    "design_variables",
+    "variable_bounds",
+    "objective_name",
+    "objective_direction",
+    "constraints",
+    "environment_context",
+    "query_budget",
+    "difficulty_tag",
+    "split",
+    "gold_label"
+  ],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "seed_id": {"type": "string", "minLength": 1},
+    "task_type": {"type": "string", "const": "p1_problem_recognition"},
+    "p1_subtype": {
+      "type": "string",
+      "enum": [
+        "solvable_wide",
+        "solvable_narrow",
+        "solvable_anchor",
+        "solvable_tight",
+        "solvable_base",
+        "solvable_boundary",
+        "solvable_red_herring",
+        "infeasible_hard_conflict",
+        "infeasible_by_margin",
+        "infeasible_disguised",
+        "infeasible_structural",
+        "infeasible_margin",
+        "underspecified_key",
+        "underspecified_nonkey",
+        "missing_blocker_obvious",
+        "missing_blocker_ambiguous",
+        "missing_nonblocker"
+      ]
+    },
+    "design_variables": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "variable_bounds": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["min", "max", "unit"],
+        "additionalProperties": false,
+        "properties": {
+          "min": {"type": "number"},
+          "max": {"type": "number"},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "objective_name": {"type": "string", "minLength": 1},
+    "objective_direction": {"type": "string", "enum": ["maximize", "minimize"]},
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["name", "type", "limit"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"type": "string"},
+          "limit": {"type": "number"},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "excitation_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "frequency_hz": {"type": "number"},
+        "acceleration_g": {"type": "number"}
+      }
+    },
+    "environment_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "material": {"type": "string"},
+        "piezo_material": {"type": "string"},
+        "substrate_material": {"type": "string"},
+        "device_type": {"type": "string"},
+        "structure_class": {"type": "string"}
+      }
+    },
+    "anchor_context": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "query_budget": {"type": "integer", "minimum": 1, "maximum": 5},
+    "difficulty_tag": {"type": "string", "enum": ["easy", "medium", "base", "moderate", "hard", "infeasible"]},
+    "split": {"type": "string", "enum": ["dev", "test_id", "test_ood", "test_audit"]},
+    "gold_label": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["action_type"],
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": ["propose_design", "declare_infeasible", "request_missing_info"]
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "reason": {"type": "string"}
+      }
+    },
+    "missing_fields_ground_truth": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "irrelevant_missing_info": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    }
+  }
+}

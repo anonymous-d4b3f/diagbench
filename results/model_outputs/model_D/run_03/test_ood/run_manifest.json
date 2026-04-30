@@ -1,0 +1,44 @@
+{
+  "artifact_paths": [
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/p4_full_v2_live_20260416_model_D/test_ood/p4_results.jsonl",
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/p4_full_v2_live_20260416_model_D/test_ood/p4_traces.jsonl"
+  ],
+  "code_commit_hash": "55ed1f84e0d605a89605f7f2908d1d5e71499ddd",
+  "input_manifest_hash": "e628fbc6f5f7b1319346cf563798f9d1b626090d110991c559dafb32a891cf49",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 4096,
+    "model_id": "ep-20260319171349-jtz4c",
+    "provider": "volcengine",
+    "reasoning_effort": "default",
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://ark.cn-beijing.volces.com/api/v3",
+  "model_name": "ep-20260319171349-jtz4c",
+  "output_artifact_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/p4_full_v2_live_20260416_model_D/test_ood/p4_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "ep-20260319171349-jtz4c::e628fbc6f5f7",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "volcengine_iterative_v1",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p4_full_v2/p4_test_ood_tasks.jsonl",
+  "task_bank_version": "p4_full_v2",
+  "timeout_policy": {
+    "hard_timeout_s": 270.0,
+    "request_timeout_s": 180.0
+  },
+  "timestamp": "2026-04-16T15:38:30.545641+00:00"
+}

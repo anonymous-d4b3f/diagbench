@@ -1,0 +1,46 @@
+{
+  "artifact_paths": [
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_id/p3_results.jsonl",
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_id/p3_trajectories.jsonl"
+  ],
+  "code_commit_hash": "4907afa8ab9dc44b0992944508a4465b31bdcb74",
+  "input_manifest_hash": "ba1937574595d3b9d2fc1ad0102393ec78ea00f40fdd851e1f9fd7eec379db0e",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 512,
+    "model_id": "model_L",
+    "provider": "xiaomi_mimo",
+    "reasoning_effort": "default",
+    "response_format": "json_object",
+    "temperature": 0.0,
+    "thinking": "disabled",
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://api.xiaomimimo.com/v1",
+  "model_name": "model_L",
+  "output_artifact_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_id/p3_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "model_L::ba1937574595",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "xiaomi_mimo_iterative_v1",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_test_id_tasks.jsonl",
+  "task_bank_version": "p3_v3r1",
+  "timeout_policy": {
+    "hard_timeout_s": 270.0,
+    "request_timeout_s": 180.0
+  },
+  "timestamp": "2026-04-25T09:35:35.637642+00:00"
+}

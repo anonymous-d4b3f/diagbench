@@ -1,0 +1,15 @@
+Tier 3 controlled-prompt audit conditions:
+
+default: the standard benchmark prompt.
+
+neutral: generic structured execution without stage-specific diagnostic content.
+
+P1 targeted: triage protocol; check missing parameters, hard conflicts, and feasible bounds before choosing propose/request/declare.
+
+P2 targeted: bounded edit protocol; edit one variable, preserve satisfied constraints, target largest violation first.
+
+P3 targeted: skeptical reset protocol; identify harmful history, locate best feasible state, discard corrupted continuation.
+
+P4 targeted: evaluator discipline; do not generate designs, extract policy priorities, compare fixed candidates only on policy-relevant quantities.
+
+wrong-boundary: a stage-mismatched targeted prompt used as a control.

@@ -1,0 +1,44 @@
+{
+  "artifact_paths": [
+    "artifacts/runs/live_20260417_model_E/p1/test_id/p1_results.jsonl",
+    "artifacts/runs/live_20260417_model_E/p1/test_id/p1_trajectories.jsonl"
+  ],
+  "code_commit_hash": "55ed1f84e0d605a89605f7f2908d1d5e71499ddd",
+  "input_manifest_hash": "f9abe240e78c1831f57949f51b4dcac81d7fdb40fe1d2551336331c3944cb7c9",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 2048,
+    "model_id": "claude-sonnet-4-6",
+    "provider": "aihubmix",
+    "reasoning_effort": "default",
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://aihubmix.com/v1",
+  "model_name": "claude-sonnet-4-6",
+  "output_artifact_path": "artifacts/runs/live_20260417_model_E/p1/test_id/p1_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "claude-sonnet-4-6::f9abe240e78c",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "aihubmix_iterative_v1",
+  "task_bank_path": "data/p1/p1_test_id_tasks.jsonl",
+  "task_bank_version": "p1_task_bank_v2",
+  "timeout_policy": {
+    "hard_timeout_s": 180.0,
+    "request_timeout_s": 120.0
+  },
+  "timestamp": "2026-04-16T19:17:12.076350+00:00"
+}

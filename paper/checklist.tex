@@ -1,0 +1,85 @@
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The abstract and introduction (§1) state that DiagBench decomposes engineering-agent evaluation into four verifier-grounded probes (P1--P4), that frontier models dissociate across these probes, that log-derived response-control profiles provide a compact diagnostic account of the dissociation, and that a circuit pilot supports cross-domain transfer. Each claim is supported by the experimental evidence in §3 and the limitations are discussed in §4.
+
+\item {\bf Limitations}
+    \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Section 4 (Discussion, ``Limits and Next Steps'') explicitly discusses: the benchmark being anchored in one engineering family with a small construct-validity circuit pilot rather than a full second benchmark; P1 being a matched certification stage rather than a source-disjoint literature holdout; the P3 intervention being a 36-task protocol audit rather than a full-bank rerun; the SG-gap result being a four-model audit; the five profile dimensions not being factorially separable or exhaustively measured; the analytical oracle narrowing physical scope relative to high-fidelity simulation; and CMA-ES being the only classical baseline. Appendix~\ref{sec:metric_formulas} further documents metric definitions and limitations.
+
+\item {\bf Theory assumptions and proofs}
+    \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: This paper does not include theoretical results. It is a benchmark and empirical evaluation paper. The oracle uses standard closed-form engineering equations (Erturk--Inman for VEH, Incropera for circuits) with documented assumptions in Appendix~\ref{sec:prompts}.
+
+\item {\bf Experimental result reproducibility}
+    \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Section 2 describes the benchmark construction pipeline (209-paper extraction audit, 52 cleaned anchors, DOI-disjoint splits, manifest-backed provenance). Section 3.1 describes the experimental setup (9+3 models, headline metrics, shared oracle). The Appendix provides: full metric definitions with formulas (§A Metric Definitions), complete P1--P4 prompt templates and oracle specification (§A Prompt Templates), run configuration (temperature 0.0, retry policy, provider endpoints), and the CMA-ES baseline configuration. All task banks, evaluator code, and per-model JSONL logs are released with the artifact.
+
+\item {\bf Open access to data and code}
+    \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: An anonymized release artifact is available at the submission URL and includes: P1--P4 JSONL task banks, manifests, oracle and evaluator code, generation scripts, admission and split reports, and per-model JSONL logs. Data is released under CC-BY-4.0; code under MIT license. A Croissant metadata record documents task schema, split policy, and intended use. Build and evaluation commands are provided in the Appendix and the artifact README.
+
+\item {\bf Experimental setting/details}
+    \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: This paper evaluates pre-trained frontier LLMs as engineering agents; no training is performed. Evaluation details are specified in §3.1 and the Appendix: temperature 0.0, max output tokens provider-default (4096--8192), up to 2 retries on parse failure, P2 stops on feasible closure, P3 uses full budget. Task splits (dev/test\_id/test\_ood) are described in §2. Model provider endpoints and run dates are recorded in per-model manifests. All task generation uses fixed random seeds.
+
+\item {\bf Experiment statistical significance}
+    \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Table~\ref{tab:main_results} (main results) reports 95\% confidence intervals for the best core-roster point estimate in each stage. Table~\ref{tab:p3_intervention} (P3 intervention) reports paired ta[REDACTED] 95\% confidence intervals for the summary effect. Per-model Spearman and Pearson correlations are reported for the profile quantification. Full uncertainty tables are provided in Appendix~\ref{tab:appendix_ci_table}. The CI methodology (non-parametric bootstrap, paired resampling) is described in the Appendix.
+
+\item {\bf Experiments compute resources}
+    \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
+    \item[] Answer: \answerYes{}
+\item[] Justification: All experiments use API-based inference with no local GPU compute. Model runs use provider APIs (temperature 0.0, max output tokens 4096--8192). The analytical oracle (VEH) runs at ~0.5 ms per evaluation on CPU; the circuit oracle is faster. CMA-ES baseline on the full P2 bank (208 tasks × 40 oracle calls) completes in under 1 second on a standard laptop. Total experimental API cost is approximately USD 300--500 across all models and probes. No training runs were performed.
+
+\item {\bf Code of ethics}
+    \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The research conforms to the NeurIPS Code of Ethics. No human subjects were involved. The benchmark uses publicly available engineering design principles and published literature data; no private or sensitive data was collected. The LLMs evaluated are publicly accessible models. The artifact is released under open licenses (CC-BY-4.0 for data, MIT for code) with documented intended use as an engineering-agent diagnostic benchmark, explicitly noting that it is not intended for production safety certification.
+
+\item {\bf Broader impacts}
+    \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Section 2 (Artifact Availability) states that the benchmark is intended as a diagnostic tool for engineering-agent evaluation and is explicitly not intended for production safety certification or as a standalone engineering solver. The Discussion (§4) provides deployment guidance (verifier-gated, stage-routed, policy-separated systems) and discusses the implications of endpoint-only evaluation for engineering safety. We do not anticipate direct negative societal impacts from a diagnostic benchmark that is explicitly scoped to closed-form engineering domains with analytical oracles.
+
+\item {\bf Safeguards}
+    \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: This paper releases a benchmark dataset and evaluation code, not a deployable model. The dataset consists of closed-form engineering design tasks (VEH and circuit domains) with analytical oracles. It poses no risk of misuse for disinformation, surveillance, or generation of harmful content. The artifact documentation includes an intended use statement explicitly scoping the benchmark to research on engineering-agent evaluation.
+
+\item {\bf Licenses for existing assets}
+    \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Prior benchmarks (SWE-bench, MLE-bench, LiveCodeBench, AgentBench) and frameworks (AutoGen, MetaGPT) are cited in §1 and §5. The VEH oracle is based on the Erturk--Inman analytical model and is cited. Circuit oracle formulas are from standard engineering textbooks (Incropera). Evaluated LLM models (model_C, Gemini-3.1, model_A, model_D, model_E, etc.) are cited with provider documentation references. The CMA-ES library (cma Python package) is cited.
+
+\item {\bf New assets}
+    \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: DiagBench is a new benchmark. Documentation includes: task schema (Appendix~\ref{sec:prompts}), metric definitions with formulas (Appendix~\ref{sec:metric_formulas}), construction pipeline and split policy (§2), P1--P4 prompt templates (Appendix~\ref{sec:prompts}), oracle specifications with equations (Appendix~\ref{sec:prompts}), Croissant metadata record, per-task audit bundles (task.json, oracle\_trace.json, score\_trace.json, audit.md), and manifest-backed provenance (SHA256 lineage, task hashes). The artifact is released under CC-BY-4.0 (data) and MIT (code).
+
+\item {\bf Crowdsourcing and research with human subjects}
+    \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: This paper does not involve crowdsourcing or human subjects research. All evaluations are automated via LLM API calls to pre-trained models. The benchmark uses an analytical physics oracle rather than human annotation for ground truth.
+
+\item {\bf Institutional review board (IRB) approvals or equivalent for research with human subjects}
+    \item[] Question: Does the paper describe potential risks incurred by study participants, whether such risks were disclosed to the subjects, and whether Institutional Review Board (IRB) approvals (or an equivalent approval/review based on the requirements of your country or institution) were obtained?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: This paper does not involve human subjects research. All data is either derived from published engineering literature or synthetically generated via deterministic oracles. No human participants were recruited, surveyed, or studied.
+
+\item {\bf Declaration of LLM usage}
+    \item[] Question: Does the paper describe the usage of LLMs if it is an important, original, or non-standard component of the core methods in this research?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: LLMs are the primary subjects of evaluation in this benchmark paper. All 12 evaluated frontier models (model_C, model_B, model_A, model_D, model_E, etc.) are LLMs used as engineering design agents. Their usage is fully described in §3.1 (experimental setup) and Appendix~\ref{sec:prompts} (prompt templates, run configuration). LLM assistants were also used during manuscript preparation for code/debugging assistance, figure integration, formatting migration, and language editing; all scientific claims, reported numbers, and final text were reviewed by the authors.
+
+\end{enumerate}

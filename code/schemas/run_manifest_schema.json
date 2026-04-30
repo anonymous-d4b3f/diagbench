@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiagBench Run Manifest",
+  "description": "Schema for a solver run manifest.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "run_id",
+    "timestamp",
+    "task_bank_version",
+    "input_manifest_hash",
+    "model_name",
+    "model_endpoint",
+    "system_prompt_version",
+    "system_prompt_hash",
+    "model_config",
+    "solver_config_version",
+    "solver_policy",
+    "timeout_policy",
+    "retry_policy",
+    "jitter_policy",
+    "code_commit_hash",
+    "task_bank_path",
+    "output_artifact_path",
+    "artifact_paths"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "string", "minLength": 1},
+    "task_bank_version": {"type": "string", "minLength": 1},
+    "input_manifest_hash": {"type": "string", "minLength": 1},
+    "model_name": {"type": "string", "minLength": 1},
+    "model_endpoint": {"type": "string", "minLength": 1},
+    "system_prompt_version": {"type": "string", "minLength": 1},
+    "system_prompt_hash": {"type": "string", "minLength": 1},
+    "model_config": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["model_id", "provider", "max_tokens", "temperature"],
+      "properties": {
+        "model_id": {"type": "string", "minLength": 1},
+        "provider": {"type": "string", "minLength": 1},
+        "max_tokens": {"type": "integer", "minimum": 1},
+        "temperature": {"type": "number", "minimum": 0, "maximum": 2},
+        "top_p": {"type": "number", "minimum": 0, "maximum": 1},
+        "reasoning_effort": {"type": "string"}
+      }
+    },
+    "solver_config_version": {"type": "string", "minLength": 1},
+    "solver_policy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["max_attempts", "hard_timeout_s", "action_schema_version"],
+      "properties": {
+        "max_attempts": {"type": "integer", "minimum": 1},
+        "hard_timeout_s": {"type": "number", "exclusiveMinimum": 0},
+        "action_schema_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "timeout_policy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["request_timeout_s", "hard_timeout_s"],
+      "properties": {
+        "request_timeout_s": {"type": "number", "exclusiveMinimum": 0},
+        "hard_timeout_s": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "retry_policy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["max_retries"],
+      "properties": {
+        "max_retries": {"type": "integer", "minimum": 0},
+        "backoff_s": {"type": "number", "minimum": 0}
+      }
+    },
+    "jitter_policy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "scale": {"type": "number", "minimum": 0}
+      }
+    },
+    "code_commit_hash": {"type": "string", "minLength": 1},
+    "task_bank_path": {"type": "string", "minLength": 1},
+    "output_artifact_path": {"type": "string", "minLength": 1},
+    "artifact_paths": {"type": "array", "items": {"type": "string"}}
+  }
+}

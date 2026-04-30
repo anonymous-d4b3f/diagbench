@@ -1,0 +1,22 @@
+{
+  "probe": "P4",
+  "splits": {
+    "dev": {
+      "path": "data/veh/splits/p4_dev.jsonl",
+      "records": 93,
+      "sha256": "804c38725493a770e500e1ee4199827560252b969d4bfe6ef645d2872deb3a9d"
+    },
+    "test_id": {
+      "path": "data/veh/splits/p4_test_id.jsonl",
+      "records": 36,
+      "sha256": "cf089d9a27803b1682cca58cde81acf0b938a5b80130741b2411a73928ccfd6b"
+    },
+    "test_ood": {
+      "path": "data/veh/splits/p4_test_ood.jsonl",
+      "records": 30,
+      "sha256": "950944867071d78d9a0fa79b279936a94af140a86585c6a3b057a5c4716d38b7"
+    }
+  },
+  "total_records": 159,
+  "version": "p4_full_v2"
+}

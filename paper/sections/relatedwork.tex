@@ -1,0 +1,35 @@
+\section{Related Work}
+\label{sec:related_work}
+
+DiagBench is closest to evaluation-first agent benchmarks that measure realistic workflows in executable environments. SWE-bench and LiveCodeBench evaluate software engineering ability~\citep{jimenez2024swebench,jain2024livecodebench}; MLE-bench extends this style to machine-learning engineering~\citep{chan2025mlebench}; AgentBench and $\tau$-bench emphasize interactive execution, tool use, and decision making~\citep{liu2024agentbench,yao2024taubench}. These benchmarks are valuable, but their primary readout is usually endpoint completion. DiagBench instead asks which trusted-state boundary failed: pre-search triage, verifier-guided repair, corrupted-state recovery, or policy-conditioned selection.
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.12}
+\caption{Comparison with representative agent and engineering benchmarks. A filled dot denotes a dedicated evaluation target, a triangle denotes partial or indirect coverage, and an open circle denotes that the property is not a dedicated target.}
+\label{tab:benchmark_scope_comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Benchmark} &
+\shortstack{\textbf{Executable}\\\textbf{verifier}} &
+\shortstack{\textbf{Stage-specific}\\\textbf{metrics}} &
+\shortstack{\textbf{Pre-search}\\\textbf{triage}} &
+\shortstack{\textbf{Iterative}\\\textbf{repair}} &
+\shortstack{\textbf{Corrupted-state}\\\textbf{recovery}} &
+\shortstack{\textbf{Policy-conditioned}\\\textbf{ranking}} \\
+\midrule
+SWE-bench       & \(\bullet\) & \(\circ\) & \(\circ\) & \(\bullet\)   & \(\circ\) & \(\circ\) \\
+LiveCodeBench   & \(\bullet\) & \(\circ\) & \(\circ\) & \(\bullet\)   & \(\circ\) & \(\circ\) \\
+MLE-bench       & \(\bullet\) & \(\circ\) & \(\circ\) & \(\bullet\)   & \(\circ\) & \(\circ\) \\
+AgentBench      & \(\bullet\) & \(\circ\) & \(\circ\) & \(\triangle\) & \(\circ\) & \(\circ\) \\
+\(\tau\)-bench  & \(\bullet\) & \(\circ\) & \(\circ\) & \(\triangle\) & \(\circ\) & \(\circ\) \\
+DiagBench       & \(\bullet\) & \(\bullet\) & \(\bullet\) & \(\bullet\) & \(\bullet\) & \(\bullet\) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+DiagBench is also adjacent to multi-agent orchestration systems such as AutoGen and MetaGPT~\citep{wu2023autogen,hong2024metagpt}, reward-model trajectory benchmarks such as Plan-RewardBench~\citep{wang2026planrewardbench}, and benchmark-design frameworks such as BIG-bench, HELM, WILDS, and How2Bench~\citep{srivastava2022bigbench,liang2023helm,koh2021wilds,cao2025how2bench}. The distinction is the oracle boundary: DiagBench evaluates the acting engineering agent under an external physical verifier, not an LLM judge or conversational closure loop. It also differs from reasoning-only narratives and black-box optimization suites such as COCO/BBOB~\citep{hansen2021coco}: explicit reasoning helps some stages, and numerical search is relevant to P2, but the benchmark target is broader--where the engineering workflow breaks, and which response-control prior mismatches the boundary.

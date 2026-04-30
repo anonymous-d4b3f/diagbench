@@ -1,0 +1,223 @@
+{
+  "c1": {
+    "cell": "c1",
+    "stage": "p2",
+    "models": [
+      "gpt-5.4"
+    ],
+    "targeted_neutral": {
+      "n_pairs": 40,
+      "mean_delta": -0.025,
+      "ci_low": -0.15,
+      "ci_high": 0.1,
+      "cohens_dz": -0.0591,
+      "significant": false,
+      "mean_targeted": 0.15,
+      "mean_neutral": 0.175
+    },
+    "neutral_default": {
+      "n_pairs": 40,
+      "mean_delta": 0.025,
+      "ci_low": -0.075,
+      "ci_high": 0.125,
+      "cohens_dz": 0.07,
+      "significant": false,
+      "mean_targeted": 0.175,
+      "mean_neutral": 0.15
+    },
+    "targeted_wrong": {
+      "n_pairs": 40,
+      "mean_delta": 0.075,
+      "ci_low": -0.025,
+      "ci_high": 0.175,
+      "cohens_dz": 0.2143,
+      "significant": false,
+      "mean_targeted": 0.15,
+      "mean_neutral": 0.075
+    },
+    "condition_summary": {
+      "d": {
+        "n": 40,
+        "rate": 0.15
+      },
+      "n": {
+        "n": 40,
+        "rate": 0.175
+      },
+      "t": {
+        "n": 40,
+        "rate": 0.15
+      },
+      "w": {
+        "n": 40,
+        "rate": 0.075
+      }
+    }
+  },
+  "c2": {
+    "cell": "c2",
+    "stage": "p3",
+    "models": [
+      "claude-sonnet-4-6"
+    ],
+    "targeted_neutral": {
+      "n_pairs": 36,
+      "mean_delta": -0.194444,
+      "ci_low": -0.361111,
+      "ci_high": -0.027778,
+      "cohens_dz": -0.3705,
+      "significant": false,
+      "mean_targeted": 0.194444,
+      "mean_neutral": 0.388889
+    },
+    "neutral_default": {
+      "n_pairs": 36,
+      "mean_delta": 0.222222,
+      "ci_low": 0.083333,
+      "ci_high": 0.361111,
+      "cohens_dz": 0.527,
+      "significant": true,
+      "mean_targeted": 0.388889,
+      "mean_neutral": 0.166667
+    },
+    "targeted_wrong": {
+      "n_pairs": 36,
+      "mean_delta": -0.027778,
+      "ci_low": -0.166667,
+      "ci_high": 0.111111,
+      "cohens_dz": -0.0622,
+      "significant": false,
+      "mean_targeted": 0.194444,
+      "mean_neutral": 0.222222
+    },
+    "condition_summary": {
+      "d": {
+        "n": 36,
+        "rate": 0.1667
+      },
+      "n": {
+        "n": 36,
+        "rate": 0.3889
+      },
+      "t": {
+        "n": 36,
+        "rate": 0.1944
+      },
+      "w": {
+        "n": 36,
+        "rate": 0.2222
+      }
+    }
+  },
+  "c3": {
+    "cell": "c3",
+    "stage": "p4",
+    "models": [
+      "gemini-3.1-pro-preview"
+    ],
+    "targeted_neutral": {
+      "n_pairs": 50,
+      "mean_delta": 0.016,
+      "ci_low": 0.0,
+      "ci_high": 0.048,
+      "cohens_dz": 0.1414,
+      "significant": false,
+      "mean_targeted": 0.708,
+      "mean_neutral": 0.692
+    },
+    "neutral_default": {
+      "n_pairs": 50,
+      "mean_delta": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "cohens_dz": 0.0,
+      "significant": false,
+      "mean_targeted": 0.692,
+      "mean_neutral": 0.692
+    },
+    "targeted_wrong": {
+      "n_pairs": 50,
+      "mean_delta": 0.008,
+      "ci_low": -0.032,
+      "ci_high": 0.056,
+      "cohens_dz": 0.053,
+      "significant": false,
+      "mean_targeted": 0.708,
+      "mean_neutral": 0.7
+    },
+    "condition_summary": {
+      "d": {
+        "n": 50,
+        "mean_tau": 0.692
+      },
+      "n": {
+        "n": 50,
+        "mean_tau": 0.692
+      },
+      "t": {
+        "n": 50,
+        "mean_tau": 0.708
+      },
+      "w": {
+        "n": 50,
+        "mean_tau": 0.7
+      }
+    }
+  },
+  "c4": {
+    "cell": "c4",
+    "stage": "p1",
+    "models": [
+      "claude-sonnet-4-6",
+      "gpt-5.4"
+    ],
+    "targeted_neutral": {
+      "n_pairs": 60,
+      "mean_delta": 0.066667,
+      "ci_low": -0.05,
+      "ci_high": 0.183333,
+      "cohens_dz": 0.1495,
+      "significant": false,
+      "mean_targeted": 0.466667,
+      "mean_neutral": 0.4
+    },
+    "neutral_default": {
+      "n_pairs": 60,
+      "mean_delta": -0.033333,
+      "ci_low": -0.133333,
+      "ci_high": 0.05,
+      "cohens_dz": -0.0909,
+      "significant": false,
+      "mean_targeted": 0.4,
+      "mean_neutral": 0.433333
+    },
+    "targeted_wrong": {
+      "n_pairs": 60,
+      "mean_delta": 0.066667,
+      "ci_low": -0.016667,
+      "ci_high": 0.15,
+      "cohens_dz": 0.1841,
+      "significant": false,
+      "mean_targeted": 0.466667,
+      "mean_neutral": 0.4
+    },
+    "condition_summary": {
+      "d": {
+        "n": 60,
+        "rate": 0.4333
+      },
+      "n": {
+        "n": 60,
+        "rate": 0.4
+      },
+      "t": {
+        "n": 60,
+        "rate": 0.4667
+      },
+      "w": {
+        "n": 60,
+        "rate": 0.4
+      }
+    }
+  }
+}

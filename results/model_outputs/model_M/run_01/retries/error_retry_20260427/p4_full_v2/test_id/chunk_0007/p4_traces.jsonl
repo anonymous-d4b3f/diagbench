@@ -1,0 +1,1 @@
+{"parsed_response":{"confidence":0.95,"ranking":["E","A","D","B","C"],"reason":null},"raw_response":"{\"ranking\": [\"E\", \"A\", \"D\", \"B\", \"C\"], \"confidence\": 0.95}","run_id":"hy3-preview::08e4b1065687","task_id":"p4fullv2::test_id::declared_profile_full_ranking::0035"}

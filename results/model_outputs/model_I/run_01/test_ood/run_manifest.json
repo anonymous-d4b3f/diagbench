@@ -1,0 +1,9 @@
+{
+  "model_label": "model_I",
+  "split": "test_ood",
+  "n_done": 80,
+  "n_total": 80,
+  "started_at": "2026-04-13T16:40:17.864745+00:00",
+  "updated_at": "2026-04-13T16:43:34.480637+00:00",
+  "complete": true
+}

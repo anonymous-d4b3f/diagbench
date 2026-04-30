@@ -1,0 +1,44 @@
+{
+  "artifact_paths": [
+    "artifacts/runs/p2_v3r1_model_A/test_ood/main_results.jsonl",
+    "artifacts/runs/p2_v3r1_model_A/test_ood/main_trajectories.jsonl"
+  ],
+  "code_commit_hash": "55ed1f84e0d605a89605f7f2908d1d5e71499ddd",
+  "input_manifest_hash": "b9ba910dd5305c7b70f774bc4265b4bff7710984200f1d6e294dfd374f6d5993",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 512,
+    "model_id": "model_A",
+    "provider": "qwen",
+    "reasoning_effort": "default",
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "model_name": "model_A",
+  "output_artifact_path": "artifacts/runs/p2_v3r1_model_A/test_ood/main_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "model_A::b9ba910dd530",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "qwen_iterative_v1",
+  "task_bank_path": "data/p2_v3r1/splits/p2_test_ood_tasks.jsonl",
+  "task_bank_version": "diagbench_p2_task_bank_v3r1",
+  "timeout_policy": {
+    "hard_timeout_s": 15.0,
+    "request_timeout_s": 10.0
+  },
+  "timestamp": "2026-04-14T04:28:19.125049+00:00"
+}

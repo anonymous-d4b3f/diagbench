@@ -1,0 +1,46 @@
+{
+  "artifact_paths": [
+    "artifacts/runs/full_20260427_model_M_p1_p4/model_M/retries/error_retry_secondpass_20260427/p2_v3r1/test_ood/main_results.jsonl",
+    "artifacts/runs/full_20260427_model_M_p1_p4/model_M/retries/error_retry_secondpass_20260427/p2_v3r1/test_ood/main_trajectories.jsonl"
+  ],
+  "code_commit_hash": "4907afa8ab9dc44b0992944508a4465b31bdcb74",
+  "input_manifest_hash": "017e96950925af1ee2604290e46a0e48a7bb6e82f4d1858c1370340d0d2a8196",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 4096,
+    "model_id": "hy3-preview",
+    "provider": "hunyuan_tokenhub",
+    "reasoning_effort": "default",
+    "response_format": "json_object",
+    "temperature": 0.0,
+    "thinking": null,
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://tokenhub.tencentmaas.com/v1",
+  "model_name": "hy3-preview",
+  "output_artifact_path": "artifacts/runs/full_20260427_model_M_p1_p4/model_M/retries/error_retry_secondpass_20260427/p2_v3r1/test_ood/main_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "hy3-preview::017e96950925",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "hunyuan_tokenhub_iterative_v1",
+  "task_bank_path": "artifacts/runs/full_20260427_model_M_p1_p4/_retry_task_banks/error_retry_secondpass_20260427/p2_v3r1/test_ood/p2_v3r1__test_ood__secondpass.jsonl",
+  "task_bank_version": "diagbench_p2_task_bank_v3r1",
+  "timeout_policy": {
+    "hard_timeout_s": 360.0,
+    "request_timeout_s": 240.0
+  },
+  "timestamp": "2026-04-27T07:55:54.940504+00:00"
+}

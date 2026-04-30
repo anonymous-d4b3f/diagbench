@@ -1,0 +1,142 @@
+\section{Metric Definitions}
+\label{sec:metric_formulas}
+
+This section defines the metrics used in the main paper and appendix. All scores are computed from persisted JSONL logs by deterministic evaluator code; no metric uses human annotation or LLM-as-a-judge.
+
+\subsection{P1: Credible Triage}
+
+P1 is a one-shot three-action decision problem with gold labels in
+\(\{\texttt{propose\_design}, \texttt{declare\_infeasible}, \texttt{request\_missing\_info}\}\).
+
+\textbf{Accuracy and Macro-F1.} Accuracy is micro-averaged over all P1 tasks. Macro-F1 is the unweighted mean of the three action-level F1 scores:
+\begin{equation}
+\text{Macro-F1}
+= \frac{1}{3}\sum_{c\in\mathcal{C}} F_{1,c},
+\qquad
+F_{1,c}=
+\frac{2\,\mathrm{Prec}_c\,\mathrm{Rec}_c}
+{\mathrm{Prec}_c+\mathrm{Rec}_c}.
+\end{equation}
+If \(\mathrm{Prec}_c+\mathrm{Rec}_c=0\), the corresponding \(F_{1,c}\) is defined as zero.
+
+\textbf{Discipline scores.} Let \(A_r\), \(M_r\), and \(I_r\) denote recall for \texttt{propose\_design}, \texttt{request\_missing\_info}, and \texttt{declare\_infeasible}. Let \(A_s\), \(M_s\), and \(I_s\) denote the corresponding spurious-action rates on tasks whose gold label is not that action. Then:
+\begin{align}
+\mathrm{ACS} &= A_r(1-A_s),\\
+\mathrm{MDS} &= M_r(1-M_s),\\
+\mathrm{IDS} &= I_r(1-I_s).
+\end{align}
+ACS penalizes habitual proposing, MDS penalizes over-requesting information, and IDS penalizes over-refusal.
+
+\textbf{P1-Composite.} The P1 headline metric is the weighted certification score used by the evaluator:
+\begin{equation}
+\begin{aligned}
+\mathrm{P1Comp}={}&
+0.40\,F1_{\mathrm{3class}}
++0.20\,\mathrm{ACS}
++0.15\,\mathrm{MDS} \\
+&+0.15\,\mathrm{IDS}
++0.10\,F1_{\mathrm{subtype}} .
+\end{aligned}
+\end{equation}
+
+\subsection{P2: Constrained Repair / Search}
+
+For a P2 trajectory, let \(\mathbf{x}_t\) be the design at step \(t\), \(V(\mathbf{x}_t)\ge0\) the total normalized oracle violation, and \(T\) the final evaluated step.
+
+\textbf{First and final feasibility.} P2a is the fraction of tasks where \(V(\mathbf{x}_1)=0\). Final feasible rate is the fraction where \(V(\mathbf{x}_T)=0\).
+
+\textbf{P2b final feasible power ratio.} For VEH tasks, the headline metric is:
+\begin{equation}
+\begin{aligned}
+\mathrm{P2b}
+= \frac{1}{N_{\mathrm{P2}}}\sum_{i=1}^{N_{\mathrm{P2}}}
+&\mathbf{1}\!\left[V(\mathbf{x}^{(i)}_T)=0\right] \\
+&\cdot
+\frac{P_{\mathrm{out}}(\mathbf{x}^{(i)}_T)}
+{P_{\mathrm{out}}(\mathbf{x}^{(i)}_{\mathrm{BKF}})} .
+\end{aligned}
+\end{equation}
+The circuit audit uses the analogous final feasible objective score returned by the circuit oracle.
+
+\textbf{Conditional objective ratio.}
+\begin{equation}
+\mathrm{CondObj} =
+\frac{
+\sum_{i:\,V(\mathbf{x}^{(i)}_T)=0}
+\mathrm{obj}(\mathbf{x}^{(i)}_T)}
+{|\{i: V(\mathbf{x}^{(i)}_T)=0\}|}.
+\end{equation}
+
+\textbf{Trajectory diagnostics.} Violation reduction consistency is the fraction of transitions with \(V(\mathbf{x}_{t+1})\le V(\mathbf{x}_t)-10^{-6}\). Directed repair rate is the fraction of violated-constraint updates that move the relevant oracle metric in the feedback-implied direction. Feasibility preservation is the fraction of feasible-to-feasible transitions. Mean log edit delta is:
+\begin{equation}
+\delta_{\mathrm{edit}}
+=
+\frac{1}{|\mathcal{D}|}\sum_{d\in\mathcal{D}}
+\frac{\left|\log(x_{t+1,d}/x_{t,d})\right|}
+{\log(x_d^{\max}/x_d^{\min})}.
+\end{equation}
+Over-edit and no-op rates threshold this quantity in the corresponding evaluator.
+
+\subsection{P3: Post-Trap Recovery}
+
+P3 starts from a corrupted trajectory state. Escape rate is the fraction of tasks where at least one step reduces violation relative to the trapped state. Cascade rate is the fraction of escaped tasks where a new structurally coupled violation appears after the escape move. Dead-budget rate is the fraction of tasks with no meaningful post-trap design change.
+
+\textbf{P3-Success and recovery quality.}
+\begin{equation}
+\mathrm{P3Success}
+= \frac{1}{N_{\mathrm{P3}}}
+\sum_i \mathbf{1}\!\left[V(\mathbf{x}^{(i)}_T)=0\right].
+\end{equation}
+\begin{equation}
+\mathrm{RecoveryQuality}
+=
+\frac{
+\sum_{i:\,V(\mathbf{x}^{(i)}_T)=0}
+\mathrm{obj}(\mathbf{x}^{(i)}_T)}
+{|\{i: V(\mathbf{x}^{(i)}_T)=0\}|}.
+\end{equation}
+The raw-history versus state-summary delta is the paired task-level difference in P3-Success between the two prompt representations, reported with paired bootstrap intervals.
+
+\subsection{P4: Policy-Conditioned Ranking}
+
+Each P4 task contains five oracle-feasible candidates. Full Kendall \(\tau\) is Kendall \(\tau_b\) between the model ranking and oracle ranking. Exact match, top-1 accuracy, top-2 set accuracy, pairwise accuracy, and policy-flip accuracy are computed directly from the predicted order.
+
+\textbf{BARS.} For the VEH P4-full bank, the headline BARS score is computed only on balanced-active rows:
+\begin{equation}
+\begin{aligned}
+\mathrm{BARS}
+= {}&0.55\,\tau_{\mathrm{BA}}
++0.25\,\mathrm{PairAcc}_{\mathrm{BA}} \\
+&+0.20\,\mathrm{Exact}_{\mathrm{BA}},
+\end{aligned}
+\end{equation}
+where BA denotes the balanced-active subset. For the circuit audit, the analogous ranking score uses scaled Kendall \((\tau+1)/2\), policy-flip accuracy, and exact match with the same weights.
+
+\subsection{Response-Control Profile Scores}
+
+Profile scores are log-derived diagnostics. For each dimension \(D\), the evaluator collects a fixed indicator set \(\mathcal{M}_D\), orients every indicator so higher is better, min-max scales it across the compared models, and averages:
+\begin{equation}
+\mathrm{Profile}_D(m)
+=
+\frac{1}{|\mathcal{M}_D|}
+\sum_{q\in\mathcal{M}_D} z_q(m).
+\end{equation}
+
+\begin{center}
+\captionof{table}{Indicators used for response-control profile extraction. All indicators are direction-normalized before averaging.}
+\label{tab:appendix_profile_indicator_sets}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lp{115mm}}
+\toprule
+Dimension & Indicators \\
+\midrule
+Action prior & P1 action-distribution alignment, macro-F1, missing recall, infeasible recall, propose precision, non-invalid rate \\
+Edit style & P2 bounded-local-edit rate, feasibility preservation, directed repair, final feasible rate, non-destructive edit rate, protocol-valid rate \\
+Feedback obedience & P2 violation reduction, P2 utility improvement, P2 best-so-far AUC, P3 violation reduction, P3 post-feedback feasible rate \\
+State trust & P3 trap escape, explicit replan, escape quality, non-cascade rate, non-dead-budget rate, state-summary success gain, state-summary cascade reduction \\
+Preference execution & P4 scaled full Tau, balanced-active BARS, balanced-active policy-sensitive pair accuracy, exact match, top-1 accuracy, non-Pareto-violation rate, non-parse-error rate \\
+\bottomrule
+\end{tabular}
+\end{center}

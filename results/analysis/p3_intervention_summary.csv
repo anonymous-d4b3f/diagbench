@@ -1,0 +1,17 @@
+model,history_mode,feedback_mode,n_tasks,p3_success,trap_escape_rate,escape_quality,constraint_cascade_rate,explicit_replan_rate,run_dir
+model_D,raw_history,full_numeric,36,0.5556,0.9167,0.3333,0.303,0.1667,artifacts/runs/p3_intervention_full_20260420/model_D/raw_history_full_numeric
+model_D,state_summary,full_numeric,36,0.5833,0.6389,0.5,0.087,0.1111,artifacts/runs/p3_intervention_full_20260420/model_D/state_summary_full_numeric
+model_D,raw_history,coarse_feedback,36,0.3611,0.9444,0.3235,0.0,0.6944,artifacts/runs/p3_intervention_full_20260420/model_D/raw_history_coarse_feedback
+model_D,state_summary,coarse_feedback,36,0.5278,0.6389,0.4565,0.087,0.2222,artifacts/runs/p3_intervention_full_20260420/model_D/state_summary_coarse_feedback
+model_C,raw_history,full_numeric,36,0.6389,0.9444,0.5588,0.2941,0.0,artifacts/runs/p3_intervention_full_20260420/model_C/raw_history_full_numeric
+model_C,state_summary,full_numeric,36,0.6389,0.4722,0.6176,0.0,0.0,artifacts/runs/p3_intervention_full_20260420/model_C/state_summary_full_numeric
+model_C,raw_history,coarse_feedback,36,0.3611,0.9167,0.3182,0.1515,0.3611,artifacts/runs/p3_intervention_full_20260420/model_C/raw_history_coarse_feedback
+model_C,state_summary,coarse_feedback,36,0.0833,0.5,0.0833,0.1667,0.0,artifacts/runs/p3_intervention_full_20260420/model_C/state_summary_coarse_feedback
+model_B,raw_history,full_numeric,36,0.5,0.8889,0.4375,0.4688,0.0556,artifacts/runs/p3_intervention_full_20260420/model_B/raw_history_full_numeric
+model_B,state_summary,full_numeric,36,0.6667,0.5556,0.55,0.25,0.0,artifacts/runs/p3_intervention_full_20260420/model_B/state_summary_full_numeric
+model_B,raw_history,coarse_feedback,36,0.4444,0.8889,0.2344,0.5625,0.0,artifacts/runs/p3_intervention_full_20260420/model_B/raw_history_coarse_feedback
+model_B,state_summary,coarse_feedback,36,0.6389,0.75,0.6481,0.1481,0.0,artifacts/runs/p3_intervention_full_20260420/model_B/state_summary_coarse_feedback
+model_E,raw_history,full_numeric,36,0.3056,0.9722,0.1429,0.0571,0.0,artifacts/runs/p3_intervention_full_20260420/model_E/raw_history_full_numeric
+model_E,state_summary,full_numeric,36,0.6389,0.6389,0.6304,0.0435,0.0,artifacts/runs/p3_intervention_full_20260420/model_E/state_summary_full_numeric
+model_E,raw_history,coarse_feedback,36,0.25,1.0,0.125,0.1111,0.0,artifacts/runs/p3_intervention_full_20260420/model_E/raw_history_coarse_feedback
+model_E,state_summary,coarse_feedback,36,0.5556,0.6667,0.4583,0.0833,0.0,artifacts/runs/p3_intervention_full_20260420/model_E/state_summary_coarse_feedback

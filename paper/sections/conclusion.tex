@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+DiagBench reframes engineering-agent evaluation around trusted-state boundaries rather than endpoint success. In a 763-task VEH benchmark with a shared analytical oracle, frontier models dissociate across credible triage, constrained repair, corrupted-state recovery, and policy-conditioned ranking; no model dominates all four stages.
+
+The evidence is consistent with response-control prior-boundary compatibility. Action prior tracks P1, edit style tracks P2, preference execution tracks P4, and P3 separates escape, cascade, and recovery quality. A verifier-authored state-summary intervention improves P3 recovery and reduces cascade, while the isomorphic probe shows that feasible-set selection and construction are distinct behaviors. A hardened circuit audit supports the same P1--P4 diagnostic scaffold in a second closed-form engineering domain.
+
+The system implication is practical: engineering agents should be verifier-gated, stage-routed, and policy-separated. A single endpoint score can hide the exact boundary where deployment fails; DiagBench is designed to make that failure localizable and auditable.

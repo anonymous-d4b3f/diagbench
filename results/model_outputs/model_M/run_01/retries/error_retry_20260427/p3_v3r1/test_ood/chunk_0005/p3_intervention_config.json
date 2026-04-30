@@ -1,0 +1,16 @@
+{
+  "bkf_path": "data/p2_v3r1/bkf/p2_bkf_table.jsonl",
+  "endpoint_id": null,
+  "feedback_mode": "full_numeric",
+  "history_mode": "raw_history",
+  "max_tasks": null,
+  "mode": "p3",
+  "model": "hy3-preview",
+  "provider": "hunyuan_tokenhub",
+  "runner_name": "hy3-preview",
+  "source_task_bank_manifest_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/_retry_task_banks/error_retry_20260427/p3_v3r1/test_ood/chunk_0005/p3_v3r1__test_ood__retry_chunk_0005.manifest.json",
+  "source_task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/_retry_task_banks/error_retry_20260427/p3_v3r1/test_ood/chunk_0005/p3_v3r1__test_ood__retry_chunk_0005.jsonl",
+  "task_bank_manifest_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/_retry_task_banks/error_retry_20260427/p3_v3r1/test_ood/chunk_0005/p3_v3r1__test_ood__retry_chunk_0005.manifest.json",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/_retry_task_banks/error_retry_20260427/p3_v3r1/test_ood/chunk_0005/p3_v3r1__test_ood__retry_chunk_0005.jsonl",
+  "verifier_mode": "oracle"
+}

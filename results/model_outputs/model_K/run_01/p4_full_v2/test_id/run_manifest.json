@@ -1,0 +1,46 @@
+{
+  "artifact_paths": [
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_id/p4_results.jsonl",
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_id/p4_traces.jsonl"
+  ],
+  "code_commit_hash": "4907afa8ab9dc44b0992944508a4465b31bdcb74",
+  "input_manifest_hash": "08e4b106568747be9b86b3f1fb1f0423679a53c2c37adf4befad7a0f966dd822",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 512,
+    "model_id": "deepseek-v4-pro",
+    "provider": "deepseek",
+    "reasoning_effort": "default",
+    "response_format": "json_object",
+    "temperature": 0.0,
+    "thinking": "disabled",
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://api.deepseek.com",
+  "model_name": "deepseek-v4-pro",
+  "output_artifact_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_id/p4_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "deepseek-v4-pro::08e4b1065687",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "deepseek_iterative_v1",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p4_full_v2/p4_test_id_tasks.jsonl",
+  "task_bank_version": "p4_full_v2",
+  "timeout_policy": {
+    "hard_timeout_s": 270.0,
+    "request_timeout_s": 180.0
+  },
+  "timestamp": "2026-04-25T09:58:36.205141+00:00"
+}

@@ -1,0 +1,74 @@
+\documentclass{article}
+
+% NeurIPS 2026 loads natbib by default. Pass citation options before loading it.
+\PassOptionsToPackage{comma,authoryear,compress}{natbib}
+
+% Benchmark/data paper submission track. Remove "eandd" if submitting to the
+% main track instead of Evaluations & Datasets.
+\usepackage[eandd]{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[svgnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{needspace}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{position=top}
+
+\definecolor{YaleBlue}{RGB}{0,53,107}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=YaleBlue,
+    urlcolor=YaleBlue,
+    linkcolor=black
+}
+
+\bibliographystyle{plainnat}
+
+\input{macro}
+
+\setlength\parindent{0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\draftplaceholder}[2][36mm]{%
+    \fbox{\parbox[c][#1][c]{0.95\linewidth}{\centering #2}}%
+}
+
+\title{DiagBench: Workflow-Structured Evaluation of Engineering Design Agents}
+
+\author{Anonymous Authors}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/abstract}
+
+\input{sections/introduction}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/discussions}
+\input{sections/relatedwork}
+\input{sections/conclusion}
+
+\clearpage
+\bibliography{main}
+
+\appendix
+\input{sections/appendix}
+
+\clearpage
+\input{checklist}
+
+\end{document}

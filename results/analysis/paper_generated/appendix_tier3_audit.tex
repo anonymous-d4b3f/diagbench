@@ -1,0 +1,71 @@
+\clearpage
+\section{Tier~3 Controlled-Prompt Audit --- Full Results}
+\label{sec:tier3_full}
+
+The main text (Section~\ref{sec:experiments}) reports the four primary confirmatory cells with targeted-minus-neutral paired bootstrap deltas. This appendix provides the complete per-condition results, the C4 per-model split, and per-task pattern decomposition that support the interpretation advanced in the main text.
+
+\subsection{Design and Execution}
+
+The experiment was fully pre-registered. Four confirmatory cells pair known deficit models with their weak stages: C1 (model_C, P2), C2 (model_E, P3), C3 (model_B, P4), and C4 (model_C and model_E, P1). Each cell samples 36--60 tasks under frozen seed 42 with subtype-level stratification. Five prompt conditions are tested per cell: \texttt{default} (the standard benchmark prompt), \texttt{neutral} (generic structured execution without boundary-specific diagnosis), \texttt{targeted} (boundary-specific diagnostic prompt designed to repair the known deficit), \texttt{wrong-boundary} (a mismatched diagnostic prompt from a different stage), and for C2, a \texttt{state-summary-plus} variant stacking targeted with default. All prompts were frozen before execution; no iterative refinement occurred. The analysis uses 10,000 paired task-level bootstrap resamples with 95\% confidence intervals.
+
+\subsection{Full Per-Condition Results}
+
+\begin{table}[t]
+\caption{Tier~3 Phase~A complete per-condition results. All metrics are primary confirmatory endpoints per cell.}
+\label{tab:tier3_all_conditions}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{lllcccc}
+\toprule
+Cell & Model & Condition & $n$ & Primary metric & Secondary & Parse \\
+\midrule
+C1 & model_C & default   & 40 & 0.150 feasible & 61.0 mean obj & 0.000 \\
+   &         & neutral   & 40 & 0.175 feasible & 4.3 mean obj  & 0.000 \\
+   &         & targeted  & 40 & 0.150 feasible & 461.8 mean obj & 0.000 \\
+   &         & wrong     & 40 & 0.075 feasible & 2.1 mean obj  & 0.000 \\
+\midrule
+C2 & model_E & default   & 36 & 0.167 success & 0.694 cascade & 0.000 \\
+   &            & neutral   & 36 & 0.389 success & 0.528 cascade & 0.000 \\
+   &            & targeted  & 36 & 0.194 success & 0.778 cascade & 0.000 \\
+   &            & wrong     & 36 & 0.222 success & 0.694 cascade & 0.000 \\
+   &            & s+        & 36 & 0.222 success & 0.750 cascade & 0.000 \\
+\midrule
+C3 & Gemini-3.1 & default   & 50 & 0.692 $\tau$ & 0.320 exact & 0.000 \\
+   &            & neutral   & 50 & 0.692 $\tau$ & 0.320 exact & 0.000 \\
+   &            & targeted  & 50 & 0.708 $\tau$ & 0.320 exact & 0.000 \\
+   &            & wrong     & 50 & 0.700 $\tau$ & 0.300 exact & 0.000 \\
+\midrule
+C4 & model_E & default   & 60 & 0.650 acc & --- & 0.050 \\
+   &            & neutral   & 60 & 0.617 acc & --- & 0.050 \\
+   &            & targeted  & 60 & 0.567 acc & --- & 0.183 \\
+   &            & wrong     & 60 & 0.633 acc & --- & 0.050 \\
+\cmidrule{2-7}
+   & model_C    & default   & 60 & 0.433 acc & --- & 0.000 \\
+   &            & neutral   & 60 & 0.400 acc & --- & 0.000 \\
+   &            & targeted  & 60 & 0.467 acc & --- & 0.000 \\
+   &            & wrong     & 60 & 0.400 acc & --- & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:tier3_all_conditions} reports the complete per-condition primary metric. Three patterns merit attention beyond the main-text targeted-minus-neutral deltas:
+
+\begin{enumerate}[leftmargin=5mm,itemsep=1mm,topsep=1mm]
+    \item \textbf{C2 neutral improvement.} The generic structured neutral prompt lifts Claude P3 success from 0.167 to 0.389 (95\% CI for neutral$-$default: [0.083, 0.361]), while reducing cascade from 0.694 to 0.528. This is the largest single-condition effect in the experiment and suggests that Claude benefits from structured execution guidance but not from skeptical-reset framing.
+    \item \textbf{C2 cascade--success inversion.} Cascade rate under targeted (0.778) is the highest across all C2 conditions, and targeted is the only condition where cascade exceeds the default rate. Per-task analysis reveals four tasks with cascade exclusively under targeted, consistent with the interpretation that the skeptical-reset prompt induces overcorrection.
+    \item \textbf{C4 parse-error interaction.} Claude's parse-error rate under targeted P1 (0.183) is more than triple the rate under other conditions (0.050). Parse errors concentrate in \texttt{infeasible\_margin} tasks (4/7) and \texttt{declare\_infeasible} gold labels (5/14). Excluding parse errors, Claude's classification accuracy under targeted is 0.694, exceeding neutral (0.617), indicating that the targeted prompt content aids reasoning while its length impairs output-format compliance.
+\end{enumerate}
+
+\subsection{Per-Task Decomposition}
+
+\paragraph{C2 per-task transitions.} Of 36 tasks, 20 fail under all three main conditions; 7 succeed under neutral but fail under default and targeted; 4 succeed under all conditions. The neutral$\to$targeted transition loses 9 successes and gains 2. Cascade under targeted increases in 10 tasks relative to neutral and decreases in only 1.
+
+\paragraph{C3 per-task decomposition.} The +0.016 mean $\tau$ gain is driven entirely by one task whose $\tau$ moves from $-$0.4 (negatively correlated ranking) under neutral to +0.4 under targeted; the remaining 49 tasks show identical $\tau$ values across both conditions. Top-1 accuracy improves on 2 tasks (94\%$\to$100\%). The targeted prompt thus eliminates a single ranking failure rather than systematically improving order quality.
+
+\paragraph{C1 subtype pattern.} model_C never solves \texttt{boundary\_binding} tasks under any condition (0/40). The \texttt{paper\_like} subtype accounts for most feasible cases across all conditions (19/22 total feasible designs). This subtype specificity, together with the uniformly low feasible rates (0.075--0.175), indicates a capability floor that prompt variation does not shift.
+
+\subsection{Interpretive Summary}
+
+The four-cell audit supports the following interpretation, which we advance in the main text: behavioral fingerprints identified by Tier~1 profiles are not shallow prompt artifacts. If they were, targeted boundary-specific prompts should repair them. Instead, C1 shows no effect, C2 shows significant reversal, C3 shows a one-task marginal effect, and C4 shows model-dependent interaction. The resilience of stage dissociation to prompt-level repair reinforces the benchmark's construct validity: what DiagBench measures is durable prior-boundary compatibility, not prompt sensitivity.

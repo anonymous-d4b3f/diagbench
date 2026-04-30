@@ -1,0 +1,18 @@
+{
+  "models": [
+    "model_A",
+    "model_B",
+    "model_C",
+    "model_D",
+    "model_E",
+    "model_F",
+    "model_G",
+    "model_H",
+    "model_I",
+    "model_J",
+    "model_K",
+    "model_L",
+    "model_M"
+  ],
+  "note": "Directories are anonymized for review. The private mapping is retained outside this artifact and will be released after de-anonymization."
+}

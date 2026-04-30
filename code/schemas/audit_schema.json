@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiagBench Audit Record",
+  "description": "Schema for a single task audit record.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["task_id", "audit_type", "passed", "evidence", "notes"],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "audit_type": {"type": "string", "enum": ["reachability", "non_triviality", "active_constraint", "boundary_stability", "objective_informativeness"]},
+    "passed": {"type": "boolean"},
+    "evidence": {"type": "object"},
+    "notes": {"oneOf": [{"type": "string"}, {"type": "null"}]}
+  }
+}

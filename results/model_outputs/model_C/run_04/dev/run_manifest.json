@@ -1,0 +1,44 @@
+{
+  "artifact_paths": [
+    "artifacts/runs/p4_full_v2_live_20260416/model_C/dev/p4_results.jsonl",
+    "artifacts/runs/p4_full_v2_live_20260416/model_C/dev/p4_traces.jsonl"
+  ],
+  "code_commit_hash": "55ed1f84e0d605a89605f7f2908d1d5e71499ddd",
+  "input_manifest_hash": "9f820d389048fd90087e2db47599a04805c353f403f650131cb8eaa44c6935ab",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 512,
+    "model_id": "gpt-5.4",
+    "provider": "aihubmix",
+    "reasoning_effort": "default",
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://aihubmix.com/v1",
+  "model_name": "gpt-5.4",
+  "output_artifact_path": "artifacts/runs/p4_full_v2_live_20260416/model_C/dev/p4_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "gpt-5.4::9f820d389048",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "aihubmix_iterative_v1",
+  "task_bank_path": "data/p4_full_v2/p4_dev_tasks.jsonl",
+  "task_bank_version": "p4_full_v2",
+  "timeout_policy": {
+    "hard_timeout_s": 15.0,
+    "request_timeout_s": 10.0
+  },
+  "timestamp": "2026-04-15T17:46:51.056980+00:00"
+}

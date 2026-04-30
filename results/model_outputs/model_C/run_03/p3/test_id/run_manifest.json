@@ -1,0 +1,44 @@
+{
+  "artifact_paths": [
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/p3_p4_v3r1_live/model_C/p3/test_id/p3_results.jsonl",
+    "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/p3_p4_v3r1_live/model_C/p3/test_id/p3_trajectories.jsonl"
+  ],
+  "code_commit_hash": "55ed1f84e0d605a89605f7f2908d1d5e71499ddd",
+  "input_manifest_hash": "ba1937574595d3b9d2fc1ad0102393ec78ea00f40fdd851e1f9fd7eec379db0e",
+  "jitter_policy": {
+    "enabled": false,
+    "scale": 0.0
+  },
+  "model_config": {
+    "max_tokens": 512,
+    "model_id": "gpt-5.4",
+    "provider": "aihubmix",
+    "reasoning_effort": "default",
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "model_endpoint": "https://aihubmix.com/v1",
+  "model_name": "gpt-5.4",
+  "output_artifact_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/p3_p4_v3r1_live/model_C/p3/test_id/p3_results.jsonl",
+  "retry_policy": {
+    "backoff_s": 0.0,
+    "max_retries": 0
+  },
+  "run_id": "gpt-5.4::ba1937574595",
+  "solver_config_version": "iterative_solver_v1",
+  "solver_policy": {
+    "action_schema_version": "action_schema_v2",
+    "hard_timeout_s": 15.0,
+    "max_attempts": 6,
+    "policy_name": "iterative_design_search"
+  },
+  "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
+  "system_prompt_version": "aihubmix_iterative_v1",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_test_id_tasks.jsonl",
+  "task_bank_version": "p3_v3r1",
+  "timeout_policy": {
+    "hard_timeout_s": 15.0,
+    "request_timeout_s": 10.0
+  },
+  "timestamp": "2026-04-14T14:06:45.212569+00:00"
+}

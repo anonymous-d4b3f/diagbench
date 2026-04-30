@@ -1,0 +1,16 @@
+{
+  "bkf_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p2_v3r1/bkf/p2_bkf_table.jsonl",
+  "endpoint_id": null,
+  "feedback_mode": "full_numeric",
+  "history_mode": "raw_history",
+  "max_tasks": null,
+  "mode": "p3",
+  "model": "hy3-preview",
+  "provider": "hunyuan_tokenhub",
+  "runner_name": "hy3-preview",
+  "source_task_bank_manifest_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_test_id_tasks.manifest.json",
+  "source_task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_test_id_tasks.jsonl",
+  "task_bank_manifest_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_test_id_tasks.manifest.json",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_test_id_tasks.jsonl",
+  "verifier_mode": "oracle"
+}

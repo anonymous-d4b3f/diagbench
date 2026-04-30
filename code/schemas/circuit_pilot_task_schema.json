@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Circuit Pilot Task",
+  "description": "Task schema for the circuit-design cross-domain DiagBench pilot.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "task_id",
+    "domain",
+    "pilot_version",
+    "probe",
+    "family",
+    "subtype",
+    "spec",
+    "design_variables",
+    "variable_bounds",
+    "constraints",
+    "objective",
+    "query_budget",
+    "oracle_metadata"
+  ],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "domain": {"type": "string", "const": "circuit"},
+    "pilot_version": {"type": "string", "const": "circuit_pilot_v1"},
+    "probe": {"type": "string", "enum": ["P1", "P2", "P3", "P4"]},
+    "family": {
+      "type": "string",
+      "enum": [
+        "rc_filter",
+        "rlc_filter",
+        "loaded_divider",
+        "led_current_limit",
+        "op_amp_amplifier",
+        "linear_regulator"
+      ]
+    },
+    "subtype": {"type": "string", "minLength": 1},
+    "spec": {"type": "object", "additionalProperties": true},
+    "design_variables": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "variable_bounds": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["min", "max", "unit"],
+        "properties": {
+          "min": {"type": "number"},
+          "max": {"type": "number"},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "metric", "type", "unit"],
+        "additionalProperties": true,
+        "properties": {
+          "name": {"type": "string"},
+          "metric": {"type": "string"},
+          "type": {"type": "string", "enum": ["target_rel", "target_log", "upper_bound", "lower_bound"]},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "objective": {
+      "type": "object",
+      "required": ["name", "direction"],
+      "additionalProperties": true,
+      "properties": {
+        "name": {"type": "string"},
+        "metric": {"type": "string"},
+        "direction": {"type": "string", "enum": ["maximize", "minimize"]}
+      }
+    },
+    "query_budget": {"type": "integer", "minimum": 1, "maximum": 8},
+    "oracle_metadata": {
+      "type": "object",
+      "required": ["oracle", "oracle_version", "unit_system"],
+      "additionalProperties": true
+    },
+    "candidate_pool": {
+      "type": "array",
+      "items": {"type": "object", "required": ["candidate_id", "design", "oracle_result"]}
+    },
+    "policy": {"type": "object", "additionalProperties": true},
+    "pairwise_matrix": {"type": "object", "additionalProperties": true},
+    "policy_flip_pairs": {
+      "type": "array",
+      "items": {"type": "object", "required": ["left", "right", "policy_better", "paired_policy_better"]}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"probe": {"const": "P4"}}},
+      "then": {"required": ["candidate_pool", "policy", "pairwise_matrix", "policy_flip_pairs", "oracle_reference_ranking"]}
+    },
+    {
+      "if": {"properties": {"probe": {"const": "P1"}}},
+      "then": {"required": ["gold_label"]}
+    },
+    {
+      "if": {"properties": {"probe": {"const": "P2"}}},
+      "then": {"required": ["initial_design", "best_known_feasible"]}
+    },
+    {
+      "if": {"properties": {"probe": {"const": "P3"}}},
+      "then": {"required": ["corrupted_history", "corrupted_design", "hidden_truth", "escape_criterion", "best_known_feasible"]}
+    }
+  ]
+}

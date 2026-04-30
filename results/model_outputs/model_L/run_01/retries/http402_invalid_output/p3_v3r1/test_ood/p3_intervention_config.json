@@ -1,0 +1,16 @@
+{
+  "bkf_path": "data/p2_v3r1/bkf/p2_bkf_table.jsonl",
+  "endpoint_id": null,
+  "feedback_mode": "full_numeric",
+  "history_mode": "raw_history",
+  "max_tasks": null,
+  "mode": "p3",
+  "model": "model_L",
+  "provider": "xiaomi_mimo",
+  "runner_name": "model_L",
+  "source_task_bank_manifest_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/_retry_task_banks/mimo_http402_invalid_output/p3_v3r1/test_ood/p3_test_ood_http402_invalid_tasks.manifest.json",
+  "source_task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/_retry_task_banks/mimo_http402_invalid_output/p3_v3r1/test_ood/p3_test_ood_http402_invalid_tasks.jsonl",
+  "task_bank_manifest_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/_retry_task_banks/mimo_http402_invalid_output/p3_v3r1/test_ood/p3_test_ood_http402_invalid_tasks.manifest.json",
+  "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/_retry_task_banks/mimo_http402_invalid_output/p3_v3r1/test_ood/p3_test_ood_http402_invalid_tasks.jsonl",
+  "verifier_mode": "oracle"
+}

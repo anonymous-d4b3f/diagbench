@@ -1,0 +1,82 @@
+{
+  "@context": "http://mlcommons.org/croissant/1.0",
+  "@type": "Dataset",
+  "datePublished": "2026-04-30",
+  "description": "Workflow-structured benchmark for engineering design agents. 763 VEH tasks plus a 106-task circuit construct-validity pilot across P1-P4 probes.",
+  "distribution": [
+    {
+      "@type": "FileObject",
+      "contentSize": 424199,
+      "contentUrl": "data/veh/p1_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "veh_p1_tasks",
+      "sha256": "53222bf61f1b8826e6e352ab50da051397b7d6c90fd4317456637633ff7e136e"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 579738,
+      "contentUrl": "data/veh/p2_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "veh_p2_tasks",
+      "sha256": "b42324360a722dd1839f5889e659bd96a1606bec21f6c136665f4e8e9c5fc3f6"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 1209319,
+      "contentUrl": "data/veh/p3_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "veh_p3_tasks",
+      "sha256": "d73c82e28c7b8dbf352aa9536a1c7704ecff5d1224220525a4b4b58f2c2ef1ae"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 2033562,
+      "contentUrl": "data/veh/p4_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "veh_p4_tasks",
+      "sha256": "fdfa890f056369f3d7c6c038f5d0820a530e71624005c4752fd371a60a5853dc"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 55171,
+      "contentUrl": "data/circuit/p1_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "circuit_p1_tasks",
+      "sha256": "d4447c979ec52051e267ac1532b6897e96a5db149ad6952a49cd0dbd2bf1f89a"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 103382,
+      "contentUrl": "data/circuit/p2_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "circuit_p2_tasks",
+      "sha256": "10242cc78ddea4249eed2e27c2415c238cdb7e45493911a617e0aa8859301cd1"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 97063,
+      "contentUrl": "data/circuit/p3_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "circuit_p3_tasks",
+      "sha256": "f13f7d40d1a198a43ce8fbc40acf957e7345016517ae85a0d3b477e510f9ec3b"
+    },
+    {
+      "@type": "FileObject",
+      "contentSize": 168274,
+      "contentUrl": "data/circuit/p4_tasks.jsonl",
+      "encodingFormat": "application/jsonl",
+      "name": "circuit_p4_tasks",
+      "sha256": "a4cbe168d783ca3b29417102ad37e8e2bd7d4104dc0439300653edf68ddbbd9e"
+    }
+  ],
+  "keywords": [
+    "engineering-agent",
+    "benchmark",
+    "LLM",
+    "design-automation"
+  ],
+  "license": "CC-BY-4.0",
+  "name": "DiagBench",
+  "url": "[anonymous URL]",
+  "version": "1.0"
+}

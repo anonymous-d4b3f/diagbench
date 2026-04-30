@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TaskBankManifest",
+  "description": "Manifest emitted alongside a generated task bank artifact.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_bank_version",
+    "input_manifest_hash",
+    "source_tables",
+    "build_config",
+    "artifact_path",
+    "artifact_sha256",
+    "task_ids"
+  ],
+  "properties": {
+    "task_bank_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_manifest_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_tables": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "build_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_count", "seed", "split", "difficulty_tag"],
+      "properties": {
+        "task_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "split": {
+          "type": "string",
+          "enum": ["dev", "test_id", "test_ood", "test_audit"]
+        },
+        "difficulty_tag": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard", "infeasible", "mixed"]
+        }
+      }
+    },
+    "artifact_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "task_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "subtype_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  }
+}

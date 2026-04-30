@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiagBench Task",
+  "description": "Schema for a single constrained-optimization benchmark task.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "task_id",
+    "seed_id",
+    "task_type",
+    "design_variables",
+    "variable_bounds",
+    "objective_name",
+    "objective_direction",
+    "constraints",
+    "excitation_context",
+    "environment_context",
+    "query_budget",
+    "best_known_feasible",
+    "difficulty_tag",
+    "split"
+  ],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "seed_id": {"type": "string", "minLength": 1},
+    "task_type": {"type": "string", "const": "constrained_optimization"},
+    "design_variables": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "variable_bounds": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["min", "max", "unit"],
+        "additionalProperties": false,
+        "properties": {
+          "min": {"type": "number"},
+          "max": {"type": "number"},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "objective_name": {"type": "string", "minLength": 1},
+    "objective_direction": {"type": "string", "enum": ["maximize", "minimize"]},
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["name", "type", "limit", "unit"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"type": "string"},
+          "limit": {"type": "number"},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "excitation_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["frequency_hz", "acceleration_g"],
+      "properties": {
+        "frequency_hz": {"type": "number"},
+        "acceleration_g": {"type": "number"}
+      }
+    },
+    "environment_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["material", "device_type", "structure_class"],
+      "properties": {
+        "material": {"type": "string"},
+        "device_type": {"type": "string"},
+        "structure_class": {"type": "string"}
+      }
+    },
+    "anchor_context": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "query_budget": {"type": "integer", "minimum": 1, "maximum": 20},
+    "best_known_feasible": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {"type": "number"}
+        },
+        {"type": "null"}
+      ]
+    },
+    "difficulty_tag": {"type": "string", "enum": ["easy", "medium", "hard", "infeasible"]},
+    "split": {"type": "string", "enum": ["dev", "test_id", "test_ood", "test_audit"]}
+  }
+}
