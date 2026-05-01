@@ -420,10 +420,10 @@ gemini-3.1-pro-preview & 0.826 / 55.9\% & 0.778 / 38.9\% & 0.873 / 66.7\% \\
 
 \section{Reasoning Coverage and Model Style}
 
-This block remains secondary evidence rather than a substitute for the model-by-model tables. It is a negative control for the response-control profile account: if the paper were only measuring ``thinking model'' status, the stage patterns should collapse under this grouping. Instead, explicit reasoning or thinking coverage helps some workflow regimes more than others and still does not erase stage dissociation.
+This block remains secondary evidence rather than a substitute for the model-by-model tables. It is a negative control for the response-control profile account: if the paper were only measuring whether thinking mode was on, the stage patterns should collapse under this grouping. Instead, thinking mode helps some workflow regimes more than others and still does not erase stage dissociation.
 
 \begin{table*}[t]
-\caption{Reasoning/thinking run-mode audit for the 12 complete P1--P4 model runs. The tag is a reporting aid, not a causal label. It separates public model capability from the actual API controls recorded in our manifests.}
+\caption{Reasoning/thinking run-mode audit for the 12 complete P1--P4 model runs. The column records whether thinking mode was used in the reported run.}
 \label{tab:appendix_reasoning_grouping}
 \centering
 \scriptsize
@@ -431,26 +431,26 @@ This block remains secondary evidence rather than a substitute for the model-by-
 \renewcommand{\arraystretch}{1.08}
 \begin{tabular}{lp{33mm}p{17mm}p{54mm}}
 \toprule
-Model & Public / run evidence & Tag & Caveat \\
+Model & Public / run evidence & Think used & Caveat \\
 \midrule
-\texttt{o4-mini} & OpenAI documents it as a reasoning model~\citep{openai2026o4mini} & \texttt{T} & clean public reasoning-labeled row \\
-gemini-3.1-pro-preview & Google documents internal thinking / thought-summary support~\citep{google2026geminithinking} & \texttt{T} & grouped by public thinking support rather than hidden implementation details \\
-deepseek-r1 & DeepSeek documentation positions R1 as a reasoning-oriented model~\citep{deepseek2025r1} & \texttt{T} & key within-family contrast is R1 versus V3 \\
-hunyuan-hy3-preview & public provider pages describe Hy3 as a fast/slow or multi-mode reasoning model~\citep{siliconflow2026hy3preview} & \texttt{T} & run manifests are retained as the source of truth for provider settings \\
-deepseek-v4-pro & DeepSeek documentation describes V4 as supporting Thinking and Non-Thinking modes~\citep{deepseek2026v4preview} & \texttt{T-off} & our run manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
-mimo-v2.5-pro & Xiaomi Mimo API row treated as a thinking-capable provider model in the run plan & \texttt{T-off} & our run manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
-qwen3-max & Alibaba documents Qwen3-Max as hybrid-thinking with thinking disabled by default~\citep{alibaba2026qwenDeepThinking} & \texttt{D} & our DashScope calls used the provider default; no explicit \texttt{enable\_thinking=True} override was passed \\
-\texttt{qwen3.6-plus} & Qwen documentation describes the model as reasoning-capable and shows explicit \texttt{enable\_thinking=True} usage~\citep{qwen2026qwen36plus} & \texttt{D} & our DashScope run used the provider-default call without an explicit \texttt{enable\_thinking} flag \\
-gpt-5.4 & frontier GPT row with provider-default reasoning effort in our logs & -- & not treated as a clean public reasoning-only label for grouping \\
-deepseek-v3 & no reasoning-first grouping used here & -- & used as the within-family non-R1 contrast \\
-claude-4.6-sonnet & no reasoning-first grouping used here & -- & grouped by observed profile, not by hidden implementation details \\
-\texttt{llama-3.3-70b} & no reasoning-first grouping used here & -- & open model baseline row in the complete P1--P4 roster \\
+\texttt{o4-mini} & OpenAI documents it as a reasoning model~\citep{openai2026o4mini} & Yes & reasoning-labeled row \\
+gemini-3.1-pro-preview & Google documents internal thinking / thought-summary support~\citep{google2026geminithinking} & Yes & thinking support active in the reported run \\
+deepseek-r1 & DeepSeek documentation positions R1 as a reasoning-oriented model~\citep{deepseek2025r1} & Yes & key within-family contrast is R1 versus V3 \\
+hunyuan-hy3-preview & public provider pages describe Hy3 as a fast/slow or multi-mode reasoning model~\citep{siliconflow2026hy3preview} & Yes & run manifests are retained as the source of truth for provider settings \\
+deepseek-v4-pro & DeepSeek documentation describes V4 as supporting Thinking and Non-Thinking modes~\citep{deepseek2026v4preview} & No & manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
+mimo-v2.5-pro & Xiaomi Mimo API row treated as a thinking-capable provider model in the run plan & No & manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
+qwen3-max & Alibaba documents Qwen3-Max as hybrid-thinking with thinking disabled by default~\citep{alibaba2026qwenDeepThinking} & No & DashScope call used provider default; no explicit \texttt{enable\_thinking=True} override \\
+\texttt{qwen3.6-plus} & Qwen documentation describes explicit \texttt{enable\_thinking=True} usage~\citep{qwen2026qwen36plus} & No & DashScope call used provider default without an explicit \texttt{enable\_thinking} flag \\
+gpt-5.4 & frontier GPT row with provider-default reasoning effort in our logs & No & reported as no explicit thinking-mode run \\
+deepseek-v3 & no reasoning-first grouping used here & No & used as the within-family non-R1 contrast \\
+claude-4.6-sonnet & no reasoning-first grouping used here & No & grouped by observed profile, not by hidden implementation details \\
+\texttt{llama-3.3-70b} & no reasoning-first grouping used here & No & open model baseline row in the complete P1--P4 roster \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 \begin{table}[t]
-\caption{Stage-wise group means on the 12 complete model runs. \texttt{T/T-off} groups public thinking-capable rows, including rows where manifests record no-think controls for schema stability.}
+\caption{Stage-wise group means on the 12 complete model runs, grouped only by whether thinking mode was used in the reported run.}
 \label{tab:appendix_reasoning_groupmeans}
 \centering
 \scriptsize
@@ -458,12 +458,12 @@ claude-4.6-sonnet & no reasoning-first grouping used here & -- & grouped by obse
 \renewcommand{\arraystretch}{1.08}
 \begin{tabular}{lcc}
 \toprule
-Stage & \texttt{T/T-off} & Other/\texttt{D} \\
+Stage & Think & No-think \\
 \midrule
-P1 Composite & 0.437 & 0.374 \\
-P2 headline & 0.197 & 0.175 \\
-P3 Success (\%) & 38.0 & 25.8 \\
-P4 Full Tau & 0.819 & 0.836 \\
+P1 Composite & 0.499 & 0.359 \\
+P2 headline & 0.237 & 0.161 \\
+P3 Success (\%) & 38.5 & 28.6 \\
+P4 Full Tau & 0.819 & 0.831 \\
 \bottomrule
 \end{tabular}
 \end{table}
