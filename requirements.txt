@@ -1,3 +1,6 @@
+# Minimal public artifact dependencies.
+# Provider SDKs are intentionally excluded because live API runners are not part
+# of the anonymous release.
 -e .
 jsonschema>=4.17
 numpy>=1.24

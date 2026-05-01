@@ -5,36 +5,27 @@
 
 \section{Supplementary Roadmap}
 
-The appendix supports the benchmark claims in the main paper rather than serving as a storage room for extra leaderboards. In the current benchmark-only manuscript, the supplement is organized around the following support blocks:
+The appendix supports the benchmark claims in the main paper rather than serving as a storage room for extra leaderboards. It is organized into four support blocks:
 \begin{itemize}[leftmargin=5mm,itemsep=1mm,topsep=1mm]
-    \item \textbf{construction audit and artifact plan:} source-corpus scale, admission logic, split policy, and what exactly will be released;
-    \item \textbf{contamination-resistance boundary:} what DOI-disjointness, deduplication, and noleak reporting do and do not claim;
-    \item \textbf{P3 intervention provenance:} how the 36-task subset was sampled from the 156-task full bank;
-    \item \textbf{statistical validity:} headline intervals, intervention delta intervals, and near-tie interpretation for the four main probes;
-    \item \textbf{calibration references:} degenerate, anchor-fixed, and chance-level baselines that contextualize the frontier scores;
-    \item \textbf{full leaderboard tables:} complete per-probe reporting beyond the headline rows used in the main text;
-    \item \textbf{split-resolved tables:} dev / test\_id / test\_ood views showing that the main claims are not single-split artifacts;
-    \item \textbf{reasoning coverage and model style:} why explicit reasoning or thinking coverage helps some stages more than others;
-    \item \textbf{stage-gap diagnostics:} how far each monolithic model remains from the stage-wise frontier;
-    \item \textbf{selection-generation protocol notes:} the frozen cleanup policy and residual malformed-output behavior behind the isomorphic probe;
-    \item \textbf{Tier~3 controlled-prompt audit:} full per-condition results, C4 per-model breakdown, and per-task pattern analysis supporting the main-text null-to-validity interpretation;
-    \item \textbf{CMA-ES classical optimization baseline:} full P2 results under 6-query and 40-query budgets;
-    \item \textbf{metric definitions:} formal formulas for every headline and diagnostic metric (Section~\ref{sec:metric_formulas});
-    \item \textbf{prompt templates and task examples:} exact prompts, oracle specification, run configuration, and annotated task walkthroughs;
-    \item \textbf{representative failure cases:} one audited P1--P4 example for over-proposal, over-edit, continuity trapping, and policy mismatch;
-    \item \textbf{circuit audit cross-domain validation:} full per-probe tables, profile scores, and cross-domain pattern summary.
+    \item \textbf{Dataset and artifact audit:} construction provenance, artifact boundary, contamination scope, P3 intervention sampling, and release contents.
+    \item \textbf{Metric and statistical definitions:} uncertainty intervals, calibration references, and formal definitions for every headline and diagnostic metric.
+    \item \textbf{Full results and split checks:} complete P1--P4 tables, split-resolved tables, reasoning/thinking coverage, response-control profiles, and stage-gap diagnostics.
+    \item \textbf{Mechanism and cross-domain audits:} extended related work/discussion, prompts, failure cases, selection--generation isomorphism, Tier~3 controlled-prompt results, CMA-ES, and the circuit audit.
 \end{itemize}
 
 \section{Construction Audit and Artifact Availability}
 
 The current VEH suite is not a loose aggregation of prompts. Its optimizer-facing stages are traceable to a concrete literature-extraction and admission pipeline. The upstream extraction audit covers 209 papers and 2090 field rows, with 151 papers carrying at least one issue and 77 carrying a high-risk issue. From this audit, 71 cantilever candidates are forwarded to oracle review, and the current P2 backbone admits 52 cleaned structure-review anchors. The current benchmark then packages these anchors into split-specific task banks whose manifests store source tables, input manifest hashes, seeds, and artifact SHA256 values.
 
-\begin{table*}[t]
-\caption{Construction audit for the current benchmark release. The table separates source scale, split policy, and release evidence so that the benchmark can be audited as a dataset rather than only as a set of scores.}
+\Needspace{16\baselineskip}
+\begin{center}
+\captionof{table}{Construction audit for the current benchmark release. The table separates source scale, split policy, and release evidence so that the benchmark can be audited as a dataset rather than only as a set of scores.}
 \label{tab:appendix_construction_audit}
 \centering
-\small
-\begin{tabular}{lp{24mm}p{26mm}p{22mm}p{60mm}}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{p{17mm}p{24mm}p{27mm}p{18mm}Y}
 \toprule
 Stage & Upstream source & Split policy & Final inventory & Audit detail \\
 \midrule
@@ -43,10 +34,10 @@ P2 & 52 cleaned structure-review anchors from the extraction audit & optimizer-f
 P3 & dual-constraint trap projection from P2 & inherits P2 optimizer-facing split boundary & 156 = 64/40/52 & manifests record source P2 task bank, BKF table, split manifest, and trap policy \\
 P4 & policy-conditioned ranking pools derived from P2 BKF records & inherits P2 optimizer-facing split boundary & 159 = 93/36/30 & 53 realized base pools across the release; manifests record profile counts, top-1 distinctness, and source-task lineage for each pool \\
 \bottomrule
-\end{tabular}
-\end{table*}
+\end{tabularx}
+\end{center}
 
-The release package is designed around these manifests. We will release the exact task JSONL files and manifests for P1--P4, the oracle and evaluator code, the ta[REDACTED] scripts, the admission and split reports, and the per-model JSONL run logs used for the main and appendix tables. The intended artifact boundary is therefore the same as the paper boundary: each reported benchmark table should be traceable to a specific manifest-backed snapshot rather than to an undocumented local run.
+The release package is designed around these manifests and is available through the anonymous artifact page at \href{https://anonymous.4open.science/r/diagbench-734D/README.md}{anonymous.4open.science/r/diagbench-734D}. It contains the exact task JSONL files and manifests for P1--P4, the oracle and evaluator code, the task-generation scripts, the admission and split reports, and the per-model JSONL run logs used for the main and appendix tables. The intended artifact boundary is therefore the same as the paper boundary: each reported benchmark table should be traceable to a specific manifest-backed snapshot rather than to an undocumented local run.
 
 Contamination resistance in the current release is deliberately scoped. It means DOI/title-hash deduplication in the upstream paper registry, DOI-disjoint source-anchor separation for P2--P4, manifest-level lineage tracking, and evaluation on post-fix noleak P1 runs only. It does \emph{not} mean that we claim web-scale near-duplicate search over model pretraining corpora or model-specific pretraining decontamination. P1 is intentionally outside the source-disjoint claim and should be read as a matched robustness stress stage rather than as a held-out generalization benchmark.
 
@@ -85,10 +76,10 @@ Headline gaps should be paired with uncertainty rather than interpreted as isola
 \toprule
 Probe & Metric & Best & 95\% CI & Key delta & Note \\
 \midrule
-P1 & P1-Composite & 0.574 & [0.500, 0.641] & model_A $-$ Gemini: +0.025 [-0.078, 0.121] & not a trivial propose-bias win \\
-P2 & feasible power ratio & 0.3904 & [0.3598, 0.4235] & Gemini $-$ Claude: +0.1510 [0.1117, 0.1891] & separates closure from anchoring \\
-P3 & P3-Success & 42.9\% & [35.4, 50.8]\% & R1 $-$ model_C: +0.6 pts [-7.1, 8.3] & near tie at the recovery frontier \\
-P4 & Kendall Tau & 0.887 & [0.862, 0.911] & model_C $-$ model_G: +0.013 [-0.024, 0.050] & calibrates ranking claims \\
+P1 & P1-Composite & 0.574 & [0.500, 0.641] & qwen3-max $-$ gemini-3.1-pro-preview: +0.025 [-0.078, 0.121] & not a trivial propose-bias win \\
+P2 & feasible power ratio & 0.3904 & [0.3598, 0.4235] & gemini-3.1-pro-preview $-$ claude-4.6-sonnet: +0.1510 [0.1117, 0.1891] & separates closure from anchoring \\
+P3 & P3-Success & 42.9\% & [35.4, 50.8]\% & R1 $-$ gpt-5.4: +0.6 pts [-7.1, 8.3] & near tie at the recovery frontier \\
+P4 & Kendall Tau & 0.887 & [0.862, 0.911] & gpt-5.4 $-$ qwen3.6-plus: +0.013 [-0.024, 0.050] & calibrates ranking claims \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -98,43 +89,46 @@ P4 & Kendall Tau & 0.887 & [0.862, 0.911] & model_C $-$ model_G: +0.013 [-0.024,
 \label{tab:appendix_near_ties}
 \centering
 \scriptsize
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.08}
-\begin{tabular}{p{36mm}p{42mm}p{70mm}}
+\begin{tabularx}{\textwidth}{p{32mm}p{38mm}Y}
 \toprule
 Pair & Test object & Why this pair matters \\
 \midrule
-model_D vs model_C & P3-Success / RecoveryQuality & current recovery near tie; mechanism differs even if win disappears \\
-model_C vs model_G & P4 Full Tau / Exact & structural ranking versus endpoint preference matching \\
-model_A vs Gemini & P1-Composite / P2 headline & certification-versus-closure split \\
+deepseek-r1 vs gpt-5.4 & P3-Success / RecoveryQuality & current recovery near tie; mechanism differs even if win disappears \\
+gpt-5.4 vs qwen3.6-plus & P4 Full Tau / Exact & structural ranking versus endpoint preference matching \\
+qwen3-max vs gemini-3.1-pro-preview & P1-Composite / P2 headline & certification-versus-closure split \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table*}
 
 \begin{table*}[t]
-\caption{P3 summary-effect deltas with paired ta[REDACTED] intervals.}
+\caption{P3 intervention numeric results. Delta columns report paired task-bootstrap 95\% intervals for \texttt{state\_summary} versus raw history.}
 \label{tab:appendix_p3_intervention_delta_ci}
 \centering
 \scriptsize
-\setlength{\tabcolsep}{5pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.08}
-\begin{tabular}{lcc}
+\begin{tabular}{lcccc}
 \toprule
-Model & $\Delta$ success & $\Delta$ cascade \\
+Model & Succ. raw/sum. & $\Delta$ success & Casc. raw/sum. & $\Delta$ cascade \\
 \midrule
-model_D & +2.8 pts [-11.1, +16.7] & -21.6 pts [-37.5, -7.2] \\
-model_C & +0.0 pts [-13.9, +13.9] & -29.4 pts [-45.5, -14.7] \\
-Gemini-3.1 & +16.7 pts [-2.8, +36.1] & -21.9 pts [-43.6, +0.5] \\
-model_E & +33.3 pts [+16.7, +50.0] & -1.4 pts [-8.6, +4.4] \\
+deepseek-r1 & 55.6 / 58.3 & +2.8 pts [-11.1, +16.7] & 30.3 / 8.7 & -21.6 pts [-37.5, -7.2] \\
+gpt-5.4 & 63.9 / 63.9 & +0.0 pts [-13.9, +13.9] & 29.4 / 0.0 & -29.4 pts [-45.5, -14.7] \\
+gemini-3.1-pro-preview & 50.0 / 66.7 & +16.7 pts [-2.8, +36.1] & 46.9 / 25.0 & -21.9 pts [-43.6, +0.5] \\
+claude-4.6-sonnet & 30.6 / 63.9 & +33.3 pts [+16.7, +50.0] & 5.7 / 4.3 & -1.4 pts [-8.6, +4.4] \\
 \midrule
-Model mean & +13.2 pts [+4.9, +21.5] & -18.6 pts [-26.6, -10.6] \\
+Model mean & 50.0 / 63.2 & +13.2 pts [+4.9, +21.5] & 28.1 / 9.5 & -18.6 pts [-26.6, -10.6] \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
+\clearpage
+\input{generated/appendix_metric_formulas.tex}
+
 \section{Calibration References}
 
-Weak baselines are useful here because the benchmark is deliberately structured. For P1, the main concern is degenerate label-prior matching. For P2, the main concern is whether headline gains reflect true improvement beyond the literature-derived seed or only feasibility preservation. For P4, the relevant floor is chance agreement with a five-item ordering.
+Weak baselines are useful here because the benchmark is deliberately structured. For P1, the main concern is degenerate label-prior matching. For P2, the main concern is whether headline gains reflect true improvement beyond the literature-derived seed or only feasibility preservation. For P3, the relevant weak behavior is continuity with the corrupted state rather than explicit reset. For P4, the relevant floor is chance agreement with a five-item ordering.
 
 \begin{table*}[t]
 \caption{Calibration references corresponding to the main-text weak baselines. These are not competitors to the frontier roster; they anchor how much of each stage can be explained by trivial behavior.}
@@ -146,7 +140,8 @@ Weak baselines are useful here because the benchmark is deliberately structured.
 Probe & Baseline reference & Score & Interpretation \\
 \midrule
 P1 & always-\texttt{propose\_design} on the dev split & 56.3\% accuracy, 0.240 macro-F1, 0.0 worst-action recall & a degenerate action prior can look superficially acceptable on raw accuracy, which is why P1-Composite and subtype-balanced reporting are necessary \\
-P2 & anchor-fixed heuristic on the 208-task main bank & 100\% feasible coverage, 0.3065 mean power ratio & many frontier models fail to preserve even the trivial feasible anchor, while Gemini is the only one to beat this heuristic on the headline utility ratio \\
+P2 & anchor-fixed heuristic on the 208-task main bank & 100\% feasible coverage, 0.3065 mean power ratio & many frontier models fail to preserve even the trivial feasible anchor, while gemini-3.1-pro-preview is the only one to beat this heuristic on the headline utility ratio \\
+P3 & last-state continuation / no-reset heuristic & 0\% explicit reset by construction; weak reference for escape, cascade, and recovery columns & the useful floor is not a single scalar success rate but the failure mode produced by trusting corrupted state; P3 therefore reports escape, cascade, dead-budget, and recovery jointly \\
 P4 & uniform random permutation over five feasible candidates & $\mathbb{E}[\tau]=0$, exact 0.83\%, top-1 20\% & observed ranking scores are far above chance, so P4 is not a random-agreement artifact \\
 \bottomrule
 \end{tabular}
@@ -155,7 +150,9 @@ P4 & uniform random permutation over five feasible candidates & $\mathbb{E}[\tau
 \clearpage
 \section{Full Leaderboard Tables}
 
-The appendix carries the full all-model tables for each main probe so that the main-paper mechanism claims remain auditable. The complete P1--P4 roster contains 12 models. We additionally retain \texttt{model_I} and \texttt{model_J} in P1 and P2 as diagnostic boundary models even though their P3/P4 artifacts are not complete.
+The appendix carries the full all-model tables for each main probe so that the main-paper mechanism claims remain auditable. All four tables use the frozen 12-model complete roster; runs without complete P1--P4 coverage are excluded rather than imputed.
+
+This block should be read as a diagnostic audit rather than four extra leaderboards. Read each table column-wise: the headline metric gives the rank, while the diagnostic columns explain why that rank occurred and what failure mode is being exposed. The formulas are collected in Appendix~\ref{sec:metric_formulas}; the paragraphs below summarize how each metric is computed, what behavior it is intended to reveal, and what conclusion follows from the observed table.
 
 \begin{table*}[t]
 \caption{Interpretive map for the appendix full-table block. Each table is tied to a benchmark claim rather than presented as metric inventory alone.}
@@ -167,7 +164,7 @@ The appendix carries the full all-model tables for each main probe so that the m
 Probe & Core columns & Diagnostic 1 & Diagnostic 2 & Diagnostic 3 & Diagnostic 4 & Primary mechanism claim served \\
 \midrule
 P1 & Acc / Macro-F1 / ACS / MDS / IDS / subtype F1 / composite & over-act prior & hard infeasibility misses & missing-info discipline & balanced selectivity & raw accuracy does not equal credible triage \\
-P2 & P2a / P2b / final feasible rate / conditional ratio / P2c / queries & anchoring & closure & best-so-far improvement & query efficiency & start is not finish \\
+P2 & P2a / P2b / final feasible rate / conditional ratio / Impr. (P2c) / queries & anchoring & closure & best-so-far improvement & query efficiency & start is not finish \\
 P3 & success / recovery quality / trap escape / cascade / dead budget / explicit replan & no-escape failure & escaped-but-unrecovered & false recovery & post-escape quality & escape is not recovery \\
 P4 & Full Tau / Exact / Top-1 / Top-2 / Pareto Tau / BARS & structural order & strict endpoint ranking & policy-active ranking & parse stability & structural ranking is not policy sensitivity \\
 \bottomrule
@@ -175,6 +172,9 @@ P4 & Full Tau / Exact / Top-1 / Top-2 / Pareto Tau / BARS & structural order & s
 \end{table*}
 
 \Needspace{14\baselineskip}
+\paragraph{P1 metrics and readout.}
+P1 is a one-shot triage task. Accuracy counts exact agreement with the oracle label; macro-F1 averages the three action labels so that a model cannot score well by favoring the majority action. ACS, MDS, and IDS are discipline scores for \texttt{propose\_design}, \texttt{request\_missing\_info}, and \texttt{declare\_infeasible}; each multiplies recall by one minus the corresponding spurious-action rate. Subtype F1 checks whether performance holds across near-feasible, missing-info, and infeasible subtypes. The headline P1-Composite combines these terms, so it rewards balanced entry discipline rather than raw willingness to produce a design. The table shows why this is necessary: several models have similar raw accuracy, but qwen3-max and gemini-3.1-pro-preview separate because their discipline scores are more balanced, while claude-4.6-sonnet exposes over-refusal or action-mismatch behavior that accuracy alone would under-explain.
+
 \begin{center}
 \captionof{table}{P1 full table. Compact headers keep certification metrics readable.}
 \label{tab:appendix_p1_full}
@@ -185,25 +185,30 @@ P4 & Full Tau / Exact / Top-1 / Top-2 / Pareto Tau / BARS & structural order & s
 \toprule
 Model & Acc & F1 & ACS & MDS & IDS & Subtype F1 & Comp. \\
 \midrule
-model_A & 65.4\% & 0.647 & 0.429 & 0.533 & 0.486 & 0.768 & 0.574 \\
-Gemini-3.1 & 69.2\% & 0.636 & 0.430 & 0.667 & 0.218 & 0.762 & 0.549 \\
-\texttt{model_F} & 70.0\% & 0.623 & 0.388 & 0.396 & 0.361 & 0.776 & 0.518 \\
-model_D & 66.2\% & 0.594 & 0.360 & 0.510 & 0.298 & 0.730 & 0.504 \\
-model_C & 43.3\% & 0.486 & 0.224 & 0.657 & 0.223 & 0.569 & 0.428 \\
-Hunyuan-Hy3 & 66.2\% & 0.539 & 0.295 & 0.333 & 0.200 & 0.700 & 0.425 \\
-model_H & 64.6\% & 0.483 & 0.206 & 0.352 & 0.100 & 0.668 & 0.369 \\
-\texttt{model_I} & 62.1\% & 0.458 & 0.231 & 0.375 & 0.083 & 0.664 & 0.365 \\
-\texttt{llama-3.3} & 62.5\% & 0.467 & 0.242 & 0.200 & 0.192 & 0.669 & 0.361 \\
-Mimo-V2.5 & 61.7\% & 0.433 & 0.152 & 0.244 & 0.083 & 0.644 & 0.317 \\
-\texttt{model_G} & 61.3\% & 0.422 & 0.143 & 0.200 & 0.100 & 0.641 & 0.306 \\
-DeepSeek-V4 & 61.3\% & 0.422 & 0.143 & 0.200 & 0.100 & 0.641 & 0.306 \\
-model_E & 57.5\% & 0.305 & 0.057 & 0.000 & 0.100 & 0.583 & 0.207 \\
-\texttt{model_J} & 22.9\% & 0.220 & 0.026 & 0.301 & 0.205 & 0.263 & 0.196 \\
+qwen3-max & 65.4\% & 0.647 & 0.429 & 0.533 & 0.486 & 0.768 & 0.574 \\
+gemini-3.1-pro-preview & 69.2\% & 0.636 & 0.430 & 0.667 & 0.218 & 0.762 & 0.549 \\
+\texttt{o4-mini} & 70.0\% & 0.623 & 0.388 & 0.396 & 0.361 & 0.776 & 0.518 \\
+deepseek-r1 & 66.2\% & 0.594 & 0.360 & 0.510 & 0.298 & 0.730 & 0.504 \\
+gpt-5.4 & 43.3\% & 0.486 & 0.224 & 0.657 & 0.223 & 0.569 & 0.428 \\
+hunyuan-hy3-preview & 66.2\% & 0.539 & 0.295 & 0.333 & 0.200 & 0.700 & 0.425 \\
+deepseek-v3 & 64.6\% & 0.483 & 0.206 & 0.352 & 0.100 & 0.668 & 0.369 \\
+\texttt{llama-3.3-70b} & 62.5\% & 0.467 & 0.242 & 0.200 & 0.192 & 0.669 & 0.361 \\
+mimo-v2.5-pro & 61.7\% & 0.433 & 0.152 & 0.244 & 0.083 & 0.644 & 0.317 \\
+\texttt{qwen3.6-plus} & 61.3\% & 0.422 & 0.143 & 0.200 & 0.100 & 0.641 & 0.306 \\
+deepseek-v4-pro & 61.3\% & 0.422 & 0.143 & 0.200 & 0.100 & 0.641 & 0.306 \\
+claude-4.6-sonnet & 57.5\% & 0.305 & 0.057 & 0.000 & 0.100 & 0.583 & 0.207 \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+\noindent\textbf{Audit note.} The exact tie between \texttt{qwen3.6-plus} and deepseek-v4-pro is preserved from the frozen scoring snapshot rather than broken by post-hoc rounding or reranking. Exact vector ties are therefore treated as tied diagnostic rows, not as evidence for an ordering between the two models.
+
+\noindent\textbf{Takeaway.} P1 separates credible entry control from raw action frequency: the strongest rows combine reasonable proposing with missing-information and infeasibility discipline, while weak rows expose over-refusal or over-action even when accuracy is not catastrophic.
+
 \Needspace{14\baselineskip}
+\paragraph{P2 metrics and readout.}
+P2 is an iterative repair task under verifier feedback. P2a is first-step feasibility, which measures whether the first edit lands directly in a feasible region. P2b is the headline final feasible power ratio: the final design contributes only if it is feasible, and its output power is normalized by the benchmark-known feasible reference. Final feasibility separates closure from objective quality, conditional ratio reports quality only among successful repairs, improvement measures best-so-far utility gain, AUC summarizes trajectory quality across the budget, and queries records how many oracle calls were needed. The main conclusion is that search closure and utility are not the same: gemini-3.1-pro-preview dominates P2b because it combines high final feasibility with high feasible utility, while models with respectable first-step feasibility can still finish with low final ratio if their subsequent edits overfit one constraint or lose power.
+
 \begin{center}
 \captionof{table}{P2 full table. P2a is first-step feasibility; P2b is the headline final feasible power ratio.}
 \label{tab:appendix_p2_full}
@@ -214,25 +219,28 @@ model_E & 57.5\% & 0.305 & 0.057 & 0.000 & 0.100 & 0.583 & 0.207 \\
 \toprule
 Model & P2a & P2b & Final feas. & Cond. ratio & Impr. & AUC & Queries \\
 \midrule
-Gemini-3.1 & 26.0\% & 0.3904 & 96.2\% & 0.4101 & 0.7902 & 0.3388 & 2.63 \\
-model_D & 29.8\% & 0.2413 & 67.8\% & 0.3585 & 0.7901 & 0.2999 & 3.47 \\
-model_E & 13.0\% & 0.2394 & 62.5\% & 0.3891 & 0.7037 & 0.2797 & 4.41 \\
-\texttt{model_G} & 30.8\% & 0.2063 & 61.1\% & 0.3432 & 0.6466 & 0.2880 & 3.87 \\
-model_A & 23.6\% & 0.1955 & 55.8\% & 0.3537 & 0.6649 & 0.2894 & 4.21 \\
-Hunyuan-Hy3 & 2.4\% & 0.1609 & 48.6\% & 0.3380 & 0.8033 & 0.2480 & 4.79 \\
-model_H & 7.2\% & 0.1565 & 44.2\% & 0.3576 & 0.5907 & 0.2766 & 4.68 \\
-\texttt{model_F} & 22.6\% & 0.1551 & 42.8\% & 0.3665 & 0.7571 & 0.3119 & 3.59 \\
-model_C & 7.2\% & 0.1329 & 36.1\% & 0.3841 & 0.6828 & 0.2708 & 4.75 \\
-DeepSeek-V4 & 30.3\% & 0.1294 & 41.3\% & 0.3205 & 0.6167 & 0.2935 & 4.26 \\
-\texttt{llama-3.3} & 23.6\% & 0.1197 & 37.0\% & 0.3277 & 0.6673 & 0.2895 & 4.38 \\
-Mimo-V2.5 & 26.4\% & 0.1073 & 33.2\% & 0.3282 & 0.6714 & 0.3075 & 4.50 \\
-\texttt{model_I} & 9.6\% & 0.0850 & 26.4\% & 0.3401 & 0.7211 & 0.2688 & 4.89 \\
-\texttt{model_J} & 1.0\% & 0.0035 & 1.0\% & 0.3638 & 0.0000 & 0.3638 & 1.15 \\
+gemini-3.1-pro-preview & 26.0\% & 0.3904 & 96.2\% & 0.4101 & 0.7902 & 0.3388 & 2.63 \\
+deepseek-r1 & 29.8\% & 0.2413 & 67.8\% & 0.3585 & 0.7901 & 0.2999 & 3.47 \\
+claude-4.6-sonnet & 13.0\% & 0.2394 & 62.5\% & 0.3891 & 0.7037 & 0.2797 & 4.41 \\
+\texttt{qwen3.6-plus} & 30.8\% & 0.2063 & 61.1\% & 0.3432 & 0.6466 & 0.2880 & 3.87 \\
+qwen3-max & 23.6\% & 0.1955 & 55.8\% & 0.3537 & 0.6649 & 0.2894 & 4.21 \\
+hunyuan-hy3-preview & 2.4\% & 0.1609 & 48.6\% & 0.3380 & 0.8033 & 0.2480 & 4.79 \\
+deepseek-v3 & 7.2\% & 0.1565 & 44.2\% & 0.3576 & 0.5907 & 0.2766 & 4.68 \\
+\texttt{o4-mini} & 22.6\% & 0.1551 & 42.8\% & 0.3665 & 0.7571 & 0.3119 & 3.59 \\
+gpt-5.4 & 7.2\% & 0.1329 & 36.1\% & 0.3841 & 0.6828 & 0.2708 & 4.75 \\
+deepseek-v4-pro & 30.3\% & 0.1294 & 41.3\% & 0.3205 & 0.6167 & 0.2935 & 4.26 \\
+\texttt{llama-3.3-70b} & 23.6\% & 0.1197 & 37.0\% & 0.3277 & 0.6673 & 0.2895 & 4.38 \\
+mimo-v2.5-pro & 26.4\% & 0.1073 & 33.2\% & 0.3282 & 0.6714 & 0.3075 & 4.50 \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+\noindent\textbf{Takeaway.} P2 is won by feasible closure plus useful final power, not by first-step feasibility alone; gemini-3.1-pro-preview's lead is therefore a repair-trajectory result rather than an anchoring artifact.
+
 \Needspace{14\baselineskip}
+\paragraph{P3 metrics and readout.}
+P3 starts from a corrupted trajectory. Success is final feasibility at the end of the recovery budget; recovery quality reports the objective quality among successful recoveries; first feasible identifies whether a model ever reaches a feasible state early in the recovery trace. Escape measures whether the model moves away from the known trap, cascade records whether the escape introduces a new coupled violation, dead-budget marks trajectories with no meaningful recovery action, and replan counts explicit reset or replanning behavior. These columns show that P3 is not ordinary repair: claude-4.6-sonnet is the clearest diagnostic row, with 96.8\% escape but only 0.6\% first-feasible and 16.0\% final success. It often notices that the raw history is wrong, but it rarely stabilizes back into a feasible design. deepseek-r1 and gpt-5.4 combine high escape with better final recovery; hunyuan-hy3-preview and mimo-v2.5-pro lead success through different trade-offs in recovery quality and cascade control.
+
 \begin{center}
 \captionof{table}{P3 full table. Columns separate recovery success, escape, cascade, dead-budget, and replanning behavior.}
 \label{tab:appendix_p3_full}
@@ -243,23 +251,28 @@ Mimo-V2.5 & 26.4\% & 0.1073 & 33.2\% & 0.3282 & 0.6714 & 0.3075 & 4.50 \\
 \toprule
 Model & Succ. & RecQ & First feas. & Escape & Cascade & Dead & Replan \\
 \midrule
-Hunyuan-Hy3 & 47.4\% & 0.4876 & 40.4\% & 77.6\% & 9.1\% & 25.3\% & 7.7\% \\
-Mimo-V2.5 & 45.5\% & 0.6263 & 41.0\% & 63.5\% & 4.0\% & 26.7\% & 17.9\% \\
-model_D & 42.9\% & 0.2708 & 22.4\% & 92.3\% & 26.4\% & 25.1\% & 26.3\% \\
-model_C & 42.3\% & 0.3723 & 26.3\% & 90.4\% & 21.3\% & 25.2\% & 6.4\% \\
-Gemini-3.1 & 37.2\% & 0.3194 & 26.9\% & 92.3\% & 50.7\% & 25.8\% & 10.9\% \\
-model_H & 35.3\% & 0.2868 & 23.1\% & 82.7\% & 27.1\% & 27.6\% & 57.7\% \\
-model_A & 30.1\% & 0.2612 & 22.4\% & 85.9\% & 12.7\% & 25.7\% & 49.4\% \\
-DeepSeek-V4 & 28.8\% & 0.1986 & 27.6\% & 90.4\% & 17.0\% & 24.3\% & 99.4\% \\
-\texttt{model_G} & 27.6\% & 0.1453 & 12.8\% & 94.9\% & 23.0\% & 25.6\% & 0.6\% \\
-\texttt{model_F} & 26.3\% & 0.1389 & 12.2\% & 69.2\% & 17.6\% & 26.6\% & 8.3\% \\
-model_E & 16.0\% & 0.0960 & 0.6\% & 96.8\% & 5.3\% & 25.7\% & 0.0\% \\
-\texttt{llama-3.3} & 3.2\% & 0.0926 & 2.6\% & 34.6\% & 3.7\% & 14.3\% & 0.0\% \\
+hunyuan-hy3-preview & 47.4\% & 0.4876 & 40.4\% & 77.6\% & 9.1\% & 25.3\% & 7.7\% \\
+mimo-v2.5-pro & 45.5\% & 0.6263 & 41.0\% & 63.5\% & 4.0\% & 26.7\% & 17.9\% \\
+deepseek-r1 & 42.9\% & 0.2708 & 22.4\% & 92.3\% & 26.4\% & 25.1\% & 26.3\% \\
+gpt-5.4 & 42.3\% & 0.3723 & 26.3\% & 90.4\% & 21.3\% & 25.2\% & 6.4\% \\
+gemini-3.1-pro-preview & 37.2\% & 0.3194 & 26.9\% & 92.3\% & 50.7\% & 25.8\% & 10.9\% \\
+deepseek-v3 & 35.3\% & 0.2868 & 23.1\% & 82.7\% & 27.1\% & 27.6\% & 57.7\% \\
+qwen3-max & 30.1\% & 0.2612 & 22.4\% & 85.9\% & 12.7\% & 25.7\% & 49.4\% \\
+deepseek-v4-pro & 28.8\% & 0.1986 & 27.6\% & 90.4\% & 17.0\% & 24.3\% & 99.4\% \\
+\texttt{qwen3.6-plus} & 27.6\% & 0.1453 & 12.8\% & 94.9\% & 23.0\% & 25.6\% & 0.6\% \\
+\texttt{o4-mini} & 26.3\% & 0.1389 & 12.2\% & 69.2\% & 17.6\% & 26.6\% & 8.3\% \\
+claude-4.6-sonnet & 16.0\% & 0.0960 & 0.6\% & 96.8\% & 5.3\% & 25.7\% & 0.0\% \\
+\texttt{llama-3.3-70b} & 3.2\% & 0.0926 & 2.6\% & 34.6\% & 3.7\% & 14.3\% & 0.0\% \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+\noindent\textbf{Takeaway.} P3 shows that escaping a corrupted trajectory is not the same as recovering: high escape with low success marks continuity or cascade failure, while successful recovery requires both reset and stabilization.
+
 \Needspace{14\baselineskip}
+\paragraph{P4 metrics and readout.}
+P4 removes search from the problem: all candidates are oracle-feasible before the model ranks them. Full Kendall Tau measures global order agreement with the oracle policy ranking; exact match requires the entire five-item order to be correct; top-1 and top-2 set accuracy measure whether the highest-priority choices are preserved; Pareto Tau isolates ranking consistency on Pareto-relevant comparisons; BARS emphasizes balanced-active policy-sensitive rows; parse and violation rates record formatting failures and attempts to alter fixed candidates. The table shows that P4 is not reducible to one ranking statistic. gpt-5.4 leads Full Tau, qwen3.6-plus is strongest on exact match, and gemini-3.1-pro-preview has a high BARS despite lower Tau, indicating that policy execution has multiple sub-behaviors rather than a single scalar notion of ``ranking skill.''
+
 \begin{center}
 \captionof{table}{P4 full table. Compact notation keeps ranking, Pareto, and formatting diagnostics in one table.}
 \label{tab:appendix_p4_full}
@@ -270,25 +283,27 @@ model_E & 16.0\% & 0.0960 & 0.6\% & 96.8\% & 5.3\% & 25.7\% & 0.0\% \\
 \toprule
 Model & Tau & Exact & Top1 & Top2 & Pareto & BARS & Parse / viol. \\
 \midrule
-model_C & 0.887 & 57.2\% & 83.0\% & 81.1\% & 1.000 & 0.6258 & 0.0\% / 0.0\% \\
-\texttt{model_G} & 0.877 & 66.3\% & 79.1\% & 83.4\% & 1.000 & 0.6912 & 0.0\% / 0.0\% \\
-model_H & 0.860 & 54.7\% & 77.4\% & 79.2\% & 0.984 & 0.5751 & 0.0\% / 0.8\% \\
-Mimo-V2.5 & 0.843 & 52.8\% & 72.3\% & 79.2\% & 0.993 & 0.6012 & 0.0\% / 0.3\% \\
-model_E & 0.840 & 56.6\% & 72.3\% & 79.2\% & 1.000 & 0.6781 & 0.0\% / 0.0\% \\
-Hunyuan-Hy3 & 0.839 & 50.9\% & 77.4\% & 79.9\% & 0.943 & 0.5610 & 0.0\% / 2.8\% \\
-model_A & 0.835 & 49.7\% & 78.0\% & 76.7\% & 0.983 & 0.5367 & 0.0\% / 0.8\% \\
-model_D & 0.833 & 56.0\% & 71.7\% & 76.7\% & 1.000 & 0.6835 & 0.0\% / 0.0\% \\
-Gemini-3.1 & 0.824 & 54.1\% & 71.7\% & 78.6\% & 0.975 & 0.6988 & 1.3\% / 1.3\% \\
-DeepSeek-V4 & 0.794 & 43.4\% & 60.4\% & 74.2\% & 0.977 & 0.5832 & 0.0\% / 1.2\% \\
-\texttt{model_F} & 0.780 & 50.0\% & 60.0\% & 72.0\% & 1.000 & 0.5988 & 0.0\% / 0.0\% \\
-\texttt{llama-3.3} & 0.714 & 34.0\% & 54.1\% & 65.4\% & 0.959 & 0.5386 & 0.0\% / 2.0\% \\
+gpt-5.4 & 0.887 & 57.2\% & 83.0\% & 81.1\% & 1.000 & 0.6258 & 0.0\% / 0.0\% \\
+\texttt{qwen3.6-plus} & 0.877 & 66.3\% & 79.1\% & 83.4\% & 1.000 & 0.6912 & 0.0\% / 0.0\% \\
+deepseek-v3 & 0.860 & 54.7\% & 77.4\% & 79.2\% & 0.984 & 0.5751 & 0.0\% / 0.8\% \\
+mimo-v2.5-pro & 0.843 & 52.8\% & 72.3\% & 79.2\% & 0.993 & 0.6012 & 0.0\% / 0.3\% \\
+claude-4.6-sonnet & 0.840 & 56.6\% & 72.3\% & 79.2\% & 1.000 & 0.6781 & 0.0\% / 0.0\% \\
+hunyuan-hy3-preview & 0.839 & 50.9\% & 77.4\% & 79.9\% & 0.943 & 0.5610 & 0.0\% / 2.8\% \\
+qwen3-max & 0.835 & 49.7\% & 78.0\% & 76.7\% & 0.983 & 0.5367 & 0.0\% / 0.8\% \\
+deepseek-r1 & 0.833 & 56.0\% & 71.7\% & 76.7\% & 1.000 & 0.6835 & 0.0\% / 0.0\% \\
+gemini-3.1-pro-preview & 0.824 & 54.1\% & 71.7\% & 78.6\% & 0.975 & 0.6988 & 1.3\% / 1.3\% \\
+deepseek-v4-pro & 0.794 & 43.4\% & 60.4\% & 74.2\% & 0.977 & 0.5832 & 0.0\% / 1.2\% \\
+\texttt{o4-mini} & 0.780 & 50.0\% & 60.0\% & 72.0\% & 1.000 & 0.5988 & 0.0\% / 0.0\% \\
+\texttt{llama-3.3-70b} & 0.714 & 34.0\% & 54.1\% & 65.4\% & 0.959 & 0.5386 & 0.0\% / 2.0\% \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+\noindent\textbf{Takeaway.} P4 ranking has multiple sub-behaviors: global order quality, exact endpoint order, top-choice preservation, and policy-sensitive BARS can diverge, which is why P4 is not reducible to one scalar preference score.
+
 \section{Split-Resolved Tables}
 
-This block checks that the main-paper claims are not driven by a single split. Each table reports the main stage headline plus one supporting diagnostic in a split-resolved view.
+This block checks that the main-paper claims are not driven by a single split. The P2 closure pattern and P4 non-monotonic ranking pattern remain visible across splits, while P3 contains genuine near ties that should be read with the confidence intervals in Appendix~\ref{tab:appendix_ci_table}. P1 uses matched partitions rather than DOI-disjoint source splits, so its split labels audit robustness rather than held-out generalization. The split-resolved and stage-gap tables use the frozen common-coverage split snapshot; later-added full-bank rows for hunyuan-hy3-preview, mimo-v2.5-pro, and deepseek-v4-pro are included in the main full tables but not imputed into split/stage-gap views. Exact split-invariant rows, such as \texttt{qwen3.6-plus} and claude-4.6-sonnet in P1, are retained as audit signals from the released snapshot. Each table reports the main stage headline plus one supporting diagnostic in a split-resolved view.
 
 \begin{table*}[t]
 \caption{Split and subtype reporting plan. The appendix presents split-resolved views as mechanism audits rather than as extra leaderboards.}
@@ -318,17 +333,15 @@ P4 & dev / test\_id / test\_ood Full Tau and Exact & balanced, performance-first
 \toprule
 Model & dev & test\_id & test\_ood \\
 \midrule
-model_A & 0.532 / 61.3\% & 0.622 / 70.0\% & 0.567 / 65.0\% \\
-model_B & 0.545 / 70.0\% & 0.525 / 66.2\% & 0.578 / 71.2\% \\
-\texttt{model_F} & 0.542 / 71.2\% & 0.509 / 70.0\% & 0.502 / 68.8\% \\
-model_D & 0.517 / 68.8\% & 0.512 / 66.2\% & 0.482 / 63.7\% \\
-model_C & 0.374 / 37.5\% & 0.469 / 47.5\% & 0.440 / 45.0\% \\
-model_H & 0.357 / 63.7\% & 0.385 / 65.0\% & 0.364 / 65.0\% \\
-\texttt{model_I} & 0.384 / 61.3\% & 0.378 / 63.7\% & 0.330 / 61.3\% \\
-\texttt{llama-3.3} & 0.362 / 61.3\% & 0.393 / 65.0\% & 0.328 / 61.3\% \\
-\texttt{model_G} & 0.306 / 61.3\% & 0.306 / 61.3\% & 0.306 / 61.3\% \\
-model_E & 0.207 / 57.5\% & 0.207 / 57.5\% & 0.207 / 57.5\% \\
-\texttt{model_J} & 0.207 / 23.8\% & 0.190 / 22.5\% & 0.191 / 22.5\% \\
+qwen3-max & 0.532 / 61.3\% & 0.622 / 70.0\% & 0.567 / 65.0\% \\
+gemini-3.1-pro-preview & 0.545 / 70.0\% & 0.525 / 66.2\% & 0.578 / 71.2\% \\
+\texttt{o4-mini} & 0.542 / 71.2\% & 0.509 / 70.0\% & 0.502 / 68.8\% \\
+deepseek-r1 & 0.517 / 68.8\% & 0.512 / 66.2\% & 0.482 / 63.7\% \\
+gpt-5.4 & 0.374 / 37.5\% & 0.469 / 47.5\% & 0.440 / 45.0\% \\
+deepseek-v3 & 0.357 / 63.7\% & 0.385 / 65.0\% & 0.364 / 65.0\% \\
+\texttt{llama-3.3-70b} & 0.362 / 61.3\% & 0.393 / 65.0\% & 0.328 / 61.3\% \\
+\texttt{qwen3.6-plus} & 0.306 / 61.3\% & 0.306 / 61.3\% & 0.306 / 61.3\% \\
+claude-4.6-sonnet & 0.207 / 57.5\% & 0.207 / 57.5\% & 0.207 / 57.5\% \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -344,17 +357,15 @@ model_E & 0.207 / 57.5\% & 0.207 / 57.5\% & 0.207 / 57.5\% \\
 \toprule
 Model & dev & test\_id & test\_ood \\
 \midrule
-Gemini-3.1 & 0.4017 / 98.4\% & 0.4324 / 90.0\% & 0.3672 / 97.1\% \\
-model_D & 0.2560 / 62.5\% & 0.3049 / 82.5\% & 0.2078 / 65.4\% \\
-model_E & 0.2199 / 54.7\% & 0.3095 / 75.0\% & 0.2245 / 62.5\% \\
-\texttt{model_G} & 0.2355 / 57.8\% & 0.2316 / 65.0\% & 0.1786 / 61.5\% \\
-model_A & 0.2182 / 50.0\% & 0.2486 / 60.0\% & 0.1612 / 57.7\% \\
-model_H & 0.2052 / 48.4\% & 0.1761 / 47.5\% & 0.1189 / 40.4\% \\
-\texttt{model_F} & 0.1587 / 42.2\% & 0.1220 / 35.0\% & 0.1655 / 46.2\% \\
-model_C & 0.0991 / 26.6\% & 0.0541 / 12.5\% & 0.1841 / 51.0\% \\
-\texttt{llama-3.3} & 0.1781 / 43.8\% & 0.1046 / 32.5\% & 0.0896 / 34.6\% \\
-\texttt{model_I} & 0.0696 / 14.1\% & 0.0666 / 22.5\% & 0.1016 / 35.6\% \\
-\texttt{model_J} & 0.0080 / 1.6\% & 0.0000 / 0.0\% & 0.0021 / 1.0\% \\
+gemini-3.1-pro-preview & 0.4017 / 98.4\% & 0.4324 / 90.0\% & 0.3672 / 97.1\% \\
+deepseek-r1 & 0.2560 / 62.5\% & 0.3049 / 82.5\% & 0.2078 / 65.4\% \\
+claude-4.6-sonnet & 0.2199 / 54.7\% & 0.3095 / 75.0\% & 0.2245 / 62.5\% \\
+\texttt{qwen3.6-plus} & 0.2355 / 57.8\% & 0.2316 / 65.0\% & 0.1786 / 61.5\% \\
+qwen3-max & 0.2182 / 50.0\% & 0.2486 / 60.0\% & 0.1612 / 57.7\% \\
+deepseek-v3 & 0.2052 / 48.4\% & 0.1761 / 47.5\% & 0.1189 / 40.4\% \\
+\texttt{o4-mini} & 0.1587 / 42.2\% & 0.1220 / 35.0\% & 0.1655 / 46.2\% \\
+gpt-5.4 & 0.0991 / 26.6\% & 0.0541 / 12.5\% & 0.1841 / 51.0\% \\
+\texttt{llama-3.3-70b} & 0.1781 / 43.8\% & 0.1046 / 32.5\% & 0.0896 / 34.6\% \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -370,15 +381,15 @@ model_C & 0.0991 / 26.6\% & 0.0541 / 12.5\% & 0.1841 / 51.0\% \\
 \toprule
 Model & dev & test\_id & test\_ood \\
 \midrule
-model_D & 45.3\% / 0.3103 & 37.5\% / 0.2105 & 44.2\% / 0.2708 \\
-model_C & 48.4\% / 0.4322 & 40.0\% / 0.3816 & 36.5\% / 0.2841 \\
-Gemini-3.1 & 43.8\% / 0.3770 & 32.5\% / 0.2917 & 32.7\% / 0.2660 \\
-model_H & 42.2\% / 0.2368 & 27.5\% / 0.3571 & 32.7\% / 0.3068 \\
-model_A & 39.1\% / 0.3182 & 22.5\% / 0.1912 & 25.0\% / 0.2444 \\
-\texttt{model_G} & 28.1\% / 0.1774 & 27.5\% / 0.1389 & 26.9\% / 0.1100 \\
-\texttt{model_F} & 28.1\% / 0.1556 & 30.0\% / 0.1667 & 21.2\% / 0.0972 \\
-model_E & 20.3\% / 0.1270 & 10.0\% / 0.0513 & 15.4\% / 0.0918 \\
-\texttt{llama-3.3} & 4.7\% / 0.1429 & 0.0\% / 0.0000 & 3.8\% / 0.1429 \\
+deepseek-r1 & 45.3\% / 0.3103 & 37.5\% / 0.2105 & 44.2\% / 0.2708 \\
+gpt-5.4 & 48.4\% / 0.4322 & 40.0\% / 0.3816 & 36.5\% / 0.2841 \\
+gemini-3.1-pro-preview & 43.8\% / 0.3770 & 32.5\% / 0.2917 & 32.7\% / 0.2660 \\
+deepseek-v3 & 42.2\% / 0.2368 & 27.5\% / 0.3571 & 32.7\% / 0.3068 \\
+qwen3-max & 39.1\% / 0.3182 & 22.5\% / 0.1912 & 25.0\% / 0.2444 \\
+\texttt{qwen3.6-plus} & 28.1\% / 0.1774 & 27.5\% / 0.1389 & 26.9\% / 0.1100 \\
+\texttt{o4-mini} & 28.1\% / 0.1556 & 30.0\% / 0.1667 & 21.2\% / 0.0972 \\
+claude-4.6-sonnet & 20.3\% / 0.1270 & 10.0\% / 0.0513 & 15.4\% / 0.0918 \\
+\texttt{llama-3.3-70b} & 4.7\% / 0.1429 & 0.0\% / 0.0000 & 3.8\% / 0.1429 \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -394,22 +405,22 @@ model_E & 20.3\% / 0.1270 & 10.0\% / 0.0513 & 15.4\% / 0.0918 \\
 \toprule
 Model & dev & test\_id & test\_ood \\
 \midrule
-model_C & 0.886 / 53.8\% & 0.900 / 58.3\% & 0.873 / 66.7\% \\
-\texttt{model_G} & 0.867 / 65.6\% & 0.870 / 57.5\% & 0.920 / 80.0\% \\
-model_H & 0.888 / 57.0\% & 0.783 / 47.2\% & 0.867 / 56.7\% \\
-model_E & 0.832 / 59.1\% & 0.833 / 41.7\% & 0.873 / 66.7\% \\
-model_A & 0.832 / 49.5\% & 0.850 / 47.2\% & 0.827 / 53.3\% \\
-model_D & 0.834 / 57.0\% & 0.800 / 44.4\% & 0.867 / 66.7\% \\
-Gemini-3.1 & 0.826 / 55.9\% & 0.778 / 38.9\% & 0.873 / 66.7\% \\
-\texttt{model_F} & 0.857 / 57.1\% & 0.750 / 44.4\% & 0.857 / 71.4\% \\
-\texttt{llama-3.3} & 0.720 / 35.5\% & 0.667 / 22.2\% & 0.753 / 43.3\% \\
+gpt-5.4 & 0.886 / 53.8\% & 0.900 / 58.3\% & 0.873 / 66.7\% \\
+\texttt{qwen3.6-plus} & 0.867 / 65.6\% & 0.870 / 57.5\% & 0.920 / 80.0\% \\
+deepseek-v3 & 0.888 / 57.0\% & 0.783 / 47.2\% & 0.867 / 56.7\% \\
+claude-4.6-sonnet & 0.832 / 59.1\% & 0.833 / 41.7\% & 0.873 / 66.7\% \\
+qwen3-max & 0.832 / 49.5\% & 0.850 / 47.2\% & 0.827 / 53.3\% \\
+deepseek-r1 & 0.834 / 57.0\% & 0.800 / 44.4\% & 0.867 / 66.7\% \\
+gemini-3.1-pro-preview & 0.826 / 55.9\% & 0.778 / 38.9\% & 0.873 / 66.7\% \\
+\texttt{o4-mini} & 0.857 / 57.1\% & 0.750 / 44.4\% & 0.857 / 71.4\% \\
+\texttt{llama-3.3-70b} & 0.720 / 35.5\% & 0.667 / 22.2\% & 0.753 / 43.3\% \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 \section{Reasoning Coverage and Model Style}
 
-This block remains secondary evidence rather than a substitute for the model-by-model tables. The point is not to claim that reasoning models are globally stronger, but to show that explicit reasoning or thinking coverage helps some workflow regimes more than others and still does not erase stage dissociation.
+This block remains secondary evidence rather than a substitute for the model-by-model tables. It is a negative control for the response-control profile account: if the paper were only measuring ``thinking model'' status, the stage patterns should collapse under this grouping. Instead, explicit reasoning or thinking coverage helps some workflow regimes more than others and still does not erase stage dissociation.
 
 \begin{table*}[t]
 \caption{Reasoning/thinking run-mode audit for the 12 complete P1--P4 model runs. The tag is a reporting aid, not a causal label. It separates public model capability from the actual API controls recorded in our manifests.}
@@ -422,18 +433,18 @@ This block remains secondary evidence rather than a substitute for the model-by-
 \toprule
 Model & Public / run evidence & Tag & Caveat \\
 \midrule
-\texttt{model_F} & OpenAI documents it as a reasoning model~\citep{openai2026model_F} & \texttt{T} & clean public reasoning-labeled row \\
-Gemini-3.1 & Google documents internal thinking / thought-summary support~\citep{google2026geminithinking} & \texttt{T} & grouped by public thinking support rather than hidden implementation details \\
-model_D & DeepSeek positions R1 as a reasoning-oriented model~\citep{deepseek2025r1} & \texttt{T} & key within-family contrast is R1 versus V3 \\
-Hunyuan-Hy3 & public provider pages describe Hy3 as a fast/slow or multi-mode reasoning model~\citep{siliconflow2026hy3preview} & \texttt{T} & run manifests are retained as the source of truth for provider settings \\
-model_K & DeepSeek documents V4 as supporting Thinking and Non-Thinking modes~\citep{deepseek2026v4preview} & \texttt{T-off} & our run manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
-model_L & Xiaomi Mimo API row treated as a thinking-capable provider model in the run plan & \texttt{T-off} & our run manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
-model_A & Alibaba documents Qwen Max as hybrid-thinking with thinking disabled by default~\citep{alibaba2026qwenDeepThinking} & \texttt{D} & our DashScope calls used the provider default; no explicit \texttt{enable\_thinking=True} override was passed \\
-\texttt{model_G} & Qwen documents the model as reasoning-capable and shows explicit \texttt{enable\_thinking=True} usage~\citep{qwen2026model_G} & \texttt{D} & our DashScope run used the provider-default call without an explicit \texttt{enable\_thinking} flag \\
-model_C & frontier GPT row with provider-default reasoning effort in our logs & -- & not treated as a clean public reasoning-only label for grouping \\
-model_H & no reasoning-first grouping used here & -- & used as the within-family non-R1 contrast \\
-model_E & no reasoning-first grouping used here & -- & grouped by observed profile, not by hidden implementation details \\
-\texttt{llama-3.3} & no reasoning-first grouping used here & -- & open model baseline row in the complete P1--P4 roster \\
+\texttt{o4-mini} & OpenAI documents it as a reasoning model~\citep{openai2026o4mini} & \texttt{T} & clean public reasoning-labeled row \\
+gemini-3.1-pro-preview & Google documents internal thinking / thought-summary support~\citep{google2026geminithinking} & \texttt{T} & grouped by public thinking support rather than hidden implementation details \\
+deepseek-r1 & DeepSeek documentation positions R1 as a reasoning-oriented model~\citep{deepseek2025r1} & \texttt{T} & key within-family contrast is R1 versus V3 \\
+hunyuan-hy3-preview & public provider pages describe Hy3 as a fast/slow or multi-mode reasoning model~\citep{siliconflow2026hy3preview} & \texttt{T} & run manifests are retained as the source of truth for provider settings \\
+deepseek-v4-pro & DeepSeek documentation describes V4 as supporting Thinking and Non-Thinking modes~\citep{deepseek2026v4preview} & \texttt{T-off} & our run manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
+mimo-v2.5-pro & Xiaomi Mimo API row treated as a thinking-capable provider model in the run plan & \texttt{T-off} & our run manifest records \texttt{thinking=disabled} for JSON/action-schema stability \\
+qwen3-max & Alibaba documents Qwen3-Max as hybrid-thinking with thinking disabled by default~\citep{alibaba2026qwenDeepThinking} & \texttt{D} & our DashScope calls used the provider default; no explicit \texttt{enable\_thinking=True} override was passed \\
+\texttt{qwen3.6-plus} & Qwen documentation describes the model as reasoning-capable and shows explicit \texttt{enable\_thinking=True} usage~\citep{qwen2026qwen36plus} & \texttt{D} & our DashScope run used the provider-default call without an explicit \texttt{enable\_thinking} flag \\
+gpt-5.4 & frontier GPT row with provider-default reasoning effort in our logs & -- & not treated as a clean public reasoning-only label for grouping \\
+deepseek-v3 & no reasoning-first grouping used here & -- & used as the within-family non-R1 contrast \\
+claude-4.6-sonnet & no reasoning-first grouping used here & -- & grouped by observed profile, not by hidden implementation details \\
+\texttt{llama-3.3-70b} & no reasoning-first grouping used here & -- & open model baseline row in the complete P1--P4 roster \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -470,15 +481,15 @@ P4 Full Tau & 0.819 & 0.836 \\
 \toprule
 Contrast & First stronger & Second stronger & Isolated contrast \\
 \midrule
-model_D vs model_H & P1 / P2 / P3 & P4 & within-family evidence that reasoning-style gains cluster in certification and closure rather than ranking \\
-Gemini vs model_C & P2 & P4 & closure-versus-ranking split across two frontier systems \\
-\texttt{model_F} vs model_C & P1 / weakly on P2 & P3 / P4 & explicit reasoning coverage does not automatically dominate recovery or ranking \\
+deepseek-r1 vs deepseek-v3 & P1 / P2 / P3 & P4 & within-family evidence that reasoning-style gains cluster in certification and closure rather than ranking \\
+gemini-3.1-pro-preview vs gpt-5.4 & P2 & P4 & closure-versus-ranking split across two frontier systems \\
+\texttt{o4-mini} vs gpt-5.4 & P1 / weakly on P2 & P3 / P4 & explicit reasoning coverage does not automatically dominate recovery or ranking \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 \begin{table*}[t]
-\caption{Why model_D remains unusually strong on selected subsets.}
+\caption{Why deepseek-r1 remains unusually strong on selected subsets.}
 \label{tab:appendix_r1_capability}
 \centering
 \scriptsize
@@ -488,19 +499,19 @@ Gemini vs model_C & P2 & P4 & closure-versus-ranking split across two frontier s
 \toprule
 Diagnostic & R1 score & Stronger than & Rewards & Complementary loss \\
 \midrule
-P1 headline & 0.504 & model_C, model_H, model_G, Claude & balanced certification & still below model_A and Gemini \\
-P2a first feasible & 29.8\% & Gemini and all but model_G & initial anchoring & P2b headline still below Gemini and Claude \\
-P2c improvement rate & 0.7901 & effectively tied with Gemini & sustained trajectory improvement & AUC still below Gemini \\
-P2b headline & 0.2413 & most of roster except Gemini and Claude & closure under feedback & not the top endpoint model \\
-P3-Success & 42.9\% & current point-estimate leader & corrupted-state recovery & RecoveryQuality still below model_C \\
-P4 Full Tau & 0.833 & mid-table only & relative structural ranking & clearly below model_C, model_G, and model_H \\
+P1 headline & 0.504 & gpt-5.4, deepseek-v3, qwen3.6-plus, claude-4.6-sonnet & balanced certification & still below qwen3-max and gemini-3.1-pro-preview \\
+P2a first feasible & 29.8\% & gemini-3.1-pro-preview and all but qwen3.6-plus & initial anchoring & P2b headline still below gemini-3.1-pro-preview and claude-4.6-sonnet \\
+P2c improvement rate & 0.7901 & effectively tied with gemini-3.1-pro-preview & sustained trajectory improvement & AUC still below gemini-3.1-pro-preview \\
+P2b headline & 0.2413 & most of roster except gemini-3.1-pro-preview and claude-4.6-sonnet & closure under feedback & not the top endpoint model \\
+P3-Success & 42.9\% & current point-estimate leader & corrupted-state recovery & RecoveryQuality still below gpt-5.4 \\
+P4 Full Tau & 0.833 & mid-table only & relative structural ranking & clearly below gpt-5.4, qwen3.6-plus, and deepseek-v3 \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 \section{Stage-Gap Diagnostics}
 
-The stage-optimal gap table quantifies how far each monolithic model remains from the oracle-routed stage-wise frontier. Gap is the mean of per-stage deficits after normalizing each stage by the corresponding oracle value.
+The stage-optimal gap table quantifies how far each monolithic model remains from the oracle-routed stage-wise frontier. Gap is the mean of per-stage deficits after normalizing each stage by the corresponding oracle value. This table uses the frozen common-coverage split snapshot rather than the later expanded full-bank rows, so hunyuan-hy3-preview, mimo-v2.5-pro, and deepseek-v4-pro are excluded from this particular diagnostic. The point is system-level rather than leaderboard-level: if every single model remains far from the stage-wise envelope, then a verifier-gated, stage-routed engineering agent has headroom that a monolithic model choice cannot remove.
 
 \begin{table*}[t]
 \caption{Gap to the stage-wise envelope.}
@@ -513,21 +524,21 @@ The stage-optimal gap table quantifies how far each monolithic model remains fro
 \toprule
 Model & Gap to stage-wise envelope & Largest deficit \\
 \midrule
-Gemini-3.1 & 0.062 & P3 (0.134) \\
-model_D & 0.141 & P2 (0.382) \\
-model_A & 0.214 & P2 (0.499) \\
-model_C & 0.232 & P2 (0.659) \\
-model_H & 0.291 & P2 (0.599) \\
-\texttt{model_F} & 0.302 & P2 (0.603) \\
-\texttt{model_G} & 0.327 & P1 (0.466) \\
-model_E & 0.427 & P1 (0.640) \\
-\texttt{llama-3.3} & 0.546 & P3 (0.925) \\
+gemini-3.1-pro-preview & 0.062 & P3 (0.134) \\
+deepseek-r1 & 0.141 & P2 (0.382) \\
+qwen3-max & 0.214 & P2 (0.499) \\
+gpt-5.4 & 0.232 & P2 (0.659) \\
+deepseek-v3 & 0.291 & P2 (0.599) \\
+\texttt{o4-mini} & 0.302 & P2 (0.603) \\
+\texttt{qwen3.6-plus} & 0.327 & P1 (0.466) \\
+claude-4.6-sonnet & 0.427 & P1 (0.640) \\
+\texttt{llama-3.3-70b} & 0.546 & P3 (0.925) \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 \clearpage
-\input{generated/appendix_metric_formulas.tex}
+\input{generated/appendix_extended_related_discussion.tex}
 
 \clearpage
 \input{generated/appendix_cmaes_baseline.tex}
@@ -540,6 +551,7 @@ model_E & 0.427 & P1 (0.640) \\
 
 \clearpage
 \section{Selection--Generation Isomorphism Audit}
+\label{sec:appendix_isomorphic}
 
 The following tables document the frozen cleanup protocol behind the SG-gap analysis in the main text. Residual failures after one cleanup pass and at most one targeted rerun are reported as final outcomes rather than recursively cleaned away.
 

@@ -1,0 +1,18 @@
+\section{Representative Failure Cases}
+\label{sec:failure_cases}
+
+The following notes give one auditable failure case per probe. They are not additional metrics; they make the response-control interpretation concrete and show what the probe-specific scores count as failure. We use prose rather than a table because the cases contain long task identifiers and multi-sentence readouts.
+
+\paragraph{P1: optimistic over-proposal.}
+In audit case \path{p1::dev::infeasible_hard_conflict::0000::s42}, the gold action is \texttt{declare\_infeasible}, but the model chooses \texttt{propose\_design}. The verifier-side label makes the failure observable: continuation is counted as a spurious propose and unsafe entry into search. This is an action-prior failure. P1 is therefore not rewarding raw willingness to generate a design; it rewards disciplined entry control.
+
+\paragraph{P2: over-edit / wandering.}
+In the macro-unimorph tip-mass repair case derived from DOI 10.3390/mi14020421 (case 0016), the repair trace makes large moves across violation families instead of preserving the feasible neighborhood. The oracle trace shows oscillation and failure to re-enter feasibility within budget; over-edit and low directed-repair scores capture this behavior. This is an edit-style failure: the model can react to feedback, but the reaction is too global and can chase one constraint while breaking another.
+
+\paragraph{P3: continuity trap.}
+In audit case \path{p3::dev::0093::0000}, the exposed history has already moved substrate thickness in a harmful direction. Continuity-biased runs keep treating that corrupted history as trusted state. P3 separates this into escape, cascade, dead-budget, and final-success fields: merely noticing the trap is not enough if the model then cascades or fails to return to a feasible design. This is why the state-summary intervention is diagnostic; it tests whether verifier-authored state isolation reduces raw-history continuity bias.
+
+\paragraph{P4: policy mismatch.}
+In audit case \path{diagbench::test_id::p4::0032}, all candidates are physically feasible, but the model ranks a local trade-off neighborhood as \(B>C>E>A>D\) while the oracle policy ranks \(C>E>D>A>B\). The resulting full Kendall tau is \(-1.0\) and the dominance-violation rate is \(1.0\). The error is therefore not search failure. It is preference-execution failure: the model does not follow the policy-conditioned ordering over feasible designs.
+
+Together, these cases clarify why DiagBench reports stage-specific metrics instead of a single endpoint score. A P1 over-proposal can look productive but is unsafe triage; a P2 over-edit can contain valid engineering arithmetic but still destroy feasibility; a P3 continuity trap can escape one violation and cascade into another; and a P4 policy mismatch can occur after the physical verifier has already accepted every candidate.

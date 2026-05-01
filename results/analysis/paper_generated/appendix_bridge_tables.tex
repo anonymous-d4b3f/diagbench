@@ -1,0 +1,35 @@
+\begin{table*}[t]
+\caption{Full TMD P1 bridge leaderboard. This table makes cross-domain certification auditable rather than leaving bridge portability at a single scalar.}
+\label{tab:appendix_tmd_p1_full}
+\centering
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Model & Acc & F1-3class & ACS & MDS & IDS & WAR & aligned \\
+\midrule
+model_B & 100.0\% & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+model_A & 75.0\% & 0.6673 & 0.7358 & 0.7273 & 0.2222 & 0.2222 & 0.6315 \\
+model_E & 75.0\% & 0.6042 & 0.7391 & 1.0000 & 0.0000 & 0.0000 & 0.6145 \\
+model_H & 75.0\% & 0.5810 & 0.6087 & 1.0000 & 0.0000 & 0.0000 & 0.5791 \\
+model_C & 69.4\% & 0.5282 & 0.5886 & 0.8182 & 0.0000 & 0.0000 & 0.5212 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\caption{Full TMD P2 bridge leaderboard. This table separates beneficial first moves, final repair quality, and completion under the fixed four-step bridge budget.}
+\label{tab:appendix_tmd_p2_full}
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Model & FirstStepBeneficial & FinalRepairQ & Feasible@4 & RepairGap & BestUtilityGain & mean queries \\
+\midrule
+model_B & 100.0\% & 1.0138 & 100.0\% & +0.0000 & 1.3556 & 1.00 \\
+model_E & 83.3\% & 0.8300 & 83.3\% & +0.0000 & 1.3413 & 1.50 \\
+model_H & 91.7\% & 0.6513 & 66.7\% & +0.2500 & 0.7821 & 2.00 \\
+model_A & 75.0\% & 0.4282 & 50.0\% & +0.2500 & 0.5891 & 2.75 \\
+model_C & 8.3\% & 0.2120 & 25.0\% & -0.1667 & 0.2865 & 3.83 \\
+\bottomrule
+\end{tabular}
+\end{table*}

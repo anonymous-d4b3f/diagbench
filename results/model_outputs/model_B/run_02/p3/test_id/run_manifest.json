@@ -4,11 +4,13 @@
     "artifacts/runs/gemini31propreview_latest_p2_p3_p4_20260416/p3/test_id/p3_trajectories.jsonl"
   ],
   "code_commit_hash": "55ed1f84e0d605a89605f7f2908d1d5e71499ddd",
+  "endpoint": "redacted_for_anonymous_review",
   "input_manifest_hash": "ba1937574595d3b9d2fc1ad0102393ec78ea00f40fdd851e1f9fd7eec379db0e",
   "jitter_policy": {
     "enabled": false,
     "scale": 0.0
   },
+  "max_output_tokens": "provider_default_4096_to_8192",
   "model_config": {
     "max_tokens": 1024,
     "model_id": "gemini-3.1-pro-preview",
@@ -19,12 +21,17 @@
   },
   "model_endpoint": "https://aihubmix.com/v1",
   "model_name": "gemini-3.1-pro-preview",
+  "model_version": "anonymized_review_snapshot",
   "output_artifact_path": "artifacts/runs/gemini31propreview_latest_p2_p3_p4_20260416/p3/test_id/p3_results.jsonl",
+  "provider": "anonymized_api_provider",
+  "raw_log_policy": "per-task JSONL outputs and run manifests preserve the paper snapshot",
   "retry_policy": {
     "backoff_s": 0.0,
     "max_retries": 0
   },
   "run_id": "gemini-3.1-pro-preview::ba1937574595",
+  "run_manifest_schema": "diagbench_release_run_manifest_v1",
+  "snapshot_note": "Model names and providers are anonymized during review; exact score reproduction may drift for closed API models.",
   "solver_config_version": "iterative_solver_v1",
   "solver_policy": {
     "action_schema_version": "action_schema_v2",
@@ -35,7 +42,8 @@
   "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
   "system_prompt_version": "aihubmix_iterative_v1",
   "task_bank_path": "data/p3_v3r1/p3_test_id_tasks.jsonl",
-  "task_bank_version": "p3_v3r1",
+  "task_bank_version": "release_v1_final",
+  "temperature": 0.0,
   "timeout_policy": {
     "hard_timeout_s": 15.0,
     "request_timeout_s": 10.0

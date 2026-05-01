@@ -1,9 +1,18 @@
 {
+  "complete": true,
+  "endpoint": "redacted_for_anonymous_review",
+  "max_output_tokens": "provider_default_4096_to_8192",
   "model_label": "model_I",
-  "split": "test_id",
+  "model_version": "anonymized_review_snapshot",
   "n_done": 80,
   "n_total": 80,
+  "provider": "anonymized_api_provider",
+  "raw_log_policy": "per-task JSONL outputs and run manifests preserve the paper snapshot",
+  "retry_policy": "transient transport, parse, and truncation failures are logged; targeted reruns are retained under retries/",
+  "run_manifest_schema": "diagbench_release_run_manifest_v1",
+  "snapshot_note": "Model names and providers are anonymized during review; exact score reproduction may drift for closed API models.",
+  "split": "test_id",
   "started_at": "2026-04-13T16:40:17.868293+00:00",
-  "updated_at": "2026-04-13T16:43:32.744218+00:00",
-  "complete": true
+  "temperature": 0.0,
+  "updated_at": "2026-04-13T16:43:32.744218+00:00"
 }

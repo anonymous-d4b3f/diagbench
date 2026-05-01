@@ -1,6 +1,6 @@
-# Circuit Mixed Pilot P1-P3 Results
+# Circuit Audit P1-P3 Results
 
-Task policy: P1/P2 use `circuit_pilot_v3_1`; P3 uses `circuit_pilot_v3`; P4 is not rerun in this update.
+This paper-facing analysis reports the final circuit audit P1--P3 scores. P4 ranking scores are reported separately in the circuit headline tables and generated paper outputs.
 
 ## Headline Metrics
 

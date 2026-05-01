@@ -1,0 +1,41 @@
+\subsection{Selection--Generation Isomorphism Audit}
+
+This audit bank tests whether the same underlying feasible design remains accessible when the response regime changes. We construct 46 probe groups from the hard/medium P2--P4 overlap and instantiate each group in three matched forms: \textbf{A-selection} (pick the one feasible candidate from a five-way pool), \textbf{B-generation} (synthesize a feasible candidate from a near-feasible seed), and \textbf{C-completion} (fill in two masked variables of a gold feasible design). We freeze the protocol at one cleanup pass plus at most one targeted rerun for malformed outputs; residual failures after that pass are reported as final failures rather than recursively cleaned away.
+
+\begin{table*}[t]
+\caption{Isomorphic probe results after one cleanup pass and at most one targeted rerun. Success rates are group-level percentages over 46 probe groups. SG-gap is A-selection minus B-generation. Gemini remains partially parse-limited only on B-generation; all other model/form cells are parse-clean after the frozen cleanup protocol.}
+\label{tab:appendix_isomorphic_probe}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{p{30mm}ccccccc}
+\toprule
+Model & A-sel. & B-gen. & C-comp. & SG-gap & Parse-B & Lat. (s) & Bad rows \\
+\midrule
+model_E & 41.3\% & 4.3\% & 17.4\% & 37.0 pts & 100.0\% & 18.1 & 0 \\
+model_C & 32.6\% & 6.5\% & 21.7\% & 26.1 pts & 100.0\% & 2.4 & 0 \\
+model_B & 65.2\% & 4.3\% & 30.4\% & 60.9 pts & 41.3\% & 29.8 & 27 \\
+\texttt{model_G} & 52.2\% & 8.7\% & 15.2\% & 43.5 pts & 100.0\% & 70.0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\caption{Protocol log for the isomorphic probe reruns. Residual bad rows after the first targeted rerun are treated as part of the measured behavior, not recursively retried until clean.}
+\label{tab:appendix_isomorphic_protocol}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{p{28mm}Y p{28mm}Y}
+\toprule
+Model & First-pass issue & Final residual after one rerun & Readout \\
+\midrule
+model_C & no malformed-output cleanup needed & 0 bad rows & stable baseline; all A/B/C cells remain parse-clean \\
+model_E & transient transport failures in the first pass, cleaned once & 0 bad rows & clean selector after one repair pass; low B-generation remains a capability result, not a format artifact \\
+model_B & first pass mixed timeouts and malformed JSON & 27 bad rows, all B-generation & residual failures are no longer timeout-dominated; they remain half-written JSON under the hardest six-variable generation form \\
+\texttt{model_G} & four timeout rows in the first pass & 0 bad rows & fully clean after one repair pass, but still by far the slowest model in the audit \\
+\bottomrule
+\end{tabularx}
+\end{table*}

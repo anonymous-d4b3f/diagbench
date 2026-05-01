@@ -4,11 +4,13 @@
     "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/dev/p3_trajectories.jsonl"
   ],
   "code_commit_hash": "4907afa8ab9dc44b0992944508a4465b31bdcb74",
+  "endpoint": "redacted_for_anonymous_review",
   "input_manifest_hash": "c415482dafdc145820a9adbbb15f969ea076e48a31b806384b35c5a22bd5707f",
   "jitter_policy": {
     "enabled": false,
     "scale": 0.0
   },
+  "max_output_tokens": "provider_default_4096_to_8192",
   "model_config": {
     "max_tokens": 512,
     "model_id": "model_L",
@@ -21,12 +23,17 @@
   },
   "model_endpoint": "https://api.xiaomimimo.com/v1",
   "model_name": "model_L",
+  "model_version": "anonymized_review_snapshot",
   "output_artifact_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/dev/p3_results.jsonl",
+  "provider": "anonymized_api_provider",
+  "raw_log_policy": "per-task JSONL outputs and run manifests preserve the paper snapshot",
   "retry_policy": {
     "backoff_s": 0.0,
     "max_retries": 0
   },
   "run_id": "model_L::c415482dafdc",
+  "run_manifest_schema": "diagbench_release_run_manifest_v1",
+  "snapshot_note": "Model names and providers are anonymized during review; exact score reproduction may drift for closed API models.",
   "solver_config_version": "iterative_solver_v1",
   "solver_policy": {
     "action_schema_version": "action_schema_v2",
@@ -37,7 +44,8 @@
   "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
   "system_prompt_version": "xiaomi_mimo_iterative_v1",
   "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/data/p3_v3r1/p3_dev_tasks.jsonl",
-  "task_bank_version": "p3_v3r1",
+  "task_bank_version": "release_v1_final",
+  "temperature": 0.0,
   "timeout_policy": {
     "hard_timeout_s": 270.0,
     "request_timeout_s": 180.0

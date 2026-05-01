@@ -4,11 +4,13 @@
     "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/model_M/retries/error_retry_20260427/p2_v3r1/test_ood/chunk_0018/main_trajectories.jsonl"
   ],
   "code_commit_hash": "4907afa8ab9dc44b0992944508a4465b31bdcb74",
+  "endpoint": "redacted_for_anonymous_review",
   "input_manifest_hash": "bb04da65e8745eac394e9ed777aa01d84de361a27b7a093bb9fc3997d4e1fa3b",
   "jitter_policy": {
     "enabled": false,
     "scale": 0.0
   },
+  "max_output_tokens": "provider_default_4096_to_8192",
   "model_config": {
     "max_tokens": 4096,
     "model_id": "hy3-preview",
@@ -21,12 +23,17 @@
   },
   "model_endpoint": "https://tokenhub.tencentmaas.com/v1",
   "model_name": "hy3-preview",
+  "model_version": "anonymized_review_snapshot",
   "output_artifact_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/model_M/retries/error_retry_20260427/p2_v3r1/test_ood/chunk_0018/main_results.jsonl",
+  "provider": "anonymized_api_provider",
+  "raw_log_policy": "per-task JSONL outputs and run manifests preserve the paper snapshot",
   "retry_policy": {
     "backoff_s": 0.0,
     "max_retries": 0
   },
   "run_id": "hy3-preview::bb04da65e874",
+  "run_manifest_schema": "diagbench_release_run_manifest_v1",
+  "snapshot_note": "Model names and providers are anonymized during review; exact score reproduction may drift for closed API models.",
   "solver_config_version": "iterative_solver_v1",
   "solver_policy": {
     "action_schema_version": "action_schema_v2",
@@ -37,7 +44,8 @@
   "system_prompt_hash": "c5d55a6b69fa0ed26effc8d04788d58f1d56e420846fd2eeecc55b22a1bbb476",
   "system_prompt_version": "hunyuan_tokenhub_iterative_v1",
   "task_bank_path": "[WORKSPACE]/[REDACTED]/VEHBench-DiagBench/artifacts/runs/full_20260427_model_M_p1_p4/_retry_task_banks/error_retry_20260427/p2_v3r1/test_ood/chunk_0018/p2_v3r1__test_ood__retry_chunk_0018.jsonl",
-  "task_bank_version": "diagbench_p2_task_bank_v3r1",
+  "task_bank_version": "release_v1_final",
+  "temperature": 0.0,
   "timeout_policy": {
     "hard_timeout_s": 360.0,
     "request_timeout_s": 240.0

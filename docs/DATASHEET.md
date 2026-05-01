@@ -33,7 +33,7 @@
 
 - Data license: CC-BY-4.0.
 - Code license: MIT.
-- Anonymous review release: `[anonymous URL]`.
+- Anonymous review release: `https://anonymous.4open.science/r/diagbench-734D/`.
 
 ## Maintenance
 

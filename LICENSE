@@ -1,2 +1,7 @@
-DiagBench uses a dual license: MIT for code and CC-BY-4.0 for data.
-See LICENSE-CODE and LICENSE-DATA for the full terms.
+DiagBench uses a dual license.
+
+Code is released under the MIT License. See `LICENSE-CODE` for the complete text.
+
+Data, task banks, prompts, anonymized model outputs, documentation, and paper-facing metadata are released under CC-BY-4.0. See `LICENSE-DATA` for the complete text.
+
+If a file mixes code and data, the code portions are MIT-licensed and the data/documentation portions are CC-BY-4.0-licensed unless the file states otherwise.

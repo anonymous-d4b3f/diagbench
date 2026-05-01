@@ -24,8 +24,8 @@
       "path": "data/veh/p1_tasks.jsonl",
       "records": 240,
       "sha256": "53222bf61f1b8826e6e352ab50da051397b7d6c90fd4317456637633ff7e136e",
-      "source_path": "artifacts/curated/main_table_bundle_20260417/tasks/p1_v3r4/dev_tasks.jsonl",
-      "source_version": "p1_v3r4"
+      "source_path": "data/veh/p1_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 579738,
@@ -33,8 +33,8 @@
       "path": "data/veh/p2_tasks.jsonl",
       "records": 208,
       "sha256": "b42324360a722dd1839f5889e659bd96a1606bec21f6c136665f4e8e9c5fc3f6",
-      "source_path": "artifacts/curated/main_table_bundle_20260417/tasks/p2_v3r1/splits/p2_dev_tasks.jsonl",
-      "source_version": "p2_v3r1"
+      "source_path": "data/veh/p2_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 1209319,
@@ -42,8 +42,8 @@
       "path": "data/veh/p3_tasks.jsonl",
       "records": 156,
       "sha256": "d73c82e28c7b8dbf352aa9536a1c7704ecff5d1224220525a4b4b58f2c2ef1ae",
-      "source_path": "artifacts/curated/main_table_bundle_20260417/tasks/p3_v3r1/p3_dev_tasks.jsonl",
-      "source_version": "p3_v3r1"
+      "source_path": "data/veh/p3_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 2033562,
@@ -51,8 +51,8 @@
       "path": "data/veh/p4_tasks.jsonl",
       "records": 159,
       "sha256": "fdfa890f056369f3d7c6c038f5d0820a530e71624005c4752fd371a60a5853dc",
-      "source_path": "artifacts/curated/main_table_bundle_20260417/tasks/p4_full_v2/p4_dev_tasks.jsonl",
-      "source_version": "p4_full_v2"
+      "source_path": "data/veh/p4_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 55171,
@@ -60,8 +60,8 @@
       "path": "data/circuit/p1_tasks.jsonl",
       "records": 32,
       "sha256": "d4447c979ec52051e267ac1532b6897e96a5db149ad6952a49cd0dbd2bf1f89a",
-      "source_path": "data/circuit_pilot_v3_1/p1_tasks.jsonl",
-      "source_version": "circuit_pilot_v3_1"
+      "source_path": "data/circuit/p1_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 103382,
@@ -69,8 +69,8 @@
       "path": "data/circuit/p2_tasks.jsonl",
       "records": 32,
       "sha256": "10242cc78ddea4249eed2e27c2415c238cdb7e45493911a617e0aa8859301cd1",
-      "source_path": "data/circuit_pilot_v3_1/p2_tasks.jsonl",
-      "source_version": "circuit_pilot_v3_1"
+      "source_path": "data/circuit/p2_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 97063,
@@ -78,8 +78,8 @@
       "path": "data/circuit/p3_tasks.jsonl",
       "records": 18,
       "sha256": "f13f7d40d1a198a43ce8fbc40acf957e7345016517ae85a0d3b477e510f9ec3b",
-      "source_path": "data/circuit_pilot_v2/p3_tasks.jsonl",
-      "source_version": "circuit_pilot_v2"
+      "source_path": "data/circuit/p3_tasks.jsonl",
+      "source_version": "release_v1_final"
     },
     {
       "bytes": 168274,
@@ -87,8 +87,8 @@
       "path": "data/circuit/p4_tasks.jsonl",
       "records": 24,
       "sha256": "a4cbe168d783ca3b29417102ad37e8e2bd7d4104dc0439300653edf68ddbbd9e",
-      "source_path": "data/circuit_pilot_v2/p4_tasks.jsonl",
-      "source_version": "circuit_pilot_v2"
+      "source_path": "data/circuit/p4_tasks.jsonl",
+      "source_version": "release_v1_final"
     }
   ]
 }

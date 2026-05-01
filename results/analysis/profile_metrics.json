@@ -1213,7 +1213,7 @@
       "display_name": "model_E",
       "model_key": "model_E",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80,
@@ -1248,7 +1248,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_E/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -1280,7 +1280,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_E/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -1312,7 +1312,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/model_E/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -1534,7 +1534,7 @@
       "display_name": "model_D",
       "model_key": "model_D",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80
@@ -1566,7 +1566,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_D/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -1598,7 +1598,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_D/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -1630,7 +1630,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/model_D/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -1852,7 +1852,7 @@
       "display_name": "model_H",
       "model_key": "model_H",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1v2_results.jsonl": 80
@@ -1881,7 +1881,7 @@
             "result_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_H/test_ood/p1v2_results.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -1913,7 +1913,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_H/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -1945,7 +1945,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/model_H/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -2167,7 +2167,7 @@
       "display_name": "model_K",
       "model_key": "model_K",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80
@@ -2175,8 +2175,8 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1_v3r4/dev/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1_v3r4/dev/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1/dev/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1/dev/p1_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -2185,8 +2185,8 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1_v3r4/test_id/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1_v3r4/test_id/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1/test_id/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1/test_id/p1_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -2195,11 +2195,11 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1_v3r4/test_ood/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1_v3r4/test_ood/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1/test_ood/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p1/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -2207,8 +2207,8 @@
             "deduped_task_rows": 0,
             "n_rows": 64,
             "raw_n_rows": 64,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2_v3r1/dev/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2_v3r1/dev/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2/dev/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2/dev/main_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -2217,8 +2217,8 @@
             "deduped_task_rows": 0,
             "n_rows": 40,
             "raw_n_rows": 40,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2_v3r1/test_id/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2_v3r1/test_id/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2/test_id/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2/test_id/main_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -2227,11 +2227,11 @@
             "deduped_task_rows": 0,
             "n_rows": 104,
             "raw_n_rows": 104,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2_v3r1/test_ood/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2_v3r1/test_ood/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2/test_ood/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p2/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -2239,8 +2239,8 @@
             "deduped_task_rows": 0,
             "n_rows": 64,
             "raw_n_rows": 64,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3_v3r1/dev/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3_v3r1/dev/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3/dev/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3/dev/p3_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -2249,8 +2249,8 @@
             "deduped_task_rows": 0,
             "n_rows": 40,
             "raw_n_rows": 40,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3_v3r1/test_id/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3_v3r1/test_id/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3/test_id/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3/test_id/p3_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -2259,11 +2259,11 @@
             "deduped_task_rows": 0,
             "n_rows": 52,
             "raw_n_rows": 52,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3_v3r1/test_ood/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3_v3r1/test_ood/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3/test_ood/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p3/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -2271,8 +2271,8 @@
             "deduped_task_rows": 0,
             "n_rows": 93,
             "raw_n_rows": 93,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/dev/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/dev/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4/dev/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4/dev/p4_traces.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -2281,8 +2281,8 @@
             "deduped_task_rows": 0,
             "n_rows": 36,
             "raw_n_rows": 36,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_id/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_id/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4/test_id/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4/test_id/p4_traces.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -2291,8 +2291,8 @@
             "deduped_task_rows": 0,
             "n_rows": 30,
             "raw_n_rows": 30,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_ood/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4_full_v2/test_ood/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4/test_ood/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_K/p4/test_ood/p4_traces.jsonl"
           }
         }
       },
@@ -2485,7 +2485,7 @@
       "display_name": "model_B",
       "model_key": "model_B",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1v2_results.jsonl": 80
@@ -2514,7 +2514,7 @@
             "result_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/gemini_3_1_pro/test_ood/p1v2_results.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -2546,7 +2546,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_B/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -2578,7 +2578,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/model_B/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -2800,7 +2800,7 @@
       "display_name": "model_J",
       "model_key": "model_J",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1v2_results.jsonl": 80
@@ -2829,7 +2829,7 @@
             "result_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_J/test_ood/p1v2_results.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -2861,8 +2861,8 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_J/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {},
-        "p4_full_v2": {}
+        "p3": {},
+        "p4": {}
       },
       "source_group": "core_main_table_bundle_20260417",
       "stage_metrics": {
@@ -3016,7 +3016,7 @@
       "display_name": "model_C",
       "model_key": "model_C",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1v2_results.jsonl": 80
@@ -3045,7 +3045,7 @@
             "result_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_C/test_ood/p1v2_results.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -3077,7 +3077,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_C/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -3109,7 +3109,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/model_C/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -3331,7 +3331,7 @@
       "display_name": "model_I",
       "model_key": "model_C_mini",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1v2_results.jsonl": 80
@@ -3360,7 +3360,7 @@
             "result_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_C_mini/test_ood/p1v2_results.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -3392,8 +3392,8 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_C_mini/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {},
-        "p4_full_v2": {}
+        "p3": {},
+        "p4": {}
       },
       "source_group": "core_main_table_bundle_20260417",
       "stage_metrics": {
@@ -3547,7 +3547,7 @@
       "display_name": "model_M",
       "model_key": "model_M",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80
@@ -3555,8 +3555,8 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1_v3r4/dev/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1_v3r4/dev/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1/dev/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1/dev/p1_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -3565,8 +3565,8 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1_v3r4/test_id/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1_v3r4/test_id/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1/test_id/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1/test_id/p1_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -3575,11 +3575,11 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1_v3r4/test_ood/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1_v3r4/test_ood/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1/test_ood/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p1/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -3587,8 +3587,8 @@
             "deduped_task_rows": 0,
             "n_rows": 64,
             "raw_n_rows": 64,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2_v3r1/dev/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2_v3r1/dev/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2/dev/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2/dev/main_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -3597,8 +3597,8 @@
             "deduped_task_rows": 0,
             "n_rows": 40,
             "raw_n_rows": 40,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2_v3r1/test_id/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2_v3r1/test_id/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2/test_id/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2/test_id/main_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -3607,11 +3607,11 @@
             "deduped_task_rows": 0,
             "n_rows": 104,
             "raw_n_rows": 104,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2_v3r1/test_ood/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2_v3r1/test_ood/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2/test_ood/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p2/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -3619,8 +3619,8 @@
             "deduped_task_rows": 0,
             "n_rows": 64,
             "raw_n_rows": 64,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3_v3r1/dev/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3_v3r1/dev/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3/dev/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3/dev/p3_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -3629,8 +3629,8 @@
             "deduped_task_rows": 0,
             "n_rows": 40,
             "raw_n_rows": 40,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3_v3r1/test_id/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3_v3r1/test_id/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3/test_id/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3/test_id/p3_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -3639,11 +3639,11 @@
             "deduped_task_rows": 0,
             "n_rows": 52,
             "raw_n_rows": 52,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3_v3r1/test_ood/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3_v3r1/test_ood/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3/test_ood/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p3/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -3651,8 +3651,8 @@
             "deduped_task_rows": 0,
             "n_rows": 93,
             "raw_n_rows": 93,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4_full_v2/dev/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4_full_v2/dev/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4/dev/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4/dev/p4_traces.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -3661,8 +3661,8 @@
             "deduped_task_rows": 0,
             "n_rows": 36,
             "raw_n_rows": 36,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4_full_v2/test_id/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4_full_v2/test_id/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4/test_id/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4/test_id/p4_traces.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -3671,8 +3671,8 @@
             "deduped_task_rows": 0,
             "n_rows": 30,
             "raw_n_rows": 30,
-            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4_full_v2/test_ood/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4_full_v2/test_ood/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4/test_ood/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260427_model_M_p1_p4/analysis/merged_clean_final_20260427/p4/test_ood/p4_traces.jsonl"
           }
         }
       },
@@ -3865,7 +3865,7 @@
       "display_name": "Llama-3.3-70B",
       "model_key": "llama_3_3_70b",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80
@@ -3897,7 +3897,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/llama_3_3_70b/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -3929,7 +3929,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/llama_3_3_70b/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -3961,7 +3961,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/llama_3_3_70b/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -4183,7 +4183,7 @@
       "display_name": "model_F",
       "model_key": "o4_mini",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80
@@ -4215,7 +4215,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/o4_mini/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -4247,7 +4247,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/o4_mini/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -4279,7 +4279,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/o4_mini/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -4287,8 +4287,8 @@
             "deduped_task_rows": 0,
             "n_rows": 93,
             "raw_n_rows": 93,
-            "result_path": "artifacts/runs/p4_full_v2_live_20260416_model_F_hi/dev/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/p4_full_v2_live_20260416_model_F_hi/dev/p4_traces.jsonl"
+            "result_path": "artifacts/runs/p4_live_20260416_model_F_hi/dev/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/p4_live_20260416_model_F_hi/dev/p4_traces.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -4297,8 +4297,8 @@
             "deduped_task_rows": 0,
             "n_rows": 36,
             "raw_n_rows": 36,
-            "result_path": "artifacts/runs/p4_full_v2_live_20260416_model_F_hi/test_id/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/p4_full_v2_live_20260416_model_F_hi/test_id/p4_traces.jsonl"
+            "result_path": "artifacts/runs/p4_live_20260416_model_F_hi/test_id/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/p4_live_20260416_model_F_hi/test_id/p4_traces.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -4307,8 +4307,8 @@
             "deduped_task_rows": 0,
             "n_rows": 30,
             "raw_n_rows": 30,
-            "result_path": "artifacts/runs/p4_full_v2_live_20260416_model_F_hi/test_ood/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/p4_full_v2_live_20260416_model_F_hi/test_ood/p4_traces.jsonl"
+            "result_path": "artifacts/runs/p4_live_20260416_model_F_hi/test_ood/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/p4_live_20260416_model_F_hi/test_ood/p4_traces.jsonl"
           }
         }
       },
@@ -4501,7 +4501,7 @@
       "display_name": "model_G",
       "model_key": "qwen3_6_plus",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80,
@@ -4536,7 +4536,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/qwen3_6_plus/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -4568,7 +4568,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/qwen3_6_plus/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -4600,7 +4600,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/qwen3_6_plus/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -4822,7 +4822,7 @@
       "display_name": "model_A",
       "model_key": "model_A",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1v2_results.jsonl": 80
@@ -4851,7 +4851,7 @@
             "result_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P1_v3r4/model_A/test_ood/p1v2_results.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -4883,7 +4883,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P2_v3r1/model_A/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -4915,7 +4915,7 @@
             "trajectory_path": "artifacts/curated/main_table_bundle_20260417/eval_data/P3_v3r1/model_A/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -5137,7 +5137,7 @@
       "display_name": "model_L",
       "model_key": "model_L",
       "provenance": {
-        "p1_v3r4": {
+        "p1": {
           "dev": {
             "candidate_result_counts": {
               "p1_results.jsonl": 80
@@ -5145,8 +5145,8 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1_v3r4/dev/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1_v3r4/dev/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1/dev/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1/dev/p1_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -5155,8 +5155,8 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1_v3r4/test_id/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1_v3r4/test_id/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1/test_id/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1/test_id/p1_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -5165,11 +5165,11 @@
             "deduped_task_rows": 0,
             "n_rows": 80,
             "raw_n_rows": 80,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1_v3r4/test_ood/p1_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1_v3r4/test_ood/p1_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1/test_ood/p1_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p1/test_ood/p1_trajectories.jsonl"
           }
         },
-        "p2_v3r1": {
+        "p2": {
           "dev": {
             "candidate_result_counts": {
               "main_results.jsonl": 64
@@ -5177,8 +5177,8 @@
             "deduped_task_rows": 0,
             "n_rows": 64,
             "raw_n_rows": 64,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2_v3r1/dev/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2_v3r1/dev/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2/dev/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2/dev/main_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -5187,8 +5187,8 @@
             "deduped_task_rows": 0,
             "n_rows": 40,
             "raw_n_rows": 40,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2_v3r1/test_id/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2_v3r1/test_id/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2/test_id/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2/test_id/main_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -5197,11 +5197,11 @@
             "deduped_task_rows": 0,
             "n_rows": 104,
             "raw_n_rows": 104,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2_v3r1/test_ood/main_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2_v3r1/test_ood/main_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2/test_ood/main_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p2/test_ood/main_trajectories.jsonl"
           }
         },
-        "p3_v3r1": {
+        "p3": {
           "dev": {
             "candidate_result_counts": {
               "p3_results.jsonl": 64
@@ -5209,8 +5209,8 @@
             "deduped_task_rows": 0,
             "n_rows": 64,
             "raw_n_rows": 64,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/dev/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/dev/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3/dev/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3/dev/p3_trajectories.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -5219,8 +5219,8 @@
             "deduped_task_rows": 0,
             "n_rows": 40,
             "raw_n_rows": 40,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_id/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_id/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3/test_id/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3/test_id/p3_trajectories.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -5235,14 +5235,14 @@
                   "p3_results.jsonl": 14
                 },
                 "n_rows": 14,
-                "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/retries/http402_invalid_output/p3_v3r1/test_ood/p3_results.jsonl"
+                "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/retries/http402_invalid_output/p3/test_ood/p3_results.jsonl"
               }
             ],
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_ood/p3_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3_v3r1/test_ood/p3_trajectories.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3/test_ood/p3_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p3/test_ood/p3_trajectories.jsonl"
           }
         },
-        "p4_full_v2": {
+        "p4": {
           "dev": {
             "candidate_result_counts": {
               "p4_results.jsonl": 93
@@ -5250,8 +5250,8 @@
             "deduped_task_rows": 0,
             "n_rows": 93,
             "raw_n_rows": 93,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4_full_v2/dev/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4_full_v2/dev/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4/dev/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4/dev/p4_traces.jsonl"
           },
           "test_id": {
             "candidate_result_counts": {
@@ -5260,8 +5260,8 @@
             "deduped_task_rows": 0,
             "n_rows": 36,
             "raw_n_rows": 36,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4_full_v2/test_id/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4_full_v2/test_id/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4/test_id/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4/test_id/p4_traces.jsonl"
           },
           "test_ood": {
             "candidate_result_counts": {
@@ -5270,8 +5270,8 @@
             "deduped_task_rows": 0,
             "n_rows": 30,
             "raw_n_rows": 30,
-            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4_full_v2/test_ood/p4_results.jsonl",
-            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4_full_v2/test_ood/p4_traces.jsonl"
+            "result_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4/test_ood/p4_results.jsonl",
+            "trajectory_path": "artifacts/runs/full_20260425_deepseek_mimo_p1_p4/model_L/p4/test_ood/p4_traces.jsonl"
           }
         }
       },

@@ -1,32 +1,32 @@
 \section{Circuit Audit: Cross-Domain Construct Validity}
 
-This appendix reports the hardened circuit audit described in Section~\ref{sec:experiments}. The audit is a construct-validity check, not an independent circuit benchmark: it asks whether the same P1--P4 diagnostic regimes remain discriminative under a second closed-form engineering domain. The current paper-facing configuration uses circuit v3.1 for P1/P2 and retains the original P3/P4 banks.
+This appendix reports the final circuit audit described in Section~\ref{sec:experiments}. The audit is a construct-validity check, not an independent circuit benchmark: it asks whether the same P1--P4 diagnostic regimes remain discriminative under a second closed-form engineering domain. The released task bank hardens P1 with near-boundary infeasible and missing-information cases, hardens P2 with dual-constraint edits where fixing one violation can break another, and uses matched P3/P4 recovery and ranking banks to test corrupted-state recovery and policy-conditioned selection.
 
 \Needspace{12\baselineskip}
 \begin{center}
 \captionof{table}{Circuit audit task inventory. The task bank changes the physics while preserving the P1--P4 decision boundaries.}
 \label{tab:appendix_circuit_inventory}
 \scriptsize
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.08}
-\begin{tabular}{lp{9mm}p{36mm}p{50mm}p{46mm}}
+\begin{tabularx}{\textwidth}{lcYYY}
 \toprule
 Probe & n & Source & Hardening & Validation target \\
 \midrule
-P1 & 32 & circuit v3.1 & Near-boundary infeasible cases; lower raw \texttt{propose\_design} prior; subtype-balanced entry decisions & Action-prior transfer \\
-P2 & 32 & circuit v3.1 & Dual constraints; repair directions can conflict; objective-preserving feasible repair is rewarded & Edit style and feedback obedience \\
-P3 & 18 & original corrupted-state bank & Progressive dual traps; escape can trigger a second violation & State-trust policy and trap sensitivity \\
-P4 & 24 & original ranking bank & Retained policy-ranking tasks; no rerun in this update & Preference execution \\
+P1 & 32 & final circuit audit & Near-boundary infeasible cases; lower raw \texttt{propose\_design} prior; subtype-balanced entry decisions & Action-prior transfer \\
+P2 & 32 & final circuit audit & Dual constraints; repair directions can conflict; objective-preserving feasible repair is rewarded & Edit style and feedback obedience \\
+P3 & 18 & final circuit audit & Progressive dual traps; escape can trigger a second violation & State-trust policy and trap sensitivity \\
+P4 & 24 & final circuit audit & Policy-flip ranking tasks under feasible candidate pools & Preference execution \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{center}
 
 \paragraph{Why P1-Composite is the circuit P1 headline.}
-Circuit v3.1 follows the VEH P1 hardening principle: raw accuracy is too easy to inflate when the action distribution contains many feasible proposals. The bank therefore lowers the trivial \texttt{propose\_design} prior and adds near-boundary infeasible/request cases. P1-Composite is used as the headline because it jointly rewards correct entry actions and penalizes spurious proposals, unsafe proposals, missed missing-information cases, and missed infeasibility cases. This makes P1 an entry-discipline metric rather than a willingness-to-generate metric.
+The circuit P1 bank follows the VEH P1 hardening principle: raw accuracy is too easy to inflate when the action distribution contains many feasible proposals. The bank therefore lowers the trivial \texttt{propose\_design} prior and adds near-boundary infeasible/request cases. P1-Composite is used as the headline because it jointly rewards correct entry actions and penalizes spurious proposals, unsafe proposals, missed missing-information cases, and missed infeasibility cases. This makes P1 an entry-discipline metric rather than a willingness-to-generate metric.
 
 \Needspace{12\baselineskip}
 \begin{center}
-\captionof{table}{Circuit P1 action triage on v3.1. P1-Comp. is the headline; abbreviations: Spur.=spurious propose, Unsafe=unsafe propose, Req.=request recall, Inf.=infeasible recall.}
+\captionof{table}{Circuit P1 action triage. P1-Comp. is the headline; abbreviations: Spur.=spurious propose, Unsafe=unsafe propose, Req.=request recall, Inf.=infeasible recall.}
 \label{tab:appendix_circuit_p1}
 \scriptsize
 \setlength{\tabcolsep}{3.5pt}
@@ -35,19 +35,19 @@ Circuit v3.1 follows the VEH P1 hardening principle: raw accuracy is too easy to
 \toprule
 Model & n & P1-Comp. & Acc. & F1 & Spur. & Unsafe & Req. & Inf. & Parse \\
 \midrule
-model_A & 32 & 0.971 & 0.969 & 0.965 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
-Hunyuan-Hy3 & 32 & 0.944 & 0.938 & 0.933 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
-model_D & 32 & \textbf{0.974} & 0.969 & 0.971 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
-Gemini-3.1 & 32 & \textbf{0.974} & 0.969 & 0.971 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
-model_C & 32 & 0.923 & 0.906 & 0.917 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
-model_E & 32 & 0.932 & 0.938 & 0.940 & 0.031 & 0.031 & 1.000 & 0.875 & 0.000 \\
+qwen3-max & 32 & 0.971 & 0.969 & 0.965 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
+hunyuan-hy3-preview & 32 & 0.944 & 0.938 & 0.933 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
+deepseek-r1 & 32 & \textbf{0.974} & 0.969 & 0.971 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
+gemini-3.1-pro-preview & 32 & \textbf{0.974} & 0.969 & 0.971 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
+gpt-5.4 & 32 & 0.923 & 0.906 & 0.917 & 0.000 & 0.000 & 1.000 & 1.000 & 0.000 \\
+claude-4.6-sonnet & 32 & 0.932 & 0.938 & 0.940 & 0.031 & 0.031 & 1.000 & 0.875 & 0.000 \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \Needspace{12\baselineskip}
 \begin{center}
-\captionof{table}{Circuit P2 iterative repair on v3.1. P2b is the final feasible objective score; abbreviations: Feas.=final feasible rate, Dir.=directed repair, O-edit=over-edit.}
+\captionof{table}{Circuit P2 iterative repair. P2b is the final feasible objective score; abbreviations: Feas.=final feasible rate, Dir.=directed repair, O-edit=over-edit.}
 \label{tab:appendix_circuit_p2}
 \scriptsize
 \setlength{\tabcolsep}{4pt}
@@ -56,12 +56,12 @@ model_E & 32 & 0.932 & 0.938 & 0.940 & 0.031 & 0.031 & 1.000 & 0.875 & 0.000 \\
 \toprule
 Model & n & Feas. & P2b & Dir. & O-edit & Parse \\
 \midrule
-model_A & 32 & 0.906 & 0.494 & 0.938 & 0.400 & 0.000 \\
-Hunyuan-Hy3 & 32 & 0.938 & 0.512 & 0.914 & 0.771 & 0.000 \\
-model_D & 32 & 0.969 & 0.594 & \textbf{1.000} & 0.605 & 0.000 \\
-Gemini-3.1 & 32 & \textbf{1.000} & \textbf{0.662} & 0.969 & 0.938 & 0.000 \\
-model_C & 32 & 0.875 & 0.457 & 0.883 & 0.489 & 0.000 \\
-model_E & 32 & 0.906 & 0.487 & 0.914 & 0.646 & 0.000 \\
+qwen3-max & 32 & 0.906 & 0.494 & 0.938 & 0.400 & 0.000 \\
+hunyuan-hy3-preview & 32 & 0.938 & 0.512 & 0.914 & 0.771 & 0.000 \\
+deepseek-r1 & 32 & 0.969 & 0.594 & \textbf{1.000} & 0.605 & 0.000 \\
+gemini-3.1-pro-preview & 32 & \textbf{1.000} & \textbf{0.662} & 0.969 & 0.938 & 0.000 \\
+gpt-5.4 & 32 & 0.875 & 0.457 & 0.883 & 0.489 & 0.000 \\
+claude-4.6-sonnet & 32 & 0.906 & 0.487 & 0.914 & 0.646 & 0.000 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -77,19 +77,19 @@ model_E & 32 & 0.906 & 0.487 & 0.914 & 0.646 & 0.000 \\
 \toprule
 Model & n & Esc. & Replan & Reset & Casc. & Dead & Succ. & Rec. q. & Parse \\
 \midrule
-model_A & 18 & 0.944 & 0.000 & 0.000 & 0.471 & 0.000 & 0.778 & 0.366 & 0.000 \\
-Gemini-3.1 & 18 & 1.000 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & \textbf{1.000} & \textbf{0.611} & 0.000 \\
-model_C & 18 & 0.944 & 0.111 & 0.111 & 0.176 & 0.056 & 0.778 & 0.401 & 0.000 \\
-model_D & 18 & 0.778 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & 0.722 & 0.314 & 0.000 \\
-Hunyuan-Hy3 & 18 & 0.889 & 0.000 & 0.000 & 0.062 & 0.000 & 0.778 & 0.364 & 0.000 \\
-model_E & 18 & 1.000 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & \textbf{1.000} & 0.568 & 0.000 \\
+qwen3-max & 18 & 0.944 & 0.000 & 0.000 & 0.471 & 0.000 & 0.778 & 0.366 & 0.000 \\
+gemini-3.1-pro-preview & 18 & 1.000 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & \textbf{1.000} & \textbf{0.611} & 0.000 \\
+gpt-5.4 & 18 & 0.944 & 0.111 & 0.111 & 0.176 & 0.056 & 0.778 & 0.401 & 0.000 \\
+deepseek-r1 & 18 & 0.778 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & 0.722 & 0.314 & 0.000 \\
+hunyuan-hy3-preview & 18 & 0.889 & 0.000 & 0.000 & 0.062 & 0.000 & 0.778 & 0.364 & 0.000 \\
+claude-4.6-sonnet & 18 & 1.000 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & \textbf{1.000} & 0.568 & 0.000 \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \Needspace{12\baselineskip}
 \begin{center}
-\captionof{table}{Circuit P4 policy-conditioned ranking retained from the original ranking bank. Abbreviations: Top2=set agreement for the top two candidates; Flip=policy-flip accuracy.}
+\captionof{table}{Circuit P4 policy-conditioned ranking. Abbreviations: Top2=set agreement for the top two candidates; Flip=policy-flip accuracy.}
 \label{tab:appendix_circuit_p4}
 \scriptsize
 \setlength{\tabcolsep}{3.5pt}
@@ -98,12 +98,12 @@ model_E & 18 & 1.000 & 0.000 & 0.000 & \textbf{0.000} & 0.000 & \textbf{1.000} &
 \toprule
 Model & n & Tau & Exact & Top1 & Top2 & Pair & Flip & BARS & Parse \\
 \midrule
-model_A & 24 & 0.608 & 0.375 & 0.583 & 0.583 & 0.804 & 0.769 & 0.710 & 0.000 \\
-Gemini-3.1 & 24 & 0.475 & 0.250 & 0.500 & 0.500 & 0.738 & 0.679 & 0.625 & 0.000 \\
-model_C & 24 & \textbf{0.625} & 0.375 & 0.583 & 0.625 & 0.812 & \textbf{0.801} & \textbf{0.722} & 0.000 \\
-model_D & 24 & 0.542 & 0.292 & 0.583 & 0.500 & 0.771 & 0.716 & 0.661 & 0.000 \\
-Hunyuan-Hy3 & 24 & 0.492 & 0.208 & 0.458 & 0.417 & 0.746 & 0.647 & 0.614 & 0.000 \\
-model_E & 24 & 0.608 & 0.375 & 0.542 & 0.500 & 0.804 & 0.759 & 0.707 & 0.000 \\
+qwen3-max & 24 & 0.608 & 0.375 & 0.583 & 0.583 & 0.804 & 0.769 & 0.710 & 0.000 \\
+gemini-3.1-pro-preview & 24 & 0.475 & 0.250 & 0.500 & 0.500 & 0.738 & 0.679 & 0.625 & 0.000 \\
+gpt-5.4 & 24 & \textbf{0.625} & 0.375 & 0.583 & 0.625 & 0.812 & \textbf{0.801} & \textbf{0.722} & 0.000 \\
+deepseek-r1 & 24 & 0.542 & 0.292 & 0.583 & 0.500 & 0.771 & 0.716 & 0.661 & 0.000 \\
+hunyuan-hy3-preview & 24 & 0.492 & 0.208 & 0.458 & 0.417 & 0.746 & 0.647 & 0.614 & 0.000 \\
+claude-4.6-sonnet & 24 & 0.608 & 0.375 & 0.542 & 0.500 & 0.804 & 0.759 & 0.707 & 0.000 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -119,12 +119,12 @@ model_E & 24 & 0.608 & 0.375 & 0.542 & 0.500 & 0.804 & 0.759 & 0.707 & 0.000 \\
 \toprule
 Model & Action & Edit & State & Preference \\
 \midrule
-model_A & 0.983 & 0.877 & 0.650 & 0.706 \\
-Hunyuan-Hy3 & 0.968 & 0.792 & 0.721 & 0.612 \\
-model_D & \textbf{0.985} & 0.579 & 0.700 & 0.672 \\
-Gemini-3.1 & \textbf{0.985} & 0.766 & \textbf{0.800} & 0.633 \\
-model_C & 0.956 & 0.830 & 0.720 & \textbf{0.714} \\
-model_E & 0.962 & 0.815 & \textbf{0.800} & 0.696 \\
+qwen3-max & 0.983 & 0.877 & 0.650 & 0.706 \\
+hunyuan-hy3-preview & 0.968 & 0.792 & 0.721 & 0.612 \\
+deepseek-r1 & \textbf{0.985} & 0.579 & 0.700 & 0.672 \\
+gemini-3.1-pro-preview & \textbf{0.985} & 0.766 & \textbf{0.800} & 0.633 \\
+gpt-5.4 & 0.956 & 0.830 & 0.720 & \textbf{0.714} \\
+claude-4.6-sonnet & 0.962 & 0.815 & \textbf{0.800} & 0.696 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -136,19 +136,20 @@ Table~\ref{tab:appendix_cross_domain_patterns} summarizes the signature patterns
 \captionof{table}{Cross-domain pattern reproduction. The circuit audit checks whether the same diagnostic reversals appear under different physics.}
 \label{tab:appendix_cross_domain_patterns}
 \scriptsize
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.08}
-\begin{tabular}{p{35mm}p{54mm}p{54mm}}
+\begin{tabularx}{\textwidth}{p{31mm}YY}
 \toprule
 Pattern & VEH observation & Circuit observation \\
 \midrule
-model_C P4 lead / weaker repair & P4 Tau 0.887 (1st); P2 ratio 0.133 & retained P4 Tau 0.625 (1st); circuit P2b 0.457 (6/6) \\
-Gemini P2 lead / weak P4 & P2 ratio 0.390 (1st); P4 Tau 0.824 (7/12) & circuit P2b 0.662 (1st); retained P4 Tau 0.475 (6/6) \\
-No single model dominates & Qwen P1; Gemini P2; Hunyuan P3; model_C P4 & Gemini/DeepSeek P1; Gemini P2; Gemini/Claude retained P3; model_C retained P4 \\
-P3 trap-geometry sensitivity & Multi-step contamination penalizes continuity-biased models (Gemini cascade 0.507 in VEH) & Formula-level circuit traps give Gemini zero cascade, while Qwen cascades at 0.310 \\
+gpt-5.4 P4 lead / weaker repair & P4 Tau 0.887 (1st); P2 ratio 0.133 & retained P4 Tau 0.625 (1st); circuit P2b 0.457 (6/6) \\
+gemini-3.1-pro-preview P2 lead / weak P4 & P2 ratio 0.390 (1st); P4 Tau 0.824 (7/12) & circuit P2b 0.662 (1st); retained P4 Tau 0.475 (6/6) \\
+No single model dominates & qwen3-max P1; gemini-3.1-pro-preview P2; hunyuan-hy3-preview P3; gpt-5.4 P4 & gemini-3.1-pro-preview/deepseek-r1 P1; gemini-3.1-pro-preview P2; gemini-3.1-pro-preview/claude-4.6-sonnet retained P3; gpt-5.4 retained P4 \\
+P3 trap-geometry sensitivity & Multi-step contamination penalizes continuity-biased models (gemini-3.1-pro-preview cascade 0.507 in VEH) & Formula-level circuit traps give gemini-3.1-pro-preview zero cascade, while qwen3-max cascades at 0.471; this is a trap-geometry contrast, not a claim that the same model-level cascade mechanism transfers unchanged \\
 Profile diagonal direction & Action prior tracks P1; edit style tracks P2; preference execution tracks P4 & P1-Composite, P2b, and P3 success remain separable under the circuit oracle \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{center}
 
-The circuit audit is not a claim of stable circuit-domain rankings; the task count is too small for that. It is evidence that the P1--P4 diagnostic framework, and the response-control profile interpretation that accompanies it, are not artifacts of VEH-specific physics or a particular trap geometry.
+\paragraph{What the circuit audit proves and does not prove.}
+The audit supports a narrow construct-validity claim: when the physics changes from VEH to closed-form circuit design, the P1--P4 scaffold still produces separable action, repair, recovery, and ranking behaviors. It also shows that response-control reversals such as gemini-3.1-pro-preview's repair/ranking split and gpt-5.4's ranking/repair split are not artifacts of VEH-specific formulas. It does \emph{not} establish stable circuit-domain model rankings, cover modern circuit design broadly, or replace a full circuit benchmark; the task count and family coverage are intentionally pilot-scale.
